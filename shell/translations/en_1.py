@@ -150,6 +150,7 @@ T = {
 "Couper": "Cut",
 "Couper le son": "Mute",
 "Création d'un dossier": "Creating a folder",
+"Création d'un document": "Creating a document",
 "Création…": "Creating…",
 "Créer le compte": "Create account",
 "Créer maintenant": "Create now",

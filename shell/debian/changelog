@@ -1,3 +1,16 @@
+vinx-shell (0.31.0) trixie; urgency=medium
+
+  * Fichiers : « Nouveau document » dans le menu contextuel (clic droit sur le fond
+    du dossier), comme « Nouveau dossier » ; un fichier texte vide, créé et renommé
+    en place avec l'extension présélectionnée.
+  * Bureaux virtuels (ADR 0030) : l'ajout et le retrait depuis Paramètres passent
+    directement par KWin (D-Bus), comme le renommage ; les requêtes libtaskmanager
+    ne produisaient rien en session VinX.
+  * Lancement des applications : curseur occupé statique, sans le logo animé qui
+    rebondit à côté du pointeur (klaunchrc, Bouncing=false).
+
+ -- VinX OS <vinx@localhost>  Sat, 22 Nov 2026 12:40:00 +0000
+
 vinx-shell (0.30.0) trixie; urgency=medium
 
   * Touche Méta seule : ouvre enfin la recherche VinX. Depuis Plasma 6.1 (Debian 13),

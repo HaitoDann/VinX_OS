@@ -55,6 +55,9 @@ if [ -n "$KWC" ]; then
 	for n in 1 2 3 4 5 6 7 8 9; do
 		"$KWC" --file kglobalshortcutsrc --group kwin --key "Switch to Desktop $n" "Meta+$n,none,Switch to Desktop $n"
 	done
+	# Touche de lancement occupée : curseur statique, sans logo animé qui rebondit (ADR 0046).
+	"$KWC" --file klaunchrc --group FeedbackStyle --key BusyCursor true
+	"$KWC" --file klaunchrc --group BusyCursorSettings --key Bouncing false
 	# Moniteur système VinX à la place de celui de KDE (ADR 0035).
 	"$KWC" --file kglobalshortcutsrc --group services --group org.vinx.monitor.desktop --key _launch "Ctrl+Esc"
 	# Capture d'écran VinX (ADR 0036) : Méta+Maj+S pour choisir, Impr. écran pour tout l'écran.
@@ -74,6 +77,8 @@ if [ -n "$KWC" ]; then
 	done
 	"$KWC" --file ksplashrc --group KSplash --key Engine --delete
 	"$KWC" --file ksplashrc --group KSplash --key Theme --delete
+	"$KWC" --file klaunchrc --group FeedbackStyle --key BusyCursor --delete
+	"$KWC" --file klaunchrc --group BusyCursorSettings --key Bouncing --delete
 	for n in search control calendar clipboard volume-up volume-down volume-mute brightness-up brightness-down; do
 		"$KWC" --file kglobalshortcutsrc --group services --group "org.vinx.shellctl.$n.desktop" --key _launch --delete
 	done

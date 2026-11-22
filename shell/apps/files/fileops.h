@@ -43,6 +43,8 @@ public:
     Q_INVOKABLE void rename(const QUrl &url, const QString &newName);
     // Crée « Nouveau dossier » (ou « Nouveau dossier (2) »…) et renvoie son nom.
     Q_INVOKABLE QString createFolder(const QUrl &dir, const QString &baseName);
+    // Crée « Nouveau document.txt » (ou « … (2) »…) : un fichier vide, et renvoie son nom.
+    Q_INVOKABLE QString createFile(const QUrl &dir, const QString &baseName);
     Q_INVOKABLE void open(const QUrl &url);
     Q_INVOKABLE void openTerminal(const QUrl &dir);
 

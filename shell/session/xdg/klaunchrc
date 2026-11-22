@@ -1,0 +1,8 @@
+# Retour de lancement VinX (ADR 0046) : un curseur occupé statique au lancement d'une
+# application, sans le logo animé qui rebondit à côté du pointeur.
+[FeedbackStyle]
+BusyCursor=true
+
+[BusyCursorSettings]
+Bouncing=false
+Timeout=6

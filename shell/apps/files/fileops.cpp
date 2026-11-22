@@ -19,6 +19,7 @@
 #include <KIO/JobUiDelegateFactory>
 #include <KIO/MkdirJob>
 #include <KIO/OpenUrlJob>
+#include <KIO/TransferJob>
 #endif
 
 namespace {
@@ -292,6 +293,28 @@ QString FileOps::createFolder(const QUrl &dir, const QString &baseName)
 #else
     begin(tr("Création d'un dossier"));
     finish(QDir().mkdir(target.toLocalFile()), tr("Impossible de créer le dossier."));
+#endif
+    return name;
+}
+
+QString FileOps::createFile(const QUrl &dir, const QString &baseName)
+{
+    QString name = baseName;
+    if (dir.isLocalFile()) {
+        const QDir d(dir.toLocalFile());
+        name = uniqueName(baseName, [&d](const QString &n) { return d.exists(n); });
+    }
+    const QUrl target = QUrl(dir.toString() + QLatin1Char('/')).resolved(QUrl(QUrl::toPercentEncoding(name)));
+#ifdef VINX_HAVE_KIO
+    begin(tr("Création d'un document"));
+    track(this, KIO::put(target, -1, KIO::HideProgressInfo), [this](bool ok, const QString &e) { finish(ok, e); }, [](int) {});
+#else
+    QFile file(target.toLocalFile());
+    const bool ok = file.exists() || file.open(QIODevice::WriteOnly);
+    if (file.isOpen())
+        file.close();
+    begin(tr("Création d'un document"));
+    finish(ok, tr("Impossible de créer le fichier."));
 #endif
     return name;
 }

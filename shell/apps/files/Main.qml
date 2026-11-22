@@ -111,6 +111,7 @@ Window {
     }
     function startRename() { if (current >= 0 && !inTrash) renaming = folder.get(current).name }
     function newFolder() { pendingSelect = FileOps.createFolder(folder.url, qsTr("Nouveau dossier")); pendingRename = true }
+    function newDocument() { pendingSelect = FileOps.createFile(folder.url, qsTr("Nouveau document.txt")); pendingRename = true }
     property bool pendingRename: false
     readonly property bool inTrash: folder.url.toString().startsWith("trash:")
 
@@ -391,6 +392,7 @@ Window {
                    { text: qsTr("Renommer…"), act: "rename", shortcut: "F2", enabled: win.selectedCount <= 1 },
                    { text: qsTr("Mettre à la corbeille"), act: "trash", shortcut: qsTr("Suppr") }])
                 : [{ text: qsTr("Nouveau dossier"), act: "mkdir", shortcut: "Ctrl+Maj+N" },
+                   { text: qsTr("Nouveau document"), act: "newdoc" },
                    { text: qsTr("Coller"), act: "paste", shortcut: "Ctrl+V", enabled: FileOps.canPaste },
                    { separator: true },
                    { text: qsTr("Afficher les fichiers cachés"), act: "hidden", checked: folder.showHidden, shortcut: "Ctrl+H" },
@@ -406,6 +408,7 @@ Window {
                 case "rename": win.startRename(); break
                 case "trash": FileOps.trash(win.selectedUrls()); break
                 case "mkdir": win.newFolder(); break
+                case "newdoc": win.newDocument(); break
                 case "hidden": Preferences.setValue("files/showHidden", !folder.showHidden); break
                 case "terminal": FileOps.openTerminal(folder.url); break
                 case "empty": FileOps.emptyTrash(); break

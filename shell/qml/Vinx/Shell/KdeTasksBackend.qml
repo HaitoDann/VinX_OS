@@ -20,8 +20,17 @@ Item {
     readonly property var desktopNames: desktops.desktopNames
     readonly property var desktopIds: desktops.desktopIds.map(String)
     // Paramètres → Bureau (ADR 0030) : nombre et noms des bureaux virtuels, sans le module KDE.
-    function addDesktop() { desktops.requestCreateDesktop(desktops.numberOfDesktops) }
-    function removeDesktop() { if (desktops.numberOfDesktops > 1) desktops.requestRemoveLastDesktop() }
+    // Ajout et retrait passent directement par KWin (comme renommer et supprimer ci-dessous) :
+    // les requêtes de libtaskmanager ne produisaient rien en session VinX.
+    function addDesktop() {
+        Session.callDBus("org.kde.KWin", "/VirtualDesktopManager", "org.kde.KWin.VirtualDesktopManager",
+                         "createDesktop", [desktops.numberOfDesktops])
+    }
+    function removeDesktop() {
+        if (desktops.numberOfDesktops > 1)
+            Session.callDBus("org.kde.KWin", "/VirtualDesktopManager", "org.kde.KWin.VirtualDesktopManager",
+                             "removeDesktop", [desktops.numberOfDesktops - 1])
+    }
     function renameDesktop(i, name) {
         if (i >= 0 && i < desktops.desktopIds.length)
             Session.callDBus("org.kde.KWin", "/VirtualDesktopManager", "org.kde.KWin.VirtualDesktopManager",
