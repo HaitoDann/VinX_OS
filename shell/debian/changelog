@@ -1,3 +1,14 @@
+vinx-shell (0.33.0) trixie; urgency=medium
+
+  * Pictogrammes plus affirmés (ADR 0048) : Fichiers (dossier + lignes de
+    contenu), Paramètres (console de mixage verticale), Store (sac + emblème
+    en carré) ; le thème d'icônes VinX suit (généré depuis les mêmes SVG).
+  * Fluidité (Paramètres → Écrans) : politique de latence du compositeur KWin
+    (Réactive / Équilibrée / Régulière), appliquée immédiatement via le
+    reconfigure D-Bus de KWin — première réponse aux micro-saccades.
+
+ -- VinX OS <vinx@localhost>  Sat, 22 Nov 2026 15:00:00 +0000
+
 vinx-shell (0.32.0) trixie; urgency=medium
 
   * Batterie progressive (ADR 0047) : la barre supérieure et le centre de

@@ -21,6 +21,20 @@ Column {
     function lw(o) { return Math.round((o.size ? o.size.width : 1920) / (o.scale || 1)) }
     function lh(o) { return Math.round((o.size ? o.size.height : 1080) / (o.scale || 1)) }
     function label(o) { return o.name.startsWith("eDP") || o.name.startsWith("LVDS") ? qsTr("Écran intégré") : o.name }
+
+    // Politique de latence du compositeur KWin ([Compositing] LatencyPolicy) : réglage
+    // anti-saccades (retours portable : micro-saccades), appliqué immédiatement via le
+    // reconfigure D-Bus de KWin.
+    property string policy: {
+        try { return Session.capture("kreadconfig6", ["--file", "kwinrc", "--group", "Compositing", "--key", "LatencyPolicy", "--default", "Low"]).trim() || "Low" }
+        catch (e) { return "Low" }
+    }
+    function setPolicy(v) {
+        Session.run("kwriteconfig6", ["--file", "kwinrc", "--group", "Compositing", "--key", "LatencyPolicy", v])
+        Session.callDBus("org.kde.KWin", "/KWin", "org.kde.KWin", "reconfigure", [])
+        policy = v
+    }
+
     Timer { id: reload; interval: 900; onTriggered: page.load() }
     onVisibleChanged: if (visible) load()
     Component.onCompleted: load()
@@ -227,6 +241,18 @@ Column {
                 currentIndex: page.current ? Math.max(0, values.indexOf(page.current.rotation || 1)) : 0
                 onActivated: (i) => page.apply(["output." + page.current.name + ".rotation." + names[i]])
             }
+        }
+    }
+
+    // ---------- Fluidité (compositing KWin) ----------
+    SettingsRow {
+        title: qsTr("Fluidité")
+        description: qsTr("Compromis du compositeur entre réactivité et régularité : si des micro-saccades apparaissent, essayez « Régulière ».")
+        SegmentedControl {
+            readonly property var values: ["Low", "Medium", "High"]
+            model: [qsTr("Réactive"), qsTr("Équilibrée"), qsTr("Régulière")]
+            currentIndex: Math.max(0, values.indexOf(page.policy))
+            onActivated: (i) => page.setPolicy(values[i])
         }
     }
 }

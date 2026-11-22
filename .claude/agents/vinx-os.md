@@ -107,13 +107,15 @@ aux côtés de l'utilisateur, avec la qualité d'un développeur senior qui conn
    vinx-shell 0.31.0.
 10. ✅ Curseur de chargement : klaunchrc `BusyCursor=true`, `Bouncing=false` (curseur occupé
     statique), vinx-shell 0.31.0.
-11. Micro-saccades / images qui sautent : à investiguer (compositing KWin, pilote GPU) — créer des
-    réglages et demander des retours, prévoir un test sur le matériel de l'utilisateur.
+11. ◻ Micro-saccades / images qui sautent : réglage ajouté (vinx-shell 0.33.0 : Paramètres →
+    Écrans → Fluidité, `[Compositing] LatencyPolicy` appliqué via D-Bus reconfigure de KWin) —
+    demander le retour utilisateur, puis investiguer pilote GPU / direct scanout si insuffisant.
 
 **Finitions d'apparence**
 12. ✅ Dock : icônes **pleines, sans bordure** (ADR 0047 : tuile = couleur de l'application,
     pictogramme contrasté ; logos tierces sur tuile neutre sans bordure), vinx-shell 0.32.0.
-13. Icônes Fichiers / Paramètres / Store avec plus de personnalité (SVG dans `branding/`, style ADR 0015/0018).
+13. ✅ Icônes Fichiers / Paramètres / Store avec plus de personnalité (ADR 0048 : dossier +
+    lignes, console de mixage verticale, sac + emblème tuile), vinx-shell 0.33.0.
 14. ✅ Icône **batterie** qui se remplit/se vide selon le pourcentage (ADR 0047,
     `Vinx/Shell/BatteryLevel.qml`), vinx-shell 0.32.0.
 15. Icônes sur le bureau (vrai gestionnaire de bureau — gros morceau, demander validation d'abord).

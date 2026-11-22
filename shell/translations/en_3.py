@@ -454,4 +454,9 @@ T = {
 'Par défaut': 'Default',
 'Par défaut (%1)': 'Default (%1)',
 "Cliquez sur le numéro d'un espace pour choisir sa couleur.": "Click a space's number to choose its colour.",
+"Fluidité": "Fluidity",
+"Compromis du compositeur entre réactivité et régularité : si des micro-saccades apparaissent, essayez « Régulière ».": "Compositor trade-off between responsiveness and smoothness: if micro-stutters appear, try \"Smooth\".",
+"Réactive": "Responsive",
+"Équilibrée": "Balanced",
+"Régulière": "Smooth",
 }
