@@ -13,6 +13,7 @@ qt_add_qml_module(vinxshell
         DisplayHotplug.qml
         TopBar.qml
         TopBarButton.qml
+        BatteryLevel.qml
         ControlCenter.qml
         CalendarPanel.qml
         Panels.qml

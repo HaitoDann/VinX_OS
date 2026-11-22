@@ -1,4 +1,14 @@
-vinx-shell (0.31.0) trixie; urgency=medium
+vinx-shell (0.32.0) trixie; urgency=medium
+
+  * Batterie progressive (ADR 0047) : la barre supérieure et le centre de
+    contrôle dessinent la batterie avec un niveau qui se remplit et se vide
+    selon le pourcentage (UPower), au lieu d'un SVG figé.
+  * Dock : icônes pleines sans bordure (ADR 0047) — la tuile prend la couleur
+    de l'application, pictogramme contrasté ; les logos tierces (Firefox…)
+    restent sur une tuile neutre, mais sans bordure.
+
+ -- VinX OS <vinx@localhost>  Sat, 22 Nov 2026 14:10:00 +0000
+
 
   * Fichiers : « Nouveau document » dans le menu contextuel (clic droit sur le fond
     du dossier), comme « Nouveau dossier » ; un fichier texte vide, créé et renommé

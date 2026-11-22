@@ -58,15 +58,15 @@ Item {
             size: item.size
             iconName: item.style ? item.style.glyph : ""
             tint: item.style ? item.style.tint : "#5F6270"
+            filled: true
         }
         // Applications tierces : leur logo officiel, sur la même tuile neutre que les icônes VinX.
+        // Pleine : sans bordure (ADR 0047), seul le dock met la tuile pleine pour les icônes VinX.
         Rectangle {
             anchors.fill: parent
             visible: item.style === null
             radius: width * 0.24
             color: Theme.dark ? "#2A2D2B" : "#E3E1DB"
-            border.width: 1
-            border.color: Theme.border
             Image {
                 id: themeImage
                 anchors.centerIn: parent
@@ -83,6 +83,7 @@ Item {
             size: item.size
             iconName: "grid"
             tint: "#8A8983"
+            filled: true
         }
     }
 

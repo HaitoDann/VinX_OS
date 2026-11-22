@@ -127,7 +127,7 @@ Column {
             anchors.verticalCenter: parent.verticalCenter
             spacing: 6
             visible: Battery.present
-            Icon { name: Battery.charging ? "bolt" : "battery"; color: Theme.textSecondary; anchors.verticalCenter: parent.verticalCenter }
+            BatteryLevel { color: Theme.textSecondary; percentage: Battery.percentage; anchors.verticalCenter: parent.verticalCenter }
             Label {
                 level: Label.Secondary
                 font.pixelSize: Theme.fsSm

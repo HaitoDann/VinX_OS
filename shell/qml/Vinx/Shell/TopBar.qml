@@ -128,7 +128,8 @@ Rectangle {
                 visible: Battery.present
                 spacing: 4
                 anchors.verticalCenter: parent.verticalCenter
-                Icon { name: Battery.charging ? "bolt" : "battery"; color: Battery.percentage <= 10 && !Battery.charging ? Theme.danger : Theme.text; anchors.verticalCenter: parent.verticalCenter }
+                BatteryLevel { percentage: Battery.percentage; color: Battery.percentage <= 10 && !Battery.charging ? Theme.danger : Theme.text; anchors.verticalCenter: parent.verticalCenter }
+                Icon { visible: Battery.charging; name: "bolt"; width: 12; height: 12; color: Theme.text; anchors.verticalCenter: parent.verticalCenter }
                 // Pourcentage : seulement quand il devient utile (batterie faible) ou si demandé.
                 Label {
                     visible: Battery.percentage <= 20 || (Preferences.revision, String(Preferences.value("topbar/batteryPercent", false)) === "true")
