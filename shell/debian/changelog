@@ -1,3 +1,22 @@
+vinx-shell (0.30.0) trixie; urgency=medium
+
+  * Touche Méta seule : ouvre enfin la recherche VinX. Depuis Plasma 6.1 (Debian 13),
+    KWin ne lit plus les raccourcis « modifier seul » dans kwinrc
+    ([ModifierOnlyShortcuts]) ; ils sont écrits dans kglobalshortcutsrc [services],
+    comme les autres (Méta primaire, Méta+Espace en alternative).
+  * Touches multimédia (ADR 0046) : volume et luminosité appliqués par vinx-shellctl
+    (wpctl, brightnessctl) avec la bulle VinX (osdService), au lieu de dépendre des
+    modules KDE. brightnessctl ajouté à l'ISO.
+  * Capture d'écran : les pipelines KWin XRGB laissent l'alpha à zéro et la capture
+    sortait toute noire ; l'image est désormais forcée opaque, et sans KWin sous Wayland
+    on échoue avec un message clair au lieu d'une image noire.
+  * Clavier virtuel : jamais démarré automatiquement (kwinrc [Wayland] InputMethod vide).
+  * Fenêtres GTK (Firefox) : disposition des boutons passée à droite comme sous Windows
+    (gtk-decoration-layout), Firefox rendu à la décoration système (barre de titre
+    VinX pastilles) ; configuration kwinrc du système alignée sur l'ADR 0024.
+
+ -- VinX OS <vinx@localhost>  Sat, 22 Nov 2026 10:30:00 +0000
+
 vinx-shell (0.29.3) trixie; urgency=medium
 
   * Écran de verrouillage au même dessin que l'écran de connexion :

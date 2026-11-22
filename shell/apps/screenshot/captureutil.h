@@ -29,6 +29,10 @@ inline QImage imageFromRaw(const QByteArray &data, const QVariantMap &meta)
         return {};
     // Copie : les octets appartiennent au tampon lu dans le tube.
     QImage image = QImage(reinterpret_cast<const uchar *>(data.constData()), width, height, stride, format).copy();
+    // Une capture d'écran est toujours opaque : certains pipelines KWin (XRGB) laissent les
+    // octets alpha à zéro et l'image sortait invisible (tout noir) une fois composée.
+    if (image.hasAlphaChannel())
+        image = image.convertToFormat(QImage::Format_RGB32);
     const double scale = meta.value(QStringLiteral("scale"), 1.0).toDouble();
     if (scale > 0)
         image.setDevicePixelRatio(scale);

@@ -378,6 +378,7 @@ T = {
 "L'enregistrement a échoué.": 'Saving failed.',
 'La capture a échoué.': 'The capture failed.',
 "La capture d'une fenêtre demande KWin.": 'Capturing a window requires KWin.',
+'La capture demande KWin (session VinX).': 'Screen capture requires KWin (VinX session).',
 'Ouvrir le dossier': 'Open folder',
 "Rechercher dans l'historique…": 'Search the history…',
 'Retardateur': 'Timer',

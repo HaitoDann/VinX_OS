@@ -1,8 +1,67 @@
 #!/bin/sh
-# Pilote le shell VinX par D-Bus (raccourcis globaux, scripts).
+# Pilote le shell VinX par D-Bus (raccourcis globaux, scripts) et applique volume et
+# luminosité pour les touches multimédia (ADR 0046), avec la bulle VinX (org.kde.osdService).
+#
 # Usage : vinx-shellctl search|control|calendar|system|clipboard
+#         vinx-shellctl volume-up|volume-down|volume-mute|brightness-up|brightness-down
+#
+# Sans shell VinX (org.kde.osdService absent), le changement s'applique sans bulle ;
+# sans wpctl ou brightnessctl (outils absents), l'action est ignorée silencieusement.
+
+SINK=@DEFAULT_AUDIO_SINK@
+
+usage() { echo "usage : vinx-shellctl search|control|calendar|system|clipboard|volume-up|volume-down|volume-mute|brightness-up|brightness-down" >&2; exit 2; }
+
+osd() { # osd <méthode> <signature> <valeur…> : bulle du shell VinX (volumeChanged, brightnessChanged)
+	busctl --user call org.kde.osdService /org/kde/osdService org.kde.osdService "$@" >/dev/null 2>&1 || true
+}
+
+volume_percent() { # pourcentage du volume courant
+	wpctl get-volume "$SINK" 2>/dev/null | awk '{printf "%d", $2 * 100 + 0.5}'
+}
+
+brightness_percent() { # pourcentage de la luminosité du premier écran rétroéclairé
+	brightnessctl -m 2>/dev/null | awk -F, 'NR == 1 { gsub(/%/, "", $4); print int($4) }'
+}
+
+volume_percent_muted() { # 0 si coupé, sinon pourcentage
+	if wpctl get-volume "$SINK" 2>/dev/null | grep -q MUTED; then
+		echo 0
+	else
+		volume_percent
+	fi
+}
+
 case "${1:-}" in
-	search|control|calendar|system|clipboard) ;;
-	*) echo "usage : vinx-shellctl search|control|calendar|system|clipboard" >&2; exit 2 ;;
+	search|control|calendar|system|clipboard)
+		exec busctl --user call org.vinx.Shell /Shell org.vinx.Shell togglePanel s "$1"
+		;;
+	volume-up)
+		command -v wpctl >/dev/null 2>&1 || exit 0
+		wpctl set-volume "$SINK" 5%+ --limit 1.0 2>/dev/null || exit 0
+		osd volumeChanged i "$(volume_percent_muted)"
+		;;
+	volume-down)
+		command -v wpctl >/dev/null 2>&1 || exit 0
+		wpctl set-volume "$SINK" 5%- 2>/dev/null || exit 0
+		osd volumeChanged i "$(volume_percent_muted)"
+		;;
+	volume-mute)
+		command -v wpctl >/dev/null 2>&1 || exit 0
+		wpctl set-mute "$SINK" toggle 2>/dev/null || exit 0
+		osd volumeChanged i "$(volume_percent_muted)"
+		;;
+	brightness-up)
+		command -v brightnessctl >/dev/null 2>&1 || exit 0
+		brightnessctl -q set 5%+ || exit 0
+		osd brightnessChanged i "$(brightness_percent)"
+		;;
+	brightness-down)
+		command -v brightnessctl >/dev/null 2>&1 || exit 0
+		brightnessctl -q set 5%- || exit 0
+		osd brightnessChanged i "$(brightness_percent)"
+		;;
+	*)
+		usage
+		;;
 esac
-exec busctl --user call org.vinx.Shell /Shell org.vinx.Shell togglePanel s "$1"

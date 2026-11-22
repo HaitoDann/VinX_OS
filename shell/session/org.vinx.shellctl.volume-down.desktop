@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Baisser le volume
+Name[en]=Decrease Volume
+Exec=vinx-shellctl volume-down
+NoDisplay=true
+OnlyShowIn=KDE;
+X-KDE-Shortcuts=XF86AudioLowerVolume

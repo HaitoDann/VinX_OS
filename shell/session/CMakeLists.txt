@@ -9,4 +9,6 @@ install(FILES xdg/kwinrc xdg/mimeapps.list xdg/kde-mimeapps.list DESTINATION "${
 install(DIRECTORY data/applications DESTINATION "${CMAKE_INSTALL_DATADIR}/vinx/data")
 install(PROGRAMS vinx-shellctl DESTINATION "${CMAKE_INSTALL_BINDIR}")
 install(FILES org.vinx.shellctl.search.desktop org.vinx.shellctl.control.desktop org.vinx.shellctl.calendar.desktop org.vinx.shellctl.clipboard.desktop
+        org.vinx.shellctl.volume-up.desktop org.vinx.shellctl.volume-down.desktop org.vinx.shellctl.volume-mute.desktop
+        org.vinx.shellctl.brightness-up.desktop org.vinx.shellctl.brightness-down.desktop
         DESTINATION "${CMAKE_INSTALL_DATADIR}/applications")

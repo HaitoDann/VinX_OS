@@ -124,14 +124,18 @@ void Shot::grabScreens()
                                         {QStringLiteral("width"), g.width()}, {QStringLiteral("height"), g.height()}});
     }
     if (!kwinAvailable()) {
-        for (QScreen *screen : screens) {
-            QImage image = fallbackImage(screen->geometry().size() * screen->devicePixelRatio());
-            if (image.isNull())
-                image = screen->grabWindow(0).toImage();
-            image.setDevicePixelRatio(screen->devicePixelRatio());
-            m_screens.insert(screen->name(), image);
+        if (qEnvironmentVariableIsSet("VINX_SCREENSHOT_IMAGE")) {
+            for (QScreen *screen : screens) {
+                QImage image = fallbackImage(screen->geometry().size() * screen->devicePixelRatio());
+                image.setDevicePixelRatio(screen->devicePixelRatio());
+                m_screens.insert(screen->name(), image);
+            }
+            Q_EMIT screensReady();
+            return;
         }
-        Q_EMIT screensReady();
+        // Sous Wayland, QScreen::grabWindow(0) rend une image noire : mieux vaut échouer net.
+        Q_EMIT failed(QGuiApplication::platformName() == QLatin1String("wayland")
+                          ? tr("La capture demande KWin (session VinX).") : tr("La capture a échoué."));
         return;
     }
     auto pending = std::make_shared<int>(screens.size());
@@ -200,11 +204,16 @@ void Shot::takeWindow()
 void Shot::takeWorkspace()
 {
     if (!kwinAvailable()) {
+        // Sous Wayland, QScreen::grabWindow(0) rend une image noire : on refuse, avec une image
+        // de test (VINX_SCREENSHOT_IMAGE) pour les démonstrations et les essais hors écran.
         QScreen *primary = QGuiApplication::primaryScreen();
         QImage image = fallbackImage(primary ? primary->geometry().size() : QSize());
-        if (image.isNull() && primary)
-            image = primary->grabWindow(0).toImage();
-        image.isNull() ? Q_EMIT failed(tr("La capture a échoué.")) : setCapture(image);
+        if (!image.isNull()) {
+            setCapture(image);
+            return;
+        }
+        Q_EMIT failed(QGuiApplication::platformName() == QLatin1String("wayland")
+                          ? tr("La capture demande KWin (session VinX).") : tr("La capture a échoué."));
         return;
     }
     kwinCall(QStringLiteral("CaptureWorkspace"), {QVariantMap{{QStringLiteral("native-resolution"), true}}}, [this](const QImage &image) {

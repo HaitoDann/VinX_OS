@@ -1,8 +1,13 @@
 # Configuration KWin propre à la session VinX OS (prioritaire sur /etc/xdg via XDG_CONFIG_DIRS).
 
-# Touche Méta seule : recherche globale de VinX (au lieu du lanceur Plasma).
-[ModifierOnlyShortcuts]
-Meta=org.vinx.Shell,/Shell,org.vinx.Shell,toggleSearch
+# Touche Méta seule : recherche globale de VinX. Depuis Plasma 6.1 (Debian 13), KWin ne lit
+# plus les raccourcis « modifier seul » dans kwinrc ([ModifierOnlyShortcuts]) : vinx-session
+# les écrit dans kglobalshortcutsrc [services], comme les autres raccourcis.
+
+# Clavier virtuel : ne jamais démarrer une méthode d'entrée à l'écran automatiquement
+# (retours de test : un clavier virtuel apparaissait au démarrage de la session).
+[Wayland]
+InputMethod=
 
 [Desktops]
 Number=3

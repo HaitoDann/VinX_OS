@@ -1,14 +1,34 @@
-# Boutons de fenêtre à gauche (fermer, réduire, agrandir), comme dans la maquette.
-[org.kde.kdecoration2]
-library=org.kde.breeze
-theme=Breeze
-ButtonsOnLeft=XIA
-ButtonsOnRight=
+# Configuration KWin propre à la session VinX OS (prioritaire sur /etc/xdg via XDG_CONFIG_DIRS).
+
+# Clavier virtuel : ne jamais démarrer une méthode d'entrée à l'écran automatiquement
+# (retours de test : un clavier virtuel apparaissait au démarrage de la session).
+[Wayland]
+InputMethod=
 
 [Desktops]
 Number=3
 Rows=1
 
+# Magnétisme : bord gauche/droit = moitié d'écran, coins = quart, haut = agrandir.
 [Windows]
 ElectricBorderMaximize=true
 ElectricBorderTiling=true
+ElectricBorderCornerRatio=0.25
+BorderSnapZone=10
+WindowSnapZone=10
+CenterSnapZone=0
+
+# Animations sobres et rapides.
+[Compositing]
+AnimationSpeed=2
+
+[org.kde.kdecoration2]
+# Fenêtres VinX (ADR 0024) : thème Aurorae « VinX » (pastilles), boutons à droite comme sous Windows :
+# réduire, agrandir, fermer. Pas de bouton à gauche. vinx-session impose aussi ces réglages dans
+# la configuration de l'utilisateur, qui passaient avant /etc/xdg.
+library=org.kde.kwin.aurorae
+theme=__aurorae__svg__VinX
+ButtonsOnLeft=
+ButtonsOnRight=IAX
+BorderSize=Normal
+BorderSizeAuto=false

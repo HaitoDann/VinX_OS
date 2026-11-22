@@ -13,6 +13,8 @@ bluez
 pipewire
 pipewire-pulse
 wireplumber
+# Touches de luminosité du clavier (vinx-shellctl, ADR 0046)
+brightnessctl
 firmware-linux
 firmware-iwlwifi
 firmware-realtek

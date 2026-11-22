@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Augmenter le volume
+Name[en]=Increase Volume
+Exec=vinx-shellctl volume-up
+NoDisplay=true
+OnlyShowIn=KDE;
+X-KDE-Shortcuts=XF86AudioRaiseVolume

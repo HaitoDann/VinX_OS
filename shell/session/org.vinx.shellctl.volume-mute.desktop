@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Couper ou rétablir le son
+Name[en]=Mute
+Exec=vinx-shellctl volume-mute
+NoDisplay=true
+OnlyShowIn=KDE;
+X-KDE-Shortcuts=XF86AudioMute

@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Augmenter la luminosité
+Name[en]=Increase Brightness
+Exec=vinx-shellctl brightness-up
+NoDisplay=true
+OnlyShowIn=KDE;
+X-KDE-Shortcuts=XF86MonBrightnessUp

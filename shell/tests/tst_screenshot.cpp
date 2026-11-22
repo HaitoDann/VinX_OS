@@ -26,6 +26,14 @@ private Q_SLOTS:
         QVariantMap bad = meta;
         bad[QStringLiteral("format")] = 9999u;
         QVERIFY(Capture::imageFromRaw(data, bad).isNull());
+
+        // Pipeline XRGB : les octets alpha restent à zéro, l'image doit quand même sortir opaque.
+        QImage xrgb(4, 3, QImage::Format_ARGB32);
+        xrgb.fill(QColor(255, 0, 0, 0));
+        const QByteArray xrgbData(reinterpret_cast<const char *>(xrgb.constBits()), xrgb.sizeInBytes());
+        const QImage opaque = Capture::imageFromRaw(xrgbData, meta);
+        QCOMPARE(opaque.pixelColor(0, 0), QColor(Qt::red));
+        QVERIFY(!opaque.hasAlphaChannel());
     }
 
     void fileName()
