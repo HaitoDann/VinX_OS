@@ -9,6 +9,7 @@ vinx-shell (0.32.0) trixie; urgency=medium
 
  -- VinX OS <vinx@localhost>  Sat, 22 Nov 2026 14:10:00 +0000
 
+vinx-shell (0.31.0) trixie; urgency=medium
 
   * Fichiers : « Nouveau document » dans le menu contextuel (clic droit sur le fond
     du dossier), comme « Nouveau dossier » ; un fichier texte vide, créé et renommé
