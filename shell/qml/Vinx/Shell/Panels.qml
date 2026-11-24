@@ -44,6 +44,8 @@ Item {
     }
     // Capture d'écran VinX : l'image reste dans le presse-papiers après la fermeture de l'outil.
     Connections { target: ShellService; function onImageCopyRequested(path) { Clipboard.copyImageFile(path) } }
+    // Réglage modifié par Paramètres (fond d'écran, dock…) : relecture immédiate.
+    Connections { target: ShellService; function onPreferencesReloadRequested() { Preferences.reload() } }
     // L'historique doit suivre le presse-papiers dès le démarrage, pas seulement à l'ouverture de Méta+V.
     Component.onCompleted: { sync(); Clipboard.items }
 

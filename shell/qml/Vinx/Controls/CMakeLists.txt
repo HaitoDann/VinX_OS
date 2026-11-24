@@ -21,6 +21,7 @@ qt_add_qml_module(vinxcontrols
         IconButton.qml
         AppIcon.qml
         Switch.qml
+        BatteryIcon.qml
         Slider.qml
         SegmentedControl.qml
         Tile.qml

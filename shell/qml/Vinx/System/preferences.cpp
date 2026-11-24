@@ -1,5 +1,7 @@
 #include "preferences.h"
 
+#include <QDBusConnection>
+#include <QDBusMessage>
 #include <QDir>
 #include <QFileInfo>
 
@@ -45,4 +47,11 @@ void Preferences::setValue(const QString &key, const QVariant &value)
     watch();
     ++m_revision;
     Q_EMIT changed();
+    // Le shell surveille le fichier, mais la surveillance peut manquer un remplacement atomique :
+    // on le prévient aussi directement (fond d'écran, dock…) quand le réglage vient d'une autre application.
+    if (qEnvironmentVariableIntValue("VINX_SHELL_PROCESS") != 1) {
+        const QDBusMessage msg = QDBusMessage::createMethodCall(QStringLiteral("org.vinx.Shell"), QStringLiteral("/Shell"),
+                                                                QStringLiteral("org.vinx.Shell"), QStringLiteral("reloadPreferences"));
+        QDBusConnection::sessionBus().call(msg, QDBus::NoBlock);
+    }
 }

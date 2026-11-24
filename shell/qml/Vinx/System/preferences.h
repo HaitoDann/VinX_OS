@@ -19,6 +19,8 @@ public:
     explicit Preferences(QObject *parent = nullptr);
     Q_INVOKABLE QVariant value(const QString &key, const QVariant &defaultValue = {}) const;
     Q_INVOKABLE void setValue(const QString &key, const QVariant &value);
+    // Relit le fichier (appelé par le shell quand une autre application VinX l'a modifié).
+    Q_INVOKABLE void reload();
     // Incrémenté à chaque changement : permet des liaisons QML réactives (Preferences.revision).
     int revision() const { return m_revision; }
 
@@ -27,7 +29,6 @@ Q_SIGNALS:
 
 private:
     void watch();
-    void reload();
 
     QSettings m_settings;
     QFileSystemWatcher m_watcher;

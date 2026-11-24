@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Monter le son
+Name[en]=Volume up
+Exec=vinx-shellctl volume up
+NoDisplay=true
+OnlyShowIn=KDE;
+X-KDE-Shortcuts=Volume Up

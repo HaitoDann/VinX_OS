@@ -20,6 +20,16 @@ Drivers::Drivers(QObject *parent)
 {
 }
 
+// isenkram propose aussi des applications liées au matériel (cheese pour la webcam, tlp, thinkfan,
+// pidgin-blinklight sur ThinkPad…) : ce ne sont pas des pilotes, on ne garde que micrologiciels et pilotes.
+static bool isDriverPackage(const QString &pkg)
+{
+    static const QStringList exact = {QStringLiteral("broadcom-sta-dkms"), QStringLiteral("b43-fwcutter"),
+                                      QStringLiteral("intel-microcode"), QStringLiteral("amd64-microcode")};
+    return pkg.startsWith(QLatin1String("firmware-")) || pkg.endsWith(QLatin1String("-firmware"))
+        || pkg.startsWith(QLatin1String("nvidia-driver")) || exact.contains(pkg);
+}
+
 void Drivers::scan()
 {
     if (scanning())
@@ -52,7 +62,7 @@ void Drivers::scan()
     runCommand(this, QStringLiteral("isenkram-lookup"), {}, [this](bool, const QString &out, const QString &) {
         for (const QString &raw : out.split(QLatin1Char('\n'), Qt::SkipEmptyParts)) {
             const QString pkg = raw.trimmed();
-            if (pkg.isEmpty() || pkg.contains(QLatin1Char(' ')))
+            if (pkg.isEmpty() || pkg.contains(QLatin1Char(' ')) || !isDriverPackage(pkg))
                 continue;
             const QString reason = pkg.startsWith(QLatin1String("firmware-")) ? tr("Micrologiciel pour un composant de cet ordinateur.")
                                                                               : tr("Prise en charge d'un composant de cet ordinateur.");

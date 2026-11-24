@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Baisser la luminosité
+Name[en]=Brightness down
+Exec=vinx-shellctl brightness down
+NoDisplay=true
+OnlyShowIn=KDE;
+X-KDE-Shortcuts=Monitor Brightness Down
