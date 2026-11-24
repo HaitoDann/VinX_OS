@@ -58,19 +58,16 @@ Item {
             size: item.size
             iconName: item.style ? item.style.glyph : ""
             tint: item.style ? item.style.tint : "#5F6270"
+            art: item.style && item.style.art ? item.style.art : ""
         }
-        // Applications tierces : leur logo officiel, sur la même tuile neutre que les icônes VinX.
-        Rectangle {
+        // Applications tierces : leur logo officiel, en pleine taille, sans tuile ni bordure (ADR 0046).
+        Item {
             anchors.fill: parent
             visible: item.style === null
-            radius: width * 0.24
-            color: Theme.dark ? "#2A2D2B" : "#E3E1DB"
-            border.width: 1
-            border.color: Theme.border
             Image {
                 id: themeImage
                 anchors.centerIn: parent
-                width: parent.width * 0.66; height: width
+                width: parent.width * 0.92; height: width
                 sourceSize: Qt.size(width * 2, height * 2)
                 source: item.themeIcon
                 smooth: true

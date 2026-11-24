@@ -60,6 +60,10 @@ Window {
     // La page est choisie une fois la fenêtre construite (et non par liaison) : chaque page charge
     // ses données quand elle devient visible (onVisibleChanged), y compris la page de départ (--page).
     property string page: ""
+    // Recherche de la barre latérale : sans accents ni majuscules.
+    function plain(t) { return String(t).normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase() }
+    readonly property var filteredPages: searchInput.text === "" ? pages
+        : pages.filter(p => plain(p.title).indexOf(plain(searchInput.text)) >= 0 || plain(p.section).indexOf(plain(searchInput.text)) >= 0)
     function isPage(id) { return pages.some(p => p.id === id) }
     Component.onCompleted: page = isPage(startPage) ? startPage : "appearance"
 
@@ -71,12 +75,32 @@ Window {
         color: Theme.surfaceSunken
         Rectangle { anchors { right: parent.right; top: parent.top; bottom: parent.bottom } width: 1; color: Theme.border }
         Label { id: sideTitle; text: qsTr("Paramètres"); font.pixelSize: Theme.fsXl; font.weight: Font.DemiBold; height: 40; x: Theme.space3 + Theme.space2; y: Theme.space4 }
+        // Recherche : filtre les pages par nom (et mots-clés évidents).
+        Rectangle {
+            id: searchBox
+            anchors { top: sideTitle.bottom; left: parent.left; right: parent.right; margins: Theme.space3; topMargin: Theme.space1 }
+            height: 32; radius: Theme.radiusSm
+            color: Theme.surfaceGlassStrong
+            border.width: searchInput.activeFocus ? 2 : 1
+            border.color: searchInput.activeFocus ? Theme.accent : Theme.border
+            Icon { id: searchIcon; name: "search"; width: 14; height: 14; color: Theme.textTertiary; anchors { left: parent.left; leftMargin: Theme.space2; verticalCenter: parent.verticalCenter } }
+            TextInput {
+                id: searchInput
+                objectName: "settingsSearch"
+                anchors { left: searchIcon.right; leftMargin: Theme.space2; right: parent.right; rightMargin: Theme.space2; verticalCenter: parent.verticalCenter }
+                font.family: Theme.fontFamily; font.pixelSize: Theme.fsSm
+                color: Theme.text; selectByMouse: true; clip: true
+                Accessible.name: qsTr("Rechercher un réglage")
+                onAccepted: if (win.filteredPages.length > 0) win.page = win.filteredPages[0].id
+            }
+            Label { visible: searchInput.text === ""; text: qsTr("Rechercher"); level: Label.Tertiary; font.pixelSize: Theme.fsSm; anchors { left: searchInput.left; verticalCenter: parent.verticalCenter } }
+        }
         ListView {
-            anchors { top: sideTitle.bottom; bottom: parent.bottom; left: parent.left; right: parent.right; margins: Theme.space3; topMargin: 0 }
+            anchors { top: searchBox.bottom; bottom: parent.bottom; left: parent.left; right: parent.right; margins: Theme.space3; topMargin: Theme.space2 }
             clip: true
             spacing: 1
             boundsBehavior: Flickable.StopAtBounds
-            model: win.pages
+            model: win.filteredPages
             section.property: "section"
             section.delegate: Label {
                 required property string section
@@ -87,12 +111,13 @@ Window {
                 required property var modelData
                 width: ListView.view.width; height: 30
                 radius: Theme.radiusSm
-                color: win.page === modelData.id ? Theme.surfaceActive : navMouse.containsMouse ? Theme.surfaceHover : "transparent"
+                readonly property bool active: win.page === modelData.id
+                color: active ? Qt.rgba(Theme.accent.r, Theme.accent.g, Theme.accent.b, 0.2) : navMouse.containsMouse ? Theme.surfaceHover : "transparent"
                 Row {
                     anchors { left: parent.left; leftMargin: Theme.space2; verticalCenter: parent.verticalCenter }
                     spacing: Theme.space2
-                    Icon { name: modelData.icon; color: Theme.textSecondary; anchors.verticalCenter: parent.verticalCenter }
-                    Label { text: modelData.title; font.weight: win.page === modelData.id ? Font.DemiBold : Font.Normal }
+                    Icon { name: modelData.icon; color: parent.parent.active ? Theme.accentText : Theme.textSecondary; anchors.verticalCenter: parent.verticalCenter }
+                    Label { text: modelData.title; color: parent.parent.active ? Theme.accentText : Theme.text; font.weight: parent.parent.active ? Font.DemiBold : Font.Normal }
                 }
                 MouseArea { id: navMouse; anchors.fill: parent; hoverEnabled: true; onClicked: win.page = modelData.id }
             }
@@ -296,6 +321,11 @@ Window {
             Column {
                 visible: win.page === "desktop"
                 width: parent.width
+                SettingsRow {
+                    title: qsTr("Icônes sur le bureau")
+                    description: qsTr("Affiche le contenu du dossier « Bureau ». Clic droit sur le bureau → Nouveau pour y créer un document.")
+                    Switch { checked: win.on("desktop/icons", true); onToggled: (c) => Preferences.setValue("desktop/icons", c) }
+                }
                 SettingsRow { title: qsTr("Widget Horloge"); Switch { checked: win.on("widgets/clock", true); onToggled: (c) => Preferences.setValue("widgets/clock", c) } }
                 SettingsRow { title: qsTr("Widget Calendrier"); Switch { checked: win.on("widgets/calendar", false); onToggled: (c) => Preferences.setValue("widgets/calendar", c) } }
                 SettingsRow { title: qsTr("Widget Note rapide"); Switch { checked: win.on("widgets/note", false); onToggled: (c) => Preferences.setValue("widgets/note", c) } }
@@ -402,6 +432,10 @@ Window {
                 property int prev: 0
                 property string profile: ""
                 onVisibleChanged: if (visible) { prev++; profile = Session.capture("powerprofilesctl", ["get"]).trim() }
+                function duration(sec) {
+                    const h = Math.floor(sec / 3600), m = Math.round((sec % 3600) / 60)
+                    return h > 0 ? qsTr("%1 h %2").arg(h).arg(String(m).padStart(2, "0")) : qsTr("%1 min").arg(m)
+                }
                 function reload() { Session.launch("busctl", ["--user", "call", "org.kde.Solid.PowerManagement", "/org/kde/Solid/PowerManagement", "org.kde.Solid.PowerManagement", "refreshStatus"]) }
                 // Même réglage sur secteur et sur batterie, pour rester simple.
                 function setIdle(group, enableKey, timeKey, minutes) {
@@ -451,7 +485,54 @@ Window {
                 SettingsRow {
                     visible: Battery.present
                     title: qsTr("Batterie")
-                    Label { text: Battery.percentage + " %" + (Battery.charging ? qsTr(" · en charge") : ""); level: Label.Secondary }
+                    description: Battery.timeRemaining > 0
+                        ? (Battery.charging ? qsTr("Chargée dans %1") : qsTr("Environ %1 restantes")).arg(power.duration(Battery.timeRemaining)) : ""
+                    Row {
+                        spacing: Theme.space2
+                        BatteryIcon { percentage: Battery.percentage; charging: Battery.charging; anchors.verticalCenter: parent.verticalCenter }
+                        Label { text: Battery.percentage + " %" + (Battery.charging ? qsTr(" · en charge") : ""); level: Label.Secondary }
+                    }
+                }
+                SettingsRow {
+                    visible: Battery.present && Battery.health >= 0
+                    title: qsTr("Santé de la batterie")
+                    description: qsTr("Capacité actuelle par rapport à une batterie neuve.")
+                    Label {
+                        text: Battery.health + " %"; font.weight: Font.DemiBold
+                        color: Battery.health >= 80 ? Theme.accentText : Battery.health >= 60 ? Theme.warning : Theme.danger
+                    }
+                }
+                SettingsRow {
+                    id: limitRow
+                    property int limit: Battery.chargeLimit
+                    visible: Battery.present && limit > 0
+                    title: qsTr("Limiter la charge à 80 %")
+                    description: qsTr("Prolonge la durée de vie de la batterie si l'ordinateur reste souvent branché.")
+                    Switch {
+                        checked: limitRow.limit > 0 && limitRow.limit <= 80
+                        // Mot de passe administrateur demandé : on relit l'état réel ensuite.
+                        onToggled: (c) => {
+                            Session.launch("pkexec", ["/usr/lib/vinx/vinx-admin", "charge-limit", c ? "80" : "100"])
+                            limitRow.limit = c ? 80 : 100
+                            recheck.restart()
+                        }
+                    }
+                    Timer { id: recheck; interval: 20000; onTriggered: limitRow.limit = Battery.chargeLimit }
+                }
+                SettingsRow {
+                    visible: Battery.present
+                    title: qsTr("Fermer le couvercle")
+                    SegmentedControl {
+                        // powerdevil : 1 = veille, 32 = verrouiller l'écran, 0 = ne rien faire.
+                        readonly property var values: [1, 32, 0]
+                        model: [qsTr("Mettre en veille"), qsTr("Verrouiller"), qsTr("Ne rien faire")]
+                        currentIndex: (power.prev, Math.max(0, values.indexOf(Number(win.kread("powerdevilrc", "AC/SuspendAndShutdown", "LidAction", 1)))))
+                        onActivated: (i) => {
+                            for (const src of ["AC", "Battery", "LowBattery"])
+                                win.kwrite("powerdevilrc", src + "/SuspendAndShutdown", "LidAction", values[i])
+                            power.reload(); power.prev++
+                        }
+                    }
                 }
             }
 

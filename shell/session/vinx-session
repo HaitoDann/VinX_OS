@@ -61,6 +61,9 @@ if [ -n "$KWC" ]; then
 	"$KWC" --file klaunchrc --group BusyCursorSettings --key Bouncing false
 	"$KWC" --file klaunchrc --group BusyCursorSettings --key Blinking false
 	"$KWC" --file klaunchrc --group FeedbackStyle --key BusyCursor true
+	# Curseurs VinX (ADR 0047) : flèche arrondie, attente en grille 2 × 2.
+	"$KWC" --file kcminputrc --group Mouse --key cursorTheme vinx-cursors
+	export XCURSOR_THEME=vinx-cursors
 >>>>>>> 00426e0 (Retours du portable : touche Windows, touches son/luminosité, fond d'écran, bureaux virtuels, pilotes, batterie (vinx-shell 0.26.3))
 	# Moniteur système VinX à la place de celui de KDE (ADR 0035).
 	"$KWC" --file kglobalshortcutsrc --group services --group org.vinx.monitor.desktop --key _launch "Ctrl+Esc"
@@ -81,6 +84,7 @@ if [ -n "$KWC" ]; then
 		"$KWC" --file kwinrc --group org.kde.kdecoration2 --key "$k" --delete
 	done
 	"$KWC" --file kglobalshortcutsrc --group plasmashell --key "activate application launcher" --delete
+	"$KWC" --file kcminputrc --group Mouse --key cursorTheme --delete
 	"$KWC" --file ksplashrc --group KSplash --key Engine --delete
 	"$KWC" --file ksplashrc --group KSplash --key Theme --delete
 	for n in search control calendar clipboard volume-up volume-down volume-mute brightness-up brightness-down; do

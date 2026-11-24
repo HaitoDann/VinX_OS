@@ -1,3 +1,22 @@
+vinx-shell (0.30.0) trixie; urgency=medium
+
+  * Retours du portable (lot 0.26.3 repris) : touche Windows = recherche, touches son
+    et luminosité, fond d'écran appliqué immédiatement, bureaux virtuels, pas de clavier
+    virtuel au démarrage, Pilotes sans applications parasites, batterie qui se remplit.
+  * Icônes d'application pleines, sans bordure ; dessins propres pour Fichiers,
+    Paramètres et Store ; logos tiers en pleine taille (ADR 0046).
+  * Curseurs VinX : flèche arrondie sans queue, main verte, attente en grille 2 × 2
+    (ADR 0047).
+  * Bureau : icônes du dossier Bureau, clic droit « Nouveau » (dossier, documents),
+    « Ouvrir le Terminal ici » (ADR 0048).
+  * Fichiers : nouveaux documents (texte, Writer, Calc, Impress), dossier vide avec
+    actions, espace disque libre, emplacement actif en vert.
+  * Paramètres : réglages en cartes, page active en vert, recherche.
+  * Énergie : autonomie restante, santé de la batterie, limite de charge à 80 %
+    (vinx-admin, réappliquée au démarrage), action à la fermeture du couvercle.
+
+ -- VinX OS <vinx@localhost>  Tue, 24 Nov 2026 23:30:00 +0000
+
 vinx-shell (0.29.3) trixie; urgency=medium
 
   * Écran de verrouillage au même dessin que l'écran de connexion :

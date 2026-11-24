@@ -296,6 +296,20 @@ QString FileOps::createFolder(const QUrl &dir, const QString &baseName)
     return name;
 }
 
+QString FileOps::createFile(const QUrl &dir, const QString &fileName)
+{
+    if (!dir.isLocalFile())
+        return {};
+    const QDir d(dir.toLocalFile());
+    const QString name = uniqueName(fileName, [&d](const QString &n) { return d.exists(n); });
+    QFile file(d.filePath(name));
+    if (!file.open(QIODevice::WriteOnly | QIODevice::NewOnly)) {
+        Q_EMIT failed(tr("Impossible de créer le fichier."));
+        return {};
+    }
+    return name;
+}
+
 void FileOps::open(const QUrl &url)
 {
 #ifdef VINX_HAVE_KIO

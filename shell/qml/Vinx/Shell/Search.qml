@@ -161,7 +161,7 @@ Column {
                 Item {
                     width: 30; height: 30
                     anchors.verticalCenter: parent.verticalCenter
-                    AppIcon { anchors.fill: parent; size: 30; visible: row.style !== null; iconName: row.style ? row.style.glyph : ""; tint: row.style ? row.style.tint : "#5F6270" }
+                    AppIcon { anchors.fill: parent; size: 30; visible: row.style !== null; iconName: row.style ? row.style.glyph : ""; tint: row.style ? row.style.tint : "#5F6270"; art: row.style && row.style.art ? row.style.art : "" }
                     Image {
                         anchors.fill: parent
                         visible: row.style === null && !!row.modelData.appId && status === Image.Ready

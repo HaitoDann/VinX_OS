@@ -1,15 +1,15 @@
 .pragma library
-// Seules les applications VinX et les outils système ont une icône VinX (tuile neutre,
-// pictogramme à l'encre, point de couleur). Les applications tierces (Firefox, LibreOffice,
-// Thunderbird…) gardent leur logo officiel, posé sur la même tuile neutre (ADR 0018).
+// Seules les applications VinX et les outils système ont une icône VinX (tuile pleine colorée,
+// ADR 0046). Les applications tierces (Firefox, LibreOffice, Thunderbird…) gardent leur logo
+// officiel, affiché tel quel, sans tuile ni bordure.
 const known = {
-    "org.vinx.files":    { glyph: "folder",   tint: "#2F6FD0" },
-    "org.vinx.settings": { glyph: "sliders",  tint: "#8A8983" },
-    "org.vinx.store":    { glyph: "bag",      tint: "#10DD8C" },
+    "org.vinx.files":    { glyph: "folder",   tint: "#2F6FD0", art: "files" },
+    "org.vinx.settings": { glyph: "sliders",  tint: "#5F6270", art: "settings" },
+    "org.vinx.store":    { glyph: "bag",      tint: "#10DD8C", art: "store" },
     "org.vinx.welcome":  { glyph: "info",     tint: "#10DD8C" },
     "org.vinx.updates":  { glyph: "restart",  tint: "#10DD8C" },
     "org.vinx.gallery":  { glyph: "grid",     tint: "#10DD8C" },
-    "systemsettings":    { glyph: "sliders",  tint: "#8A8983" },
+    "systemsettings":    { glyph: "sliders",  tint: "#5F6270", art: "settings" },
     "org.vinx.terminal": { glyph: "terminal", tint: "#141414" },
     "org.kde.konsole":   { glyph: "terminal", tint: "#141414" }
 };

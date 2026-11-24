@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.22)
-project(vinx-shell VERSION 0.29.3 LANGUAGES CXX)
+project(vinx-shell VERSION 0.30.0 LANGUAGES CXX)
 
 # Shell de bureau VinX OS — Qt 6 / QML, au-dessus de KWin.
 # Modules : Vinx.Theme, Vinx.Controls, Vinx.System, Vinx.Shell ; programmes vinx-shell et vinx-gallery.
@@ -50,11 +50,14 @@ if(BUILD_TESTING)
     add_subdirectory(tests)
 endif()
 
+file(GLOB VINX_APPICON_SVGS "${VINX_BRANDING_DIR}/appicons/*.svg")
+# Thème de curseurs « VinX » (ADR 0047), généré et versionné par branding/cursors/gen_cursors.py.
+install(DIRECTORY "${VINX_BRANDING_DIR}/cursors/vinx-cursors" DESTINATION "${CMAKE_INSTALL_DATADIR}/icons")
 # Thème d'icônes « VinX » (branding/icon-theme/gen_icons.py), installé dans /usr/share/icons/VinX.
 add_custom_command(
     OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/icon-theme/VinX/index.theme"
     COMMAND "${Python3_EXECUTABLE}" "${VINX_BRANDING_DIR}/icon-theme/gen_icons.py" "${CMAKE_CURRENT_BINARY_DIR}/icon-theme/VinX"
-    DEPENDS "${VINX_BRANDING_DIR}/icon-theme/gen_icons.py"
+    DEPENDS "${VINX_BRANDING_DIR}/icon-theme/gen_icons.py" ${VINX_APPICON_SVGS}
     COMMENT "Génération du thème d'icônes VinX")
 add_custom_target(vinx-icon-theme ALL DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/icon-theme/VinX/index.theme")
 install(DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/icon-theme/VinX" DESTINATION "${CMAKE_INSTALL_DATADIR}/icons")

@@ -8,6 +8,7 @@
 #include <QDBusInterface>
 #include <QDir>
 #include <QFile>
+#include <QStandardPaths>
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QSysInfo>
@@ -157,4 +158,40 @@ void Session::callDBus(const QString &service, const QString &path, const QStrin
     QDBusMessage msg = QDBusMessage::createMethodCall(service, path, interface, method);
     msg.setArguments(arguments);
     QDBusConnection::sessionBus().call(msg, QDBus::NoBlock);
+}
+
+QString Session::desktopPath() const
+{
+    return QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
+}
+
+QVariantList Session::desktopEntries() const
+{
+    QVariantList out;
+    const QDir dir(desktopPath());
+    if (!dir.exists() || dir.absolutePath() == QDir::homePath())
+        return out;
+    const auto infos = dir.entryInfoList(QDir::AllEntries | QDir::NoDotAndDotDot, QDir::DirsFirst | QDir::Name | QDir::IgnoreCase);
+    for (const QFileInfo &fi : infos)
+        out.append(QVariantMap{{QStringLiteral("name"), fi.fileName()}, {QStringLiteral("path"), fi.absoluteFilePath()},
+                               {QStringLiteral("isDir"), fi.isDir()}, {QStringLiteral("ext"), fi.suffix().toLower()}});
+    return out;
+}
+
+QString Session::createInDesktop(const QString &name, bool folder)
+{
+    QDir dir(desktopPath());
+    if (!dir.mkpath(QStringLiteral(".")))
+        return {};
+    const QFileInfo base(name);
+    const QString stem = folder ? name : base.completeBaseName();
+    const QString ext = folder || base.suffix().isEmpty() ? QString() : QLatin1Char('.') + base.suffix();
+    QString candidate = name;
+    for (int n = 2; dir.exists(candidate); ++n)
+        candidate = QStringLiteral("%1 (%2)%3").arg(stem).arg(n).arg(ext);
+    const QString path = dir.filePath(candidate);
+    if (folder)
+        return dir.mkdir(candidate) ? path : QString();
+    QFile file(path);
+    return file.open(QIODevice::WriteOnly | QIODevice::NewOnly) ? path : QString();
 }

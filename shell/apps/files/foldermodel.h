@@ -61,6 +61,8 @@ public:
     // Convertit un texte saisi (« ~/Documents », « /tmp », « smb://… ») en URL.
     Q_INVOKABLE static QUrl urlFromText(const QString &text);
     Q_INVOKABLE static QString formatSize(qint64 bytes);
+    // Espace libre du disque du dossier personnel : « 42 Go libres sur 237 Go ».
+    Q_INVOKABLE static QString homeDiskSummary();
     Q_INVOKABLE static bool kioAvailable();
 
 Q_SIGNALS:

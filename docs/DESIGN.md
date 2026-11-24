@@ -64,12 +64,17 @@ un **bord vert foncé**, et l'état se lit aussi par la position ou le texte (ja
 
 ## 5. Icônes
 
-- **Applications VinX et outils système** : tuile neutre arrondie (`#E3E1DB`, sombre `#2A2D2B`),
-  **pictogramme à l'encre au trait**, **un point de couleur** en haut à droite qui identifie l'app.
-- **Applications tierces** (Firefox, LibreOffice, Thunderbird…) : **leur logo officiel**, posé sur
-  la même tuile neutre pour un dock homogène.
-- Dossiers et types de fichiers : même tuile + pictogramme + point (thème d'icônes « VinX »,
+- **Applications VinX et outils système** (ADR 0046) : **tuile pleine, sans bordure**, dégradé doux
+  dans la couleur de l'application, pictogramme blanc (encre `#06130D` sur les couleurs claires, vert du
+  logo sur la tuile noire du Terminal). **Fichiers, Paramètres et Store** ont un dessin propre
+  (`branding/appicons/`).
+- **Applications tierces** (Firefox, LibreOffice, Thunderbird…) : **leur logo officiel**, en pleine
+  taille, sans tuile ni bordure.
+- Dossiers et types de fichiers : tuile neutre + pictogramme + point (thème d'icônes « VinX »,
   généré par `branding/icon-theme/gen_icons.py`, hérite de Breeze pour le reste).
+- **Curseurs** (ADR 0047) : thème `vinx-cursors`, flèche sans queue aux coins arrondis (encre, liseré
+  blanc), main = même flèche en vert du logo, attente = grille 2 × 2 qui s'allume dans le sens des aiguilles
+  d'une montre. Générés par `branding/cursors/gen_cursors.py`.
 - Pictogrammes d'interface : jeu `branding/icons/` au trait 1,8 px, grille 24 px.
 
 ## 6. Fond d'écran et écrans système

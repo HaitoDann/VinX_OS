@@ -4,6 +4,7 @@ install(FILES vinx-i18n.sh DESTINATION "lib/vinx")
 install(PROGRAMS vinx-dev vinx-backup DESTINATION "${CMAKE_INSTALL_BINDIR}")
 # Sauvegarde des documents : minuteur utilisateur, démarré par vinx-session (ADR 0032).
 install(FILES vinx-backup.service vinx-backup.timer DESTINATION "lib/systemd/user")
+install(FILES vinx-charge-limit.service DESTINATION "lib/systemd/system")
 install(FILES 80vinx-snapshot DESTINATION "${CMAKE_INSTALL_SYSCONFDIR}/apt/apt.conf.d")
 install(FILES org.vinx.snapshots.policy org.vinx.admin.policy org.vinx.greeter-sync.policy DESTINATION "${CMAKE_INSTALL_DATADIR}/polkit-1/actions")
 # Version unique de VinX OS (ADR 0040) : écrite par le postinst du paquet et le déclencheur os-release.

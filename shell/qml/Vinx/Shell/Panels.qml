@@ -139,21 +139,39 @@ Item {
         onClosed: if (ShellState.openPanel === "desktop") ShellState.close()
         readonly property int rev: Preferences.revision
         function on(k, def) { rev; const v = Preferences.value("widgets/" + k, def); return v === true || v === "true" }
+        // Créé sur le Bureau, puis ouvert (document) ou montré dans Fichiers (dossier).
+        function create(name, folder) {
+            const path = Session.createInDesktop(name, folder)
+            if (path !== "") Session.launch(folder ? "vinx-files" : "xdg-open", [path])
+        }
         model: [
-            { header: qsTr("Widgets") },
-            { text: qsTr("Horloge"), checked: on("clock", true) },
-            { text: qsTr("Calendrier"), checked: on("calendar", false) },
-            { text: qsTr("Note rapide"), checked: on("note", false) },
+            { header: qsTr("Nouveau") },
+            { text: qsTr("Dossier"), iconName: "folder", act: "mkdir" },
+            { text: qsTr("Document texte"), iconName: "doc", act: "new", file: qsTr("Nouveau document") + ".txt" },
+            { text: qsTr("Document Writer"), iconName: "doc", act: "new", file: qsTr("Nouveau document") + ".odt" },
+            { text: qsTr("Classeur Calc"), iconName: "table", act: "new", file: qsTr("Nouveau classeur") + ".ods" },
+            { text: qsTr("Présentation Impress"), iconName: "image", act: "new", file: qsTr("Nouvelle présentation") + ".odp" },
             { separator: true },
-            { text: qsTr("Changer le fond d'écran…"), iconName: "image" },
-            { text: qsTr("Paramètres…"), iconName: "sliders" }
+            { text: qsTr("Ouvrir le Terminal ici"), iconName: "terminal", act: "terminal" },
+            { separator: true },
+            { header: qsTr("Widgets") },
+            { text: qsTr("Horloge"), checked: on("clock", true), act: "w", key: "clock", def: true },
+            { text: qsTr("Calendrier"), checked: on("calendar", false), act: "w", key: "calendar", def: false },
+            { text: qsTr("Note rapide"), checked: on("note", false), act: "w", key: "note", def: false },
+            { separator: true },
+            { text: qsTr("Changer le fond d'écran…"), iconName: "image", act: "wallpaper" },
+            { text: qsTr("Paramètres…"), iconName: "sliders", act: "settings" }
         ]
-        onTriggered: (i) => {
+        onTriggered: (i, e) => {
             ShellState.close()
-            const keys = [null, ["clock", true], ["calendar", false], ["note", false]]
-            if (i >= 1 && i <= 3) Preferences.setValue("widgets/" + keys[i][0], !on(keys[i][0], keys[i][1]))
-            else if (i === 5) Session.launch("vinx-settings", ["--page", "wallpaper"])
-            else if (i === 6) Session.launch("vinx-settings")
+            switch (e.act) {
+            case "mkdir": create(qsTr("Nouveau dossier"), true); break
+            case "new": create(e.file, false); break
+            case "terminal": Session.launch("vinx-terminal", ["--workdir", Session.desktopPath()]); break
+            case "w": Preferences.setValue("widgets/" + e.key, !on(e.key, e.def)); break
+            case "wallpaper": Session.launch("vinx-settings", ["--page", "wallpaper"]); break
+            case "settings": Session.launch("vinx-settings"); break
+            }
         }
     }
 

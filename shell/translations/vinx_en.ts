@@ -1275,32 +1275,32 @@
 <context>
     <name>Drivers</name>
     <message>
-        <location filename="../qml/Vinx/System/drivers.cpp" line="41" />
+        <location filename="../qml/Vinx/System/drivers.cpp" line="51" />
         <source>Graphique</source>
         <translation>Graphics</translation>
     </message>
     <message>
-        <location filename="../qml/Vinx/System/drivers.cpp" line="46" />
+        <location filename="../qml/Vinx/System/drivers.cpp" line="56" />
         <source>Pilote NVIDIA officiel : meilleures performances 3D et vidéo que le pilote libre.</source>
         <translation>Official NVIDIA driver: better 3D and video performance than the free driver.</translation>
     </message>
     <message>
-        <location filename="../qml/Vinx/System/drivers.cpp" line="57" />
+        <location filename="../qml/Vinx/System/drivers.cpp" line="67" />
         <source>Micrologiciel pour un composant de cet ordinateur.</source>
         <translation>Firmware for a component of this computer.</translation>
     </message>
     <message>
-        <location filename="../qml/Vinx/System/drivers.cpp" line="58" />
+        <location filename="../qml/Vinx/System/drivers.cpp" line="68" />
         <source>Prise en charge d'un composant de cet ordinateur.</source>
         <translation>Support for a component of this computer.</translation>
     </message>
     <message>
-        <location filename="../qml/Vinx/System/drivers.cpp" line="117" />
+        <location filename="../qml/Vinx/System/drivers.cpp" line="127" />
         <source>Pilotes installés. Redémarrez l'ordinateur pour les utiliser.</source>
         <translation>Drivers installed. Restart the computer to use them.</translation>
     </message>
     <message>
-        <location filename="../qml/Vinx/System/drivers.cpp" line="118" />
+        <location filename="../qml/Vinx/System/drivers.cpp" line="128" />
         <source>L'installation a échoué. Vérifiez la connexion à Internet.</source>
         <translation>Installation failed. Check the Internet connection.</translation>
     </message>
@@ -1679,7 +1679,12 @@
         <translation>Could not create the folder.</translation>
     </message>
     <message>
-        <location filename="../apps/files/fileops.cpp" line="319" />
+        <location filename="../apps/files/fileops.cpp" line="307" />
+        <source>Impossible de créer le fichier.</source>
+        <translation>Could not create the file.</translation>
+    </message>
+    <message>
+        <location filename="../apps/files/fileops.cpp" line="333" />
         <source>Aucun terminal n'est installé.</source>
         <translation>No terminal is installed.</translation>
     </message>
@@ -1725,91 +1730,96 @@
 <context>
     <name>FolderModel</name>
     <message>
-        <location filename="../apps/files/foldermodel.cpp" line="181" />
+        <location filename="../apps/files/foldermodel.cpp" line="183" />
         <source>Cet emplacement nécessite les bibliothèques KDE (KIO).</source>
         <translation>This location requires the KDE libraries (KIO).</translation>
     </message>
     <message>
-        <location filename="../apps/files/foldermodel.cpp" line="187" />
+        <location filename="../apps/files/foldermodel.cpp" line="189" />
         <source>Impossible d'ouvrir ce dossier.</source>
         <translation>Could not open this folder.</translation>
     </message>
     <message>
-        <location filename="../apps/files/foldermodel.cpp" line="242" />
-        <location filename="../apps/files/foldermodel.cpp" line="334" />
+        <location filename="../apps/files/foldermodel.cpp" line="244" />
+        <location filename="../apps/files/foldermodel.cpp" line="336" />
         <source>Corbeille</source>
         <translation>Trash</translation>
     </message>
     <message>
-        <location filename="../apps/files/foldermodel.cpp" line="244" />
-        <location filename="../apps/files/foldermodel.cpp" line="335" />
+        <location filename="../apps/files/foldermodel.cpp" line="246" />
+        <location filename="../apps/files/foldermodel.cpp" line="337" />
         <source>Réseau</source>
         <translation>Network</translation>
     </message>
     <message>
-        <location filename="../apps/files/foldermodel.cpp" line="248" />
-        <location filename="../apps/files/foldermodel.cpp" line="299" />
-        <location filename="../apps/files/foldermodel.cpp" line="326" />
+        <location filename="../apps/files/foldermodel.cpp" line="250" />
+        <location filename="../apps/files/foldermodel.cpp" line="301" />
+        <location filename="../apps/files/foldermodel.cpp" line="328" />
         <source>Dossier personnel</source>
         <translation>Home folder</translation>
     </message>
     <message>
-        <location filename="../apps/files/foldermodel.cpp" line="250" />
-        <location filename="../apps/files/foldermodel.cpp" line="348" />
+        <location filename="../apps/files/foldermodel.cpp" line="252" />
+        <location filename="../apps/files/foldermodel.cpp" line="350" />
         <source>Système de fichiers</source>
         <translation>File system</translation>
     </message>
     <message>
-        <location filename="../apps/files/foldermodel.cpp" line="296" />
+        <location filename="../apps/files/foldermodel.cpp" line="298" />
         <source>Système</source>
         <translation>System</translation>
     </message>
     <message>
-        <location filename="../apps/files/foldermodel.cpp" line="324" />
         <location filename="../apps/files/foldermodel.cpp" line="326" />
-        <location filename="../apps/files/foldermodel.cpp" line="334" />
+        <location filename="../apps/files/foldermodel.cpp" line="328" />
+        <location filename="../apps/files/foldermodel.cpp" line="336" />
         <source>Emplacements</source>
         <translation>Places</translation>
     </message>
     <message>
-        <location filename="../apps/files/foldermodel.cpp" line="327" />
+        <location filename="../apps/files/foldermodel.cpp" line="329" />
         <source>Bureau</source>
         <translation>Desktop</translation>
     </message>
     <message>
-        <location filename="../apps/files/foldermodel.cpp" line="328" />
+        <location filename="../apps/files/foldermodel.cpp" line="330" />
         <source>Documents</source>
         <translation>Documents</translation>
     </message>
     <message>
-        <location filename="../apps/files/foldermodel.cpp" line="329" />
+        <location filename="../apps/files/foldermodel.cpp" line="331" />
         <source>Téléchargements</source>
         <translation>Downloads</translation>
     </message>
     <message>
-        <location filename="../apps/files/foldermodel.cpp" line="330" />
+        <location filename="../apps/files/foldermodel.cpp" line="332" />
         <source>Images</source>
         <translation>Pictures</translation>
     </message>
     <message>
-        <location filename="../apps/files/foldermodel.cpp" line="331" />
+        <location filename="../apps/files/foldermodel.cpp" line="333" />
         <source>Musique</source>
         <translation>Music</translation>
     </message>
     <message>
-        <location filename="../apps/files/foldermodel.cpp" line="332" />
+        <location filename="../apps/files/foldermodel.cpp" line="334" />
         <source>Vidéos</source>
         <translation>Videos</translation>
     </message>
     <message>
-        <location filename="../apps/files/foldermodel.cpp" line="335" />
-        <location filename="../apps/files/foldermodel.cpp" line="346" />
+        <location filename="../apps/files/foldermodel.cpp" line="337" />
         <location filename="../apps/files/foldermodel.cpp" line="348" />
+        <location filename="../apps/files/foldermodel.cpp" line="350" />
         <source>Appareils</source>
         <translation>Devices</translation>
     </message>
+    <message>
+        <location filename="../apps/files/foldermodel.cpp" line="370" />
+        <source>%1 libres sur %2</source>
+        <translation>%1 free of %2</translation>
+    </message>
     <message numerus="yes">
-        <location filename="../apps/files/foldermodel.cpp" line="368" />
+        <location filename="../apps/files/foldermodel.cpp" line="378" />
         <source>%n octet(s)</source>
         <translation><numerusform>%n byte</numerusform><numerusform>%n bytes</numerusform></translation>
     </message>
@@ -1926,159 +1936,203 @@
 <context>
     <name>Main</name>
     <message>
-        <location filename="../apps/files/Main.qml" line="113" />
-        <location filename="../apps/files/Main.qml" line="393" />
+        <location filename="../apps/files/Main.qml" line="118" />
+        <location filename="../apps/files/Main.qml" line="335" />
+        <location filename="../apps/files/Main.qml" line="419" />
         <source>Nouveau dossier</source>
         <translation>New folder</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="173" />
+        <location filename="../apps/files/Main.qml" line="178" />
         <source>Précédent (Alt+←)</source>
         <translation>Back (Alt+←)</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="174" />
+        <location filename="../apps/files/Main.qml" line="179" />
         <source>Suivant (Alt+→)</source>
         <translation>Forward (Alt+→)</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="198" />
+        <location filename="../apps/files/Main.qml" line="203" />
         <source>Filtrer ce dossier</source>
         <translation>Filter this folder</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="202" />
+        <location filename="../apps/files/Main.qml" line="207" />
         <source>Filtrer</source>
         <translation>Filter</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="207" />
+        <location filename="../apps/files/Main.qml" line="212" />
         <source>Icônes</source>
         <translation>Icons</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="207" />
+        <location filename="../apps/files/Main.qml" line="212" />
         <source>Liste</source>
         <translation>List</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="211" />
+        <location filename="../apps/files/Main.qml" line="216" />
         <source>Nouveau dossier (Ctrl+Maj+N)</source>
         <translation>New folder (Ctrl+Shift+N)</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="248" />
+        <location filename="../apps/files/Main.qml" line="253" />
         <source>Fermer l'onglet (Ctrl+W)</source>
         <translation>Close tab (Ctrl+W)</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="266" />
+        <location filename="../apps/files/Main.qml" line="271" />
         <source>Les éléments de la corbeille peuvent être restaurés depuis leur menu.</source>
         <translation>Items in the trash can be restored from their menu.</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="267" />
-        <location filename="../apps/files/Main.qml" line="382" />
+        <location filename="../apps/files/Main.qml" line="272" />
+        <location filename="../apps/files/Main.qml" line="408" />
         <source>Vider la corbeille</source>
         <translation>Empty trash</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="313" />
+        <location filename="../apps/files/Main.qml" line="318" />
         <source>Aucun élément ne correspond à « %1 ».</source>
         <translation>Nothing matches "%1".</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="314" />
+        <location filename="../apps/files/Main.qml" line="319" />
         <source>La corbeille est vide.</source>
         <translation>The trash is empty.</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="314" />
+        <location filename="../apps/files/Main.qml" line="319" />
         <source>Ce dossier est vide.</source>
         <translation>This folder is empty.</translation>
     </message>
+    <message>
+        <location filename="../apps/files/Main.qml" line="328" />
+        <source>Glissez des fichiers ici, ou créez :</source>
+        <translation>Drop files here, or create:</translation>
+    </message>
+    <message>
+        <location filename="../apps/files/Main.qml" line="337" />
+        <location filename="../apps/files/Main.qml" line="340" />
+        <location filename="../apps/files/Main.qml" line="420" />
+        <location filename="../apps/files/Main.qml" line="421" />
+        <source>Nouveau document</source>
+        <translation>New document</translation>
+    </message>
     <message numerus="yes">
-        <location filename="../apps/files/Main.qml" line="344" />
+        <location filename="../apps/files/Main.qml" line="370" />
         <source>%n élément(s)</source>
         <translation><numerusform>%n item</numerusform><numerusform>%n items</numerusform></translation>
     </message>
     <message numerus="yes">
-        <location filename="../apps/files/Main.qml" line="346" />
+        <location filename="../apps/files/Main.qml" line="372" />
         <source>%n sélectionné(s)</source>
         <translation><numerusform>%n selected</numerusform><numerusform>%n selected</numerusform></translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="381" />
+        <location filename="../apps/files/Main.qml" line="407" />
         <source>Restaurer</source>
         <translation>Restore</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="381" />
+        <location filename="../apps/files/Main.qml" line="407" />
         <source>Supprimer définitivement</source>
         <translation>Delete permanently</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="384" />
+        <location filename="../apps/files/Main.qml" line="410" />
         <source>Ouvrir</source>
         <translation>Open</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="384" />
+        <location filename="../apps/files/Main.qml" line="410" />
         <source>Entrée</source>
         <translation>Enter</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="385" />
+        <location filename="../apps/files/Main.qml" line="411" />
         <source>Ouvrir dans un nouvel onglet</source>
         <translation>Open in a new tab</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="387" />
+        <location filename="../apps/files/Main.qml" line="413" />
         <source>Couper</source>
         <translation>Cut</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="388" />
+        <location filename="../apps/files/Main.qml" line="414" />
         <source>Copier</source>
         <translation>Copy</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="389" />
-        <location filename="../apps/files/Main.qml" line="394" />
+        <location filename="../apps/files/Main.qml" line="415" />
+        <location filename="../apps/files/Main.qml" line="425" />
         <source>Coller</source>
         <translation>Paste</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="391" />
+        <location filename="../apps/files/Main.qml" line="417" />
         <source>Renommer…</source>
         <translation>Rename…</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="392" />
+        <location filename="../apps/files/Main.qml" line="418" />
         <location filename="../apps/viewer/Main.qml" line="265" />
         <source>Mettre à la corbeille</source>
         <translation>Move to trash</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="392" />
+        <location filename="../apps/files/Main.qml" line="418" />
         <location filename="../apps/monitor/Main.qml" line="396" />
         <location filename="../apps/viewer/Main.qml" line="265" />
         <source>Suppr</source>
         <translation>Del</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="396" />
+        <location filename="../apps/files/Main.qml" line="420" />
+        <source>Nouveau document texte</source>
+        <translation>New text document</translation>
+    </message>
+    <message>
+        <location filename="../apps/files/Main.qml" line="421" />
+        <source>Nouveau document Writer</source>
+        <translation>New Writer document</translation>
+    </message>
+    <message>
+        <location filename="../apps/files/Main.qml" line="422" />
+        <source>Nouveau classeur Calc</source>
+        <translation>New Calc spreadsheet</translation>
+    </message>
+    <message>
+        <location filename="../apps/files/Main.qml" line="422" />
+        <source>Nouveau classeur</source>
+        <translation>New spreadsheet</translation>
+    </message>
+    <message>
+        <location filename="../apps/files/Main.qml" line="423" />
+        <source>Nouvelle présentation Impress</source>
+        <translation>New Impress presentation</translation>
+    </message>
+    <message>
+        <location filename="../apps/files/Main.qml" line="423" />
+        <source>Nouvelle présentation</source>
+        <translation>New presentation</translation>
+    </message>
+    <message>
+        <location filename="../apps/files/Main.qml" line="427" />
         <source>Afficher les fichiers cachés</source>
         <translation>Show hidden files</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="397" />
+        <location filename="../apps/files/Main.qml" line="428" />
         <source>Ouvrir un terminal ici</source>
         <translation>Open a terminal here</translation>
     </message>
     <message>
         <location filename="../apps/settings/Main.qml" line="15" />
-        <location filename="../apps/settings/Main.qml" line="73" />
+        <location filename="../apps/settings/Main.qml" line="77" />
         <source>Paramètres</source>
         <translation>Settings</translation>
     </message>
@@ -2104,7 +2158,7 @@
     </message>
     <message>
         <location filename="../apps/settings/Main.qml" line="41" />
-        <location filename="../apps/settings/Main.qml" line="480" />
+        <location filename="../apps/settings/Main.qml" line="561" />
         <source>Bureau</source>
         <translation>Desktop</translation>
     </message>
@@ -2218,596 +2272,671 @@
         <translation>About</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="137" />
+        <location filename="../apps/settings/Main.qml" line="162" />
         <source>Thème</source>
         <translation>Theme</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="138" />
+        <location filename="../apps/settings/Main.qml" line="163" />
         <source>S'applique à la barre, au dock et aux fenêtres des applications.</source>
         <translation>Applies to the top bar, the dock and application windows.</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="140" />
+        <location filename="../apps/settings/Main.qml" line="165" />
         <location filename="../apps/welcome/Main.qml" line="76" />
         <source>Clair</source>
         <translation>Light</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="140" />
+        <location filename="../apps/settings/Main.qml" line="165" />
         <location filename="../apps/welcome/Main.qml" line="76" />
         <source>Sombre</source>
         <translation>Dark</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="146" />
+        <location filename="../apps/settings/Main.qml" line="171" />
         <location filename="../apps/welcome/Main.qml" line="94" />
         <source>Couleur d'accent</source>
         <translation>Accent color</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="148" />
+        <location filename="../apps/settings/Main.qml" line="173" />
         <source>Automatique : %1, d'après le fond d'écran.</source>
         <translation>Automatic: %1, based on the wallpaper.</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="149" />
+        <location filename="../apps/settings/Main.qml" line="174" />
         <source>Boutons principaux, éléments actifs, sélection et logo du fond « VinX Logo ».</source>
         <translation>Main buttons, active elements, selection and the logo of the "VinX Logo" wallpaper.</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="126" />
-        <location filename="../apps/settings/Main.qml" line="159" />
-        <location filename="../apps/settings/Main.qml" line="642" />
+        <location filename="../apps/settings/Main.qml" line="151" />
+        <location filename="../apps/settings/Main.qml" line="184" />
+        <location filename="../apps/settings/Main.qml" line="723" />
         <source>Automatique</source>
         <translation>Automatic</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="122" />
+        <location filename="../apps/settings/Main.qml" line="93" />
+        <source>Rechercher un réglage</source>
+        <translation>Search settings</translation>
+    </message>
+    <message>
+        <location filename="../apps/settings/Main.qml" line="147" />
         <source>Langue</source>
         <translation>Language</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="123" />
+        <location filename="../apps/settings/Main.qml" line="148" />
         <source>Applications VinX : à leur prochaine ouverture. Reste du système : à la prochaine ouverture de session.</source>
         <translation>VinX apps: next time they open. Rest of the system: at the next login.</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="223" />
+        <location filename="../apps/settings/Main.qml" line="248" />
         <source>Format des nouveaux documents</source>
         <translation>Format for new documents</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="225" />
+        <location filename="../apps/settings/Main.qml" line="250" />
         <source>Word (.docx), Excel (.xlsx), PowerPoint (.pptx) : s'ouvrent partout, sans conversion.</source>
         <translation>Word (.docx), Excel (.xlsx), PowerPoint (.pptx): open everywhere, without conversion.</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="226" />
+        <location filename="../apps/settings/Main.qml" line="251" />
         <source>OpenDocument (.odt, .ods, .odp) : format libre et ouvert de LibreOffice.</source>
         <translation>OpenDocument (.odt, .ods, .odp): LibreOffice's free and open format.</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="229" />
+        <location filename="../apps/settings/Main.qml" line="254" />
         <source>Microsoft Office</source>
         <translation>Microsoft Office</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="229" />
+        <location filename="../apps/settings/Main.qml" line="254" />
         <source>OpenDocument</source>
         <translation>OpenDocument</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="238" />
+        <location filename="../apps/settings/Main.qml" line="263" />
         <source>LibreOffice est ouvert : fermez-le pour que le changement soit pris en compte.</source>
         <translation>LibreOffice is open: close it for the change to take effect.</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="241" />
+        <location filename="../apps/settings/Main.qml" line="266" />
         <source>Polices compatibles Microsoft Office</source>
         <translation>Microsoft Office compatible fonts</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="243" />
+        <location filename="../apps/settings/Main.qml" line="268" />
         <source>Installées : les documents gardent la même mise en page que sous Word et Excel (Calibri, Cambria, Arial, Times New Roman…).</source>
         <translation>Installed: documents keep the same layout as in Word and Excel (Calibri, Cambria, Arial, Times New Roman…).</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="244" />
+        <location filename="../apps/settings/Main.qml" line="269" />
         <source>Manquantes : %1. Sans elles, la mise en page des documents Word peut changer.</source>
         <translation>Missing: %1. Without them, the layout of Word documents may change.</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="247" />
-        <location filename="../apps/settings/Main.qml" line="876" />
+        <location filename="../apps/settings/Main.qml" line="272" />
+        <location filename="../apps/settings/Main.qml" line="957" />
         <location filename="../apps/store/Main.qml" line="194" />
         <source>Installer</source>
         <translation>Install</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="250" />
+        <location filename="../apps/settings/Main.qml" line="275" />
         <source>Polices compatibles</source>
         <translation>Compatible fonts</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="292" />
+        <location filename="../apps/settings/Main.qml" line="317" />
         <source>Aucun fond d'écran installé.</source>
         <translation>No wallpaper installed.</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="299" />
+        <location filename="../apps/settings/Main.qml" line="325" />
+        <source>Icônes sur le bureau</source>
+        <translation>Desktop icons</translation>
+    </message>
+    <message>
+        <location filename="../apps/settings/Main.qml" line="326" />
+        <source>Affiche le contenu du dossier « Bureau ». Clic droit sur le bureau → Nouveau pour y créer un document.</source>
+        <translation>Shows the contents of the “Desktop” folder. Right-click the desktop → New to create a document there.</translation>
+    </message>
+    <message>
+        <location filename="../apps/settings/Main.qml" line="329" />
         <source>Widget Horloge</source>
         <translation>Clock widget</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="300" />
+        <location filename="../apps/settings/Main.qml" line="330" />
         <source>Widget Calendrier</source>
         <translation>Calendar widget</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="301" />
+        <location filename="../apps/settings/Main.qml" line="331" />
         <source>Widget Note rapide</source>
         <translation>Quick note widget</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="304" />
+        <location filename="../apps/settings/Main.qml" line="334" />
         <source>Bureaux virtuels</source>
         <translation>Virtual desktops</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="305" />
+        <location filename="../apps/settings/Main.qml" line="335" />
         <source>Plusieurs bureaux pour ranger vos fenêtres (Ctrl + Méta + ← / → pour passer de l'un à l'autre).</source>
         <translation>Several desktops to organize your windows (Ctrl + Meta + ← / → to switch between them).</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="318" />
+        <location filename="../apps/settings/Main.qml" line="348" />
         <source>Nom du bureau %1</source>
         <translation>Name of desktop %1</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="344" />
+        <location filename="../apps/settings/Main.qml" line="374" />
         <source>Taille des icônes</source>
         <translation>Icon size</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="345" />
+        <location filename="../apps/settings/Main.qml" line="375" />
         <source>%1 px</source>
         <translation>%1 px</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="355" />
+        <location filename="../apps/settings/Main.qml" line="385" />
         <source>Position</source>
         <translation>Position</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="357" />
+        <location filename="../apps/settings/Main.qml" line="387" />
         <source>En bas</source>
         <translation>Bottom</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="357" />
+        <location filename="../apps/settings/Main.qml" line="387" />
         <source>À gauche</source>
         <translation>Left</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="362" />
+        <location filename="../apps/settings/Main.qml" line="392" />
         <source>Agrandissement au survol</source>
         <translation>Magnify on hover</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="364" />
+        <location filename="../apps/settings/Main.qml" line="394" />
         <source>Masquer automatiquement</source>
         <translation>Hide automatically</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="365" />
+        <location filename="../apps/settings/Main.qml" line="395" />
         <source>Le dock réapparaît quand le pointeur touche le bas de l'écran.</source>
         <translation>The dock reappears when the pointer touches the bottom of the screen.</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="374" />
+        <location filename="../apps/settings/Main.qml" line="404" />
         <source>BARRE SUPÉRIEURE</source>
         <translation>TOP BAR</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="375" />
+        <location filename="../apps/settings/Main.qml" line="405" />
         <source>Afficher la date</source>
         <translation>Show the date</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="377" />
+        <location filename="../apps/settings/Main.qml" line="407" />
         <source>Pourcentage de batterie</source>
         <translation>Battery percentage</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="378" />
+        <location filename="../apps/settings/Main.qml" line="408" />
         <source>Sinon, affiché seulement sous 20 %.</source>
         <translation>Otherwise, shown only below 20 %.</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="388" />
+        <location filename="../apps/settings/Main.qml" line="418" />
         <source>Ne pas déranger</source>
         <translation>Do Not Disturb</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="389" />
+        <location filename="../apps/settings/Main.qml" line="419" />
         <source>Masque les bulles ; les notifications restent dans le calendrier.</source>
         <translation>Hides the pop-ups; notifications stay in the calendar.</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="423" />
+        <location filename="../apps/settings/Main.qml" line="437" />
+        <source>%1 h %2</source>
+        <translation>%1 h %2</translation>
+    </message>
+    <message>
+        <location filename="../apps/settings/Main.qml" line="437" />
+        <source>%1 min</source>
+        <translation>%1 min</translation>
+    </message>
+    <message>
+        <location filename="../apps/settings/Main.qml" line="457" />
         <source>Éteindre l'écran après</source>
         <translation>Turn off the screen after</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="426" />
-        <location filename="../apps/settings/Main.qml" line="435" />
+        <location filename="../apps/settings/Main.qml" line="460" />
+        <location filename="../apps/settings/Main.qml" line="469" />
         <source>Jamais</source>
         <translation>Never</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="432" />
+        <location filename="../apps/settings/Main.qml" line="466" />
         <source>Mettre en veille après</source>
         <translation>Sleep after</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="442" />
+        <location filename="../apps/settings/Main.qml" line="476" />
         <source>Mode d'énergie</source>
         <translation>Power mode</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="443" />
+        <location filename="../apps/settings/Main.qml" line="477" />
         <source>Économie : autonomie maximale. Performances : plus rapide, plus bruyant.</source>
         <translation>Power saver: longest battery life. Performance: faster, louder.</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="446" />
+        <location filename="../apps/settings/Main.qml" line="480" />
         <source>Économie</source>
         <translation>Power saver</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="446" />
+        <location filename="../apps/settings/Main.qml" line="480" />
         <source>Équilibré</source>
         <translation>Balanced</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="446" />
+        <location filename="../apps/settings/Main.qml" line="480" />
         <source>Performances</source>
         <translation>Performance</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="453" />
+        <location filename="../apps/settings/Main.qml" line="487" />
         <source>Batterie</source>
         <translation>Battery</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="454" />
+        <location filename="../apps/settings/Main.qml" line="489" />
+        <source>Chargée dans %1</source>
+        <translation>Charged in %1</translation>
+    </message>
+    <message>
+        <location filename="../apps/settings/Main.qml" line="489" />
+        <source>Environ %1 restantes</source>
+        <translation>About %1 left</translation>
+    </message>
+    <message>
+        <location filename="../apps/settings/Main.qml" line="493" />
         <source> · en charge</source>
         <translation> · charging</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="480" />
+        <location filename="../apps/settings/Main.qml" line="498" />
+        <source>Santé de la batterie</source>
+        <translation>Battery health</translation>
+    </message>
+    <message>
+        <location filename="../apps/settings/Main.qml" line="499" />
+        <source>Capacité actuelle par rapport à une batterie neuve.</source>
+        <translation>Current capacity compared with a new battery.</translation>
+    </message>
+    <message>
+        <location filename="../apps/settings/Main.qml" line="509" />
+        <source>Limiter la charge à 80 %</source>
+        <translation>Limit charging to 80%</translation>
+    </message>
+    <message>
+        <location filename="../apps/settings/Main.qml" line="510" />
+        <source>Prolonge la durée de vie de la batterie si l'ordinateur reste souvent branché.</source>
+        <translation>Extends battery life if the computer is often plugged in.</translation>
+    </message>
+    <message>
+        <location filename="../apps/settings/Main.qml" line="524" />
+        <source>Fermer le couvercle</source>
+        <translation>Closing the lid</translation>
+    </message>
+    <message>
+        <location filename="../apps/settings/Main.qml" line="528" />
+        <source>Mettre en veille</source>
+        <translation>Sleep</translation>
+    </message>
+    <message>
+        <location filename="../apps/settings/Main.qml" line="528" />
+        <source>Verrouiller</source>
+        <translation>Lock</translation>
+    </message>
+    <message>
+        <location filename="../apps/settings/Main.qml" line="528" />
+        <source>Ne rien faire</source>
+        <translation>Do nothing</translation>
+    </message>
+    <message>
+        <location filename="../apps/settings/Main.qml" line="561" />
         <source>Documents</source>
         <translation>Documents</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="480" />
+        <location filename="../apps/settings/Main.qml" line="561" />
         <location filename="../apps/viewer/Main.qml" line="15" />
         <source>Images</source>
         <translation>Pictures</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="481" />
+        <location filename="../apps/settings/Main.qml" line="562" />
         <source>Musique</source>
         <translation>Music</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="481" />
+        <location filename="../apps/settings/Main.qml" line="562" />
         <source>Vidéos</source>
         <translation>Videos</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="481" />
+        <location filename="../apps/settings/Main.qml" line="562" />
         <source>Téléchargements</source>
         <translation>Downloads</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="496" />
+        <location filename="../apps/settings/Main.qml" line="577" />
         <source>VOS DOCUMENTS</source>
         <translation>YOUR DOCUMENTS</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="498" />
+        <location filename="../apps/settings/Main.qml" line="579" />
         <source>Disque de sauvegarde : %1</source>
         <translation>Backup drive: %1</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="498" />
+        <location filename="../apps/settings/Main.qml" line="579" />
         <source>Disque de sauvegarde</source>
         <translation>Backup drive</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="499" />
+        <location filename="../apps/settings/Main.qml" line="580" />
         <source>Branchez une clé USB ou un disque externe, puis choisissez-le.</source>
         <translation>Plug in a USB stick or an external drive, then choose it.</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="500" />
+        <location filename="../apps/settings/Main.qml" line="581" />
         <source>Branché.</source>
         <translation>Plugged in.</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="500" />
+        <location filename="../apps/settings/Main.qml" line="581" />
         <source>Débranché : la sauvegarde reprendra dès qu'il sera branché.</source>
         <translation>Unplugged: backups will resume as soon as it is plugged in.</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="501" />
-        <location filename="../apps/settings/Main.qml" line="750" />
+        <location filename="../apps/settings/Main.qml" line="582" />
+        <location filename="../apps/settings/Main.qml" line="831" />
         <source>Changer…</source>
         <translation>Change…</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="501" />
+        <location filename="../apps/settings/Main.qml" line="582" />
         <source>Choisir…</source>
         <translation>Choose…</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="508" />
+        <location filename="../apps/settings/Main.qml" line="589" />
         <source>Aucun disque externe détecté. Branchez-le, attendez quelques secondes, puis rouvrez cette liste.</source>
         <translation>No external drive found. Plug it in, wait a few seconds, then open this list again.</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="514" />
+        <location filename="../apps/settings/Main.qml" line="595" />
         <source>%1 libres sur %2</source>
         <translation>%1 free of %2</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="515" />
+        <location filename="../apps/settings/Main.qml" line="596" />
         <source>Utiliser ce disque</source>
         <translation>Use this drive</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="521" />
+        <location filename="../apps/settings/Main.qml" line="602" />
         <source>Automatiquement</source>
         <translation>Automatically</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="522" />
+        <location filename="../apps/settings/Main.qml" line="603" />
         <source>Une fois par jour, dès que le disque est branché. 30 versions sont gardées ; les fichiers inchangés ne prennent pas de place en plus.</source>
         <translation>Once a day, as soon as the drive is plugged in. 30 versions are kept; unchanged files take no extra space.</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="525" />
+        <location filename="../apps/settings/Main.qml" line="606" />
         <source>Dossiers sauvegardés</source>
         <translation>Folders backed up</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="550" />
+        <location filename="../apps/settings/Main.qml" line="631" />
         <source>Sauvegarde en cours…</source>
         <translation>Backing up…</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="551" />
+        <location filename="../apps/settings/Main.qml" line="632" />
         <source>Dernière sauvegarde : %1</source>
         <translation>Last backup: %1</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="551" />
+        <location filename="../apps/settings/Main.qml" line="632" />
         <source>Aucune sauvegarde pour l'instant</source>
         <translation>No backup yet</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="552" />
+        <location filename="../apps/settings/Main.qml" line="633" />
         <source>La dernière sauvegarde est incomplète : vérifiez la place libre sur le disque.</source>
         <translation>The last backup is incomplete: check the free space on the drive.</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="554" />
+        <location filename="../apps/settings/Main.qml" line="635" />
         <source>Sauvegarder maintenant</source>
         <translation>Back up now</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="559" />
+        <location filename="../apps/settings/Main.qml" line="640" />
         <source>VERSIONS</source>
         <translation>VERSIONS</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="566" />
+        <location filename="../apps/settings/Main.qml" line="647" />
         <source>Restaurer…</source>
         <translation>Restore…</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="569" />
+        <location filename="../apps/settings/Main.qml" line="650" />
         <source>Fichiers copiés dans « %1 » : vos fichiers actuels n'ont pas été modifiés.</source>
         <translation>Files copied to "%1": your current files were not changed.</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="570" />
+        <location filename="../apps/settings/Main.qml" line="651" />
         <source>La restauration a échoué.</source>
         <translation>Restore failed.</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="578" />
+        <location filename="../apps/settings/Main.qml" line="659" />
         <source>SYSTÈME</source>
         <translation>SYSTEM</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="580" />
+        <location filename="../apps/settings/Main.qml" line="661" />
         <source>Instantanés du système</source>
         <translation>System snapshots</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="581" />
+        <location filename="../apps/settings/Main.qml" line="662" />
         <source>Programmes et réglages, pour revenir en arrière après une mise à jour.</source>
         <translation>Programs and settings, to go back after an update.</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="582" />
-        <location filename="../apps/settings/Main.qml" line="803" />
+        <location filename="../apps/settings/Main.qml" line="663" />
+        <location filename="../apps/settings/Main.qml" line="884" />
         <source>Ouvrir…</source>
         <translation>Open…</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="593" />
+        <location filename="../apps/settings/Main.qml" line="674" />
         <source>État</source>
         <translation>Status</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="594" />
-        <location filename="../apps/settings/Main.qml" line="701" />
+        <location filename="../apps/settings/Main.qml" line="675" />
+        <location filename="../apps/settings/Main.qml" line="782" />
         <source>Indisponible</source>
         <translation>Unavailable</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="594" />
+        <location filename="../apps/settings/Main.qml" line="675" />
         <source>Connecté · %1</source>
         <translation>Connected · %1</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="594" />
+        <location filename="../apps/settings/Main.qml" line="675" />
         <source>Déconnecté</source>
         <translation>Disconnected</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="599" />
+        <location filename="../apps/settings/Main.qml" line="680" />
         <source>Bluetooth</source>
         <translation>Bluetooth</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="605" />
+        <location filename="../apps/settings/Main.qml" line="686" />
         <source>VPN</source>
         <translation>VPN</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="606" />
+        <location filename="../apps/settings/Main.qml" line="687" />
         <source>Importer…</source>
         <translation>Import…</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="611" />
+        <location filename="../apps/settings/Main.qml" line="692" />
         <source>Aucun VPN. Importez le fichier fourni par votre entreprise ou votre fournisseur (WireGuard .conf, OpenVPN .ovpn).</source>
         <translation>No VPN. Import the file provided by your company or provider (WireGuard .conf, OpenVPN .ovpn).</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="618" />
+        <location filename="../apps/settings/Main.qml" line="699" />
         <source> · connecté</source>
         <translation> · connected</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="621" />
+        <location filename="../apps/settings/Main.qml" line="702" />
         <source>Supprimer</source>
         <translation>Delete</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="631" />
+        <location filename="../apps/settings/Main.qml" line="712" />
         <source>Importer un VPN</source>
         <translation>Import a VPN</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="632" />
+        <location filename="../apps/settings/Main.qml" line="713" />
         <source>Fichiers VPN (*.conf *.ovpn)</source>
         <translation>VPN files (*.conf *.ovpn)</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="636" />
+        <location filename="../apps/settings/Main.qml" line="717" />
         <source>ADRESSE IP</source>
         <translation>IP ADDRESS</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="639" />
+        <location filename="../apps/settings/Main.qml" line="720" />
         <source>Adresse de « %1 »</source>
         <translation>Address of "%1"</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="640" />
+        <location filename="../apps/settings/Main.qml" line="721" />
         <source>Automatique dans presque tous les cas. Une adresse fixe sert à un serveur ou à une imprimante partagée.</source>
         <translation>Automatic in almost every case. A static address is for a server or a shared printer.</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="642" />
+        <location filename="../apps/settings/Main.qml" line="723" />
         <source>Fixe</source>
         <translation>Static</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="655" />
+        <location filename="../apps/settings/Main.qml" line="736" />
         <source>Adresse</source>
         <translation>Address</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="656" />
+        <location filename="../apps/settings/Main.qml" line="737" />
         <source>Masque (longueur)</source>
         <translation>Netmask (prefix length)</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="657" />
+        <location filename="../apps/settings/Main.qml" line="738" />
         <source>Passerelle</source>
         <translation>Gateway</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="658" />
+        <location filename="../apps/settings/Main.qml" line="739" />
         <source>Serveur DNS</source>
         <translation>DNS server</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="681" />
+        <location filename="../apps/settings/Main.qml" line="762" />
         <source>Enregistrer l'adresse</source>
         <translation>Save address</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="688" />
+        <location filename="../apps/settings/Main.qml" line="769" />
         <source>Réseaux d'entreprise (802.1X), proxy et cas particuliers</source>
         <translation>Enterprise networks (802.1X), proxy and special cases</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="689" />
+        <location filename="../apps/settings/Main.qml" line="770" />
         <source>Réglages experts.</source>
         <translation>Expert settings.</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="690" />
+        <location filename="../apps/settings/Main.qml" line="771" />
         <source>Avancé…</source>
         <translation>Advanced…</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="700" />
+        <location filename="../apps/settings/Main.qml" line="781" />
         <source>Volume</source>
         <translation>Volume</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="905" />
+        <location filename="../apps/settings/Main.qml" line="986" />
         <source>Bureau virtuel précédent / suivant</source>
         <translation>Previous / next virtual desktop</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="906" />
+        <location filename="../apps/settings/Main.qml" line="987" />
         <source>Maj</source>
         <translation>Shift</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="906" />
+        <location filename="../apps/settings/Main.qml" line="987" />
         <source>Capture d'écran</source>
         <translation>Screenshot</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="907" />
+        <location filename="../apps/settings/Main.qml" line="988" />
         <source>Impr. écran</source>
         <translation>Print Screen</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="907" />
+        <location filename="../apps/settings/Main.qml" line="988" />
         <source>Capture de tout l'écran</source>
         <translation>Full-screen screenshot</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="908" />
-        <location filename="../apps/settings/Main.qml" line="909" />
+        <location filename="../apps/settings/Main.qml" line="989" />
+        <location filename="../apps/settings/Main.qml" line="990" />
         <source>Échap</source>
         <translation>Esc</translation>
     </message>
     <message>
         <location filename="../apps/monitor/Main.qml" line="15" />
-        <location filename="../apps/settings/Main.qml" line="908" />
+        <location filename="../apps/settings/Main.qml" line="989" />
         <source>Moniteur système</source>
         <translation>System Monitor</translation>
     </message>
@@ -2835,7 +2964,7 @@
     </message>
     <message>
         <location filename="../apps/monitor/Main.qml" line="43" />
-        <location filename="../apps/settings/Main.qml" line="701" />
+        <location filename="../apps/settings/Main.qml" line="782" />
         <location filename="../apps/viewer/Main.qml" line="180" />
         <source>%1 %</source>
         <translation>%1 %</translation>
@@ -2982,280 +3111,280 @@
         <translation>Low priority</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="705" />
+        <location filename="../apps/settings/Main.qml" line="786" />
         <source>Couper le son</source>
         <translation>Mute</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="708" />
+        <location filename="../apps/settings/Main.qml" line="789" />
         <source>SORTIE</source>
         <translation>OUTPUT</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="715" />
+        <location filename="../apps/settings/Main.qml" line="796" />
         <source>Utilisée</source>
         <translation>Used</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="715" />
+        <location filename="../apps/settings/Main.qml" line="796" />
         <source>Utiliser</source>
         <translation>Use</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="740" />
+        <location filename="../apps/settings/Main.qml" line="821" />
         <source>Réglage automatique</source>
         <translation>Set automatically</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="741" />
+        <location filename="../apps/settings/Main.qml" line="822" />
         <source>Synchronise l'heure par Internet (NTP).</source>
         <translation>Syncs the time over the Internet (NTP).</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="748" />
+        <location filename="../apps/settings/Main.qml" line="829" />
         <source>Fuseau horaire</source>
         <translation>Time zone</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="749" />
+        <location filename="../apps/settings/Main.qml" line="830" />
         <source>Inconnu</source>
         <translation>Unknown</translation>
     </message>
     <message>
         <location filename="../apps/monitor/Main.qml" line="377" />
         <location filename="../apps/monitor/Main.qml" line="396" />
-        <location filename="../apps/settings/Main.qml" line="750" />
+        <location filename="../apps/settings/Main.qml" line="831" />
         <source>Fermer</source>
         <translation>Close</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="765" />
+        <location filename="../apps/settings/Main.qml" line="846" />
         <source>Filtrer (ex. Paris)</source>
         <translation>Filter (e.g. Paris)</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="781" />
+        <location filename="../apps/settings/Main.qml" line="862" />
         <source>Format 24 heures</source>
         <translation>24-hour clock</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="791" />
+        <location filename="../apps/settings/Main.qml" line="872" />
         <source>Vérifier automatiquement</source>
         <translation>Check automatically</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="792" />
+        <location filename="../apps/settings/Main.qml" line="873" />
         <location filename="../apps/updates/Main.qml" line="382" />
         <source>Toutes les 6 heures ; une notification signale les mises à jour disponibles.</source>
         <translation>Every 6 hours; a notification tells you about available updates.</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="796" />
+        <location filename="../apps/settings/Main.qml" line="877" />
         <location filename="../apps/updates/Main.qml" line="383" />
         <source>Mettre à jour les applications automatiquement</source>
         <translation>Update applications automatically</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="797" />
+        <location filename="../apps/settings/Main.qml" line="878" />
         <source>Les applications Flathub se mettent à jour en arrière-plan, sans mot de passe. Le système reste à votre initiative.</source>
         <translation>Flathub applications update in the background, without a password. System updates stay up to you.</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="801" />
+        <location filename="../apps/settings/Main.qml" line="882" />
         <source>Installer les mises à jour</source>
         <translation>Install updates</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="802" />
+        <location filename="../apps/settings/Main.qml" line="883" />
         <source>Version de VinX OS, système Debian, bureau VinX et applications, avec l'historique.</source>
         <translation>VinX OS version, Debian system, VinX desktop and applications, with history.</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="813" />
+        <location filename="../apps/settings/Main.qml" line="894" />
         <source>VOIR</source>
         <translation>SEE</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="815" />
+        <location filename="../apps/settings/Main.qml" line="896" />
         <source>Taille du texte</source>
         <translation>Text size</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="818" />
-        <location filename="../apps/settings/Main.qml" line="845" />
+        <location filename="../apps/settings/Main.qml" line="899" />
+        <location filename="../apps/settings/Main.qml" line="926" />
         <source>Normale</source>
         <translation>Normal</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="818" />
-        <location filename="../apps/settings/Main.qml" line="845" />
+        <location filename="../apps/settings/Main.qml" line="899" />
+        <location filename="../apps/settings/Main.qml" line="926" />
         <source>Grande</source>
         <translation>Large</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="818" />
-        <location filename="../apps/settings/Main.qml" line="845" />
+        <location filename="../apps/settings/Main.qml" line="899" />
+        <location filename="../apps/settings/Main.qml" line="926" />
         <source>Très grande</source>
         <translation>Very large</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="824" />
+        <location filename="../apps/settings/Main.qml" line="905" />
         <source>Contraste élevé</source>
         <translation>High contrast</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="825" />
+        <location filename="../apps/settings/Main.qml" line="906" />
         <source>Textes et bordures plus marqués, fonds unis.</source>
         <translation>Stronger text and borders, plain backgrounds.</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="829" />
+        <location filename="../apps/settings/Main.qml" line="910" />
         <source>Loupe</source>
         <translation>Magnifier</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="830" />
+        <location filename="../apps/settings/Main.qml" line="911" />
         <source>Méta + = pour agrandir, Méta + − pour réduire, autour du pointeur.</source>
         <translation>Meta + = to zoom in, Meta + − to zoom out, around the pointer.</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="841" />
+        <location filename="../apps/settings/Main.qml" line="922" />
         <source>Taille du pointeur</source>
         <translation>Pointer size</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="842" />
+        <location filename="../apps/settings/Main.qml" line="923" />
         <source>Pris en compte à la prochaine ouverture de session.</source>
         <translation>Takes effect at the next login.</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="853" />
+        <location filename="../apps/settings/Main.qml" line="934" />
         <source>ENTENDRE</source>
         <translation>HEAR</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="857" />
-        <location filename="../apps/settings/Main.qml" line="877" />
+        <location filename="../apps/settings/Main.qml" line="938" />
+        <location filename="../apps/settings/Main.qml" line="958" />
         <source>Lecteur d'écran</source>
         <translation>Screen reader</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="858" />
+        <location filename="../apps/settings/Main.qml" line="939" />
         <source>Lit à voix haute ce qui est à l'écran (Orca). Démarre aussi à chaque ouverture de session.</source>
         <translation>Reads what is on screen aloud (Orca). Also starts at every login.</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="859" />
+        <location filename="../apps/settings/Main.qml" line="940" />
         <source>Le lecteur d'écran Orca n'est pas installé.</source>
         <translation>The Orca screen reader is not installed.</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="881" />
+        <location filename="../apps/settings/Main.qml" line="962" />
         <source>BOUGER</source>
         <translation>MOVE</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="883" />
+        <location filename="../apps/settings/Main.qml" line="964" />
         <source>Réduire les animations</source>
         <translation>Reduce animations</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="884" />
+        <location filename="../apps/settings/Main.qml" line="965" />
         <source>Ouvre panneaux et menus sans transition.</source>
         <translation>Opens panels and menus without transitions.</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="896" />
+        <location filename="../apps/settings/Main.qml" line="977" />
         <source>Recherche</source>
         <translation>Search</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="896" />
+        <location filename="../apps/settings/Main.qml" line="977" />
         <source>ou</source>
         <translation>or</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="896" />
+        <location filename="../apps/settings/Main.qml" line="977" />
         <source>Espace</source>
         <translation>Space</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="897" />
+        <location filename="../apps/settings/Main.qml" line="978" />
         <source>Centre de contrôle</source>
         <translation>Control center</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="898" />
+        <location filename="../apps/settings/Main.qml" line="979" />
         <source>Calendrier et notifications</source>
         <translation>Calendar and notifications</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="899" />
+        <location filename="../apps/settings/Main.qml" line="980" />
         <source>Presse-papiers</source>
         <translation>Clipboard</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="900" />
+        <location filename="../apps/settings/Main.qml" line="981" />
         <source>Verrouiller la session</source>
         <translation>Lock session</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="901" />
+        <location filename="../apps/settings/Main.qml" line="982" />
         <source>Vue d'ensemble des fenêtres</source>
         <translation>Window overview</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="902" />
+        <location filename="../apps/settings/Main.qml" line="983" />
         <source>Changer de fenêtre</source>
         <translation>Switch windows</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="903" />
+        <location filename="../apps/settings/Main.qml" line="984" />
         <source>Placer la fenêtre à gauche / à droite</source>
         <translation>Snap the window left / right</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="904" />
+        <location filename="../apps/settings/Main.qml" line="985" />
         <source>Agrandir la fenêtre</source>
         <translation>Maximize the window</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="909" />
+        <location filename="../apps/settings/Main.qml" line="990" />
         <source>Fermer le panneau ou le menu ouvert</source>
         <translation>Close the open panel or menu</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="930" />
+        <location filename="../apps/settings/Main.qml" line="1011" />
         <source>Simple. Ergonomique. Stable.</source>
         <translation>Simple. Ergonomic. Stable.</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="935" />
+        <location filename="../apps/settings/Main.qml" line="1016" />
         <source>Nom de l'ordinateur</source>
         <translation>Computer name</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="936" />
+        <location filename="../apps/settings/Main.qml" line="1017" />
         <source>Utilisateur</source>
         <translation>User</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="937" />
+        <location filename="../apps/settings/Main.qml" line="1018" />
         <source>Noyau Linux</source>
         <translation>Linux kernel</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="939" />
+        <location filename="../apps/settings/Main.qml" line="1020" />
         <source>Version de VinX OS</source>
         <translation>VinX OS version</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="940" />
+        <location filename="../apps/settings/Main.qml" line="1021" />
         <source>Versions détaillées et mises à jour.</source>
         <translation>Detailed versions and updates.</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="941" />
+        <location filename="../apps/settings/Main.qml" line="1022" />
         <source>Mises à jour…</source>
         <translation>Updates…</translation>
     </message>
@@ -3271,6 +3400,7 @@
         <translation>Featured</translation>
     </message>
     <message>
+        <location filename="../apps/settings/Main.qml" line="96" />
         <location filename="../apps/store/Main.qml" line="68" />
         <source>Rechercher</source>
         <translation>Search</translation>
@@ -3663,17 +3793,17 @@
         <translation>Essential gestures</translation>
     </message>
     <message>
-        <location filename="../apps/settings/Main.qml" line="896" />
-        <location filename="../apps/settings/Main.qml" line="897" />
-        <location filename="../apps/settings/Main.qml" line="898" />
-        <location filename="../apps/settings/Main.qml" line="899" />
-        <location filename="../apps/settings/Main.qml" line="900" />
-        <location filename="../apps/settings/Main.qml" line="901" />
-        <location filename="../apps/settings/Main.qml" line="902" />
-        <location filename="../apps/settings/Main.qml" line="903" />
-        <location filename="../apps/settings/Main.qml" line="904" />
-        <location filename="../apps/settings/Main.qml" line="905" />
-        <location filename="../apps/settings/Main.qml" line="906" />
+        <location filename="../apps/settings/Main.qml" line="977" />
+        <location filename="../apps/settings/Main.qml" line="978" />
+        <location filename="../apps/settings/Main.qml" line="979" />
+        <location filename="../apps/settings/Main.qml" line="980" />
+        <location filename="../apps/settings/Main.qml" line="981" />
+        <location filename="../apps/settings/Main.qml" line="982" />
+        <location filename="../apps/settings/Main.qml" line="983" />
+        <location filename="../apps/settings/Main.qml" line="984" />
+        <location filename="../apps/settings/Main.qml" line="985" />
+        <location filename="../apps/settings/Main.qml" line="986" />
+        <location filename="../apps/settings/Main.qml" line="987" />
         <location filename="../apps/welcome/Main.qml" line="124" />
         <source>Méta</source>
         <translation>Meta</translation>
@@ -4023,140 +4153,196 @@
 <context>
     <name>Panels</name>
     <message>
-        <location filename="../qml/Vinx/Shell/Panels.qml" line="54" />
+        <location filename="../qml/Vinx/Shell/Panels.qml" line="56" />
         <source>À propos de cet ordinateur</source>
         <translation>About this computer</translation>
     </message>
     <message>
-        <location filename="../qml/Vinx/Shell/Panels.qml" line="56" />
-        <location filename="../qml/Vinx/Shell/Panels.qml" line="147" />
+        <location filename="../qml/Vinx/Shell/Panels.qml" line="58" />
+        <location filename="../qml/Vinx/Shell/Panels.qml" line="163" />
         <source>Paramètres…</source>
         <translation>Settings…</translation>
     </message>
     <message>
-        <location filename="../qml/Vinx/Shell/Panels.qml" line="57" />
+        <location filename="../qml/Vinx/Shell/Panels.qml" line="59" />
         <source>Store…</source>
         <translation>Store…</translation>
     </message>
     <message>
-        <location filename="../qml/Vinx/Shell/Panels.qml" line="59" />
+        <location filename="../qml/Vinx/Shell/Panels.qml" line="61" />
         <source>Verrouiller l'écran</source>
         <translation>Lock screen</translation>
     </message>
     <message>
-        <location filename="../qml/Vinx/Shell/Panels.qml" line="60" />
+        <location filename="../qml/Vinx/Shell/Panels.qml" line="62" />
         <source>Mettre en veille</source>
         <translation>Sleep</translation>
     </message>
     <message>
-        <location filename="../qml/Vinx/Shell/Panels.qml" line="61" />
+        <location filename="../qml/Vinx/Shell/Panels.qml" line="63" />
         <source>Fermer la session…</source>
         <translation>Log out…</translation>
     </message>
     <message>
-        <location filename="../qml/Vinx/Shell/Panels.qml" line="62" />
+        <location filename="../qml/Vinx/Shell/Panels.qml" line="64" />
         <source>Redémarrer…</source>
         <translation>Restart…</translation>
     </message>
     <message>
-        <location filename="../qml/Vinx/Shell/Panels.qml" line="63" />
+        <location filename="../qml/Vinx/Shell/Panels.qml" line="65" />
         <source>Éteindre…</source>
         <translation>Shut down…</translation>
     </message>
     <message>
-        <location filename="../qml/Vinx/Shell/Panels.qml" line="94" />
+        <location filename="../qml/Vinx/Shell/Panels.qml" line="96" />
         <source>Réduite</source>
         <translation>Minimized</translation>
     </message>
     <message>
-        <location filename="../qml/Vinx/Shell/Panels.qml" line="95" />
+        <location filename="../qml/Vinx/Shell/Panels.qml" line="97" />
         <source>Toutes les fenêtres</source>
         <translation>All windows</translation>
     </message>
     <message>
-        <location filename="../qml/Vinx/Shell/Panels.qml" line="114" />
-        <location filename="../qml/Vinx/Shell/Panels.qml" line="122" />
+        <location filename="../qml/Vinx/Shell/Panels.qml" line="116" />
+        <location filename="../qml/Vinx/Shell/Panels.qml" line="124" />
         <source>Nouvelle fenêtre</source>
         <translation>New window</translation>
     </message>
     <message>
-        <location filename="../qml/Vinx/Shell/Panels.qml" line="115" />
+        <location filename="../qml/Vinx/Shell/Panels.qml" line="117" />
         <source>Retirer du dock</source>
         <translation>Remove from dock</translation>
     </message>
     <message>
-        <location filename="../qml/Vinx/Shell/Panels.qml" line="115" />
+        <location filename="../qml/Vinx/Shell/Panels.qml" line="117" />
         <source>Garder dans le dock</source>
         <translation>Keep in dock</translation>
     </message>
     <message>
-        <location filename="../qml/Vinx/Shell/Panels.qml" line="116" />
-        <location filename="../qml/Vinx/Shell/Panels.qml" line="123" />
+        <location filename="../qml/Vinx/Shell/Panels.qml" line="118" />
+        <location filename="../qml/Vinx/Shell/Panels.qml" line="125" />
         <source>Quitter</source>
         <translation>Quit</translation>
     </message>
     <message>
-        <location filename="../qml/Vinx/Shell/Panels.qml" line="141" />
+        <location filename="../qml/Vinx/Shell/Panels.qml" line="148" />
+        <source>Nouveau</source>
+        <translation>New</translation>
+    </message>
+    <message>
+        <location filename="../qml/Vinx/Shell/Panels.qml" line="149" />
+        <source>Dossier</source>
+        <translation>Folder</translation>
+    </message>
+    <message>
+        <location filename="../qml/Vinx/Shell/Panels.qml" line="150" />
+        <source>Document texte</source>
+        <translation>Text document</translation>
+    </message>
+    <message>
+        <location filename="../qml/Vinx/Shell/Panels.qml" line="150" />
+        <location filename="../qml/Vinx/Shell/Panels.qml" line="151" />
+        <source>Nouveau document</source>
+        <translation>New document</translation>
+    </message>
+    <message>
+        <location filename="../qml/Vinx/Shell/Panels.qml" line="151" />
+        <source>Document Writer</source>
+        <translation>Writer document</translation>
+    </message>
+    <message>
+        <location filename="../qml/Vinx/Shell/Panels.qml" line="152" />
+        <source>Classeur Calc</source>
+        <translation>Calc spreadsheet</translation>
+    </message>
+    <message>
+        <location filename="../qml/Vinx/Shell/Panels.qml" line="152" />
+        <source>Nouveau classeur</source>
+        <translation>New spreadsheet</translation>
+    </message>
+    <message>
+        <location filename="../qml/Vinx/Shell/Panels.qml" line="153" />
+        <source>Présentation Impress</source>
+        <translation>Impress presentation</translation>
+    </message>
+    <message>
+        <location filename="../qml/Vinx/Shell/Panels.qml" line="153" />
+        <source>Nouvelle présentation</source>
+        <translation>New presentation</translation>
+    </message>
+    <message>
+        <location filename="../qml/Vinx/Shell/Panels.qml" line="155" />
+        <source>Ouvrir le Terminal ici</source>
+        <translation>Open Terminal here</translation>
+    </message>
+    <message>
+        <location filename="../qml/Vinx/Shell/Panels.qml" line="157" />
         <source>Widgets</source>
         <translation>Widgets</translation>
     </message>
     <message>
-        <location filename="../qml/Vinx/Shell/Panels.qml" line="142" />
+        <location filename="../qml/Vinx/Shell/Panels.qml" line="158" />
         <source>Horloge</source>
         <translation>Clock</translation>
     </message>
     <message>
-        <location filename="../qml/Vinx/Shell/Panels.qml" line="143" />
+        <location filename="../qml/Vinx/Shell/Panels.qml" line="159" />
         <source>Calendrier</source>
         <translation>Calendar</translation>
     </message>
     <message>
-        <location filename="../qml/Vinx/Shell/Panels.qml" line="144" />
+        <location filename="../qml/Vinx/Shell/Panels.qml" line="160" />
         <source>Note rapide</source>
         <translation>Quick note</translation>
     </message>
     <message>
-        <location filename="../qml/Vinx/Shell/Panels.qml" line="146" />
+        <location filename="../qml/Vinx/Shell/Panels.qml" line="162" />
         <source>Changer le fond d'écran…</source>
         <translation>Change wallpaper…</translation>
     </message>
     <message>
-        <location filename="../qml/Vinx/Shell/Panels.qml" line="232" />
+        <location filename="../qml/Vinx/Shell/Panels.qml" line="168" />
+        <source>Nouveau dossier</source>
+        <translation>New folder</translation>
+    </message>
+    <message>
+        <location filename="../qml/Vinx/Shell/Panels.qml" line="252" />
         <source>Éteindre l'ordinateur ?</source>
         <translation>Shut down the computer?</translation>
     </message>
     <message>
-        <location filename="../qml/Vinx/Shell/Panels.qml" line="232" />
+        <location filename="../qml/Vinx/Shell/Panels.qml" line="252" />
         <source>Éteindre</source>
         <translation>Shut down</translation>
     </message>
     <message>
-        <location filename="../qml/Vinx/Shell/Panels.qml" line="233" />
+        <location filename="../qml/Vinx/Shell/Panels.qml" line="253" />
         <source>Redémarrer l'ordinateur ?</source>
         <translation>Restart the computer?</translation>
     </message>
     <message>
-        <location filename="../qml/Vinx/Shell/Panels.qml" line="233" />
+        <location filename="../qml/Vinx/Shell/Panels.qml" line="253" />
         <source>Redémarrer</source>
         <translation>Restart</translation>
     </message>
     <message>
-        <location filename="../qml/Vinx/Shell/Panels.qml" line="234" />
+        <location filename="../qml/Vinx/Shell/Panels.qml" line="254" />
         <source>Fermer la session ?</source>
         <translation>Log out?</translation>
     </message>
     <message>
-        <location filename="../qml/Vinx/Shell/Panels.qml" line="234" />
+        <location filename="../qml/Vinx/Shell/Panels.qml" line="254" />
         <source>Fermer la session</source>
         <translation>Log out</translation>
     </message>
     <message>
-        <location filename="../qml/Vinx/Shell/Panels.qml" line="243" />
+        <location filename="../qml/Vinx/Shell/Panels.qml" line="263" />
         <source>Les documents non enregistrés seront perdus.</source>
         <translation>Unsaved documents will be lost.</translation>
     </message>
     <message>
-        <location filename="../qml/Vinx/Shell/Panels.qml" line="248" />
+        <location filename="../qml/Vinx/Shell/Panels.qml" line="268" />
         <source>Annuler</source>
         <translation>Cancel</translation>
     </message>
@@ -4786,6 +4972,14 @@
         <location filename="../apps/screenshot/shot.cpp" line="308" />
         <source>Ouvrir le dossier</source>
         <translation>Open folder</translation>
+    </message>
+</context>
+<context>
+    <name>Sidebar</name>
+    <message>
+        <location filename="../apps/files/Sidebar.qml" line="68" />
+        <source>Disque</source>
+        <translation>Disk</translation>
     </message>
 </context>
 <context>

@@ -110,6 +110,11 @@ Window {
         conflict.ask(list, dest, sameLocal && !copyRequested)
     }
     function startRename() { if (current >= 0 && !inTrash) renaming = folder.get(current).name }
+    // Document vide puis renommage direct (texte, Writer, Calc, Impress).
+    function newFile(name) {
+        const created = FileOps.createFile(folder.url, name)
+        if (created !== "") { pendingSelect = created; pendingRename = true; folder.refresh() }
+    }
     function newFolder() { pendingSelect = FileOps.createFolder(folder.url, qsTr("Nouveau dossier")); pendingRename = true }
     property bool pendingRename: false
     readonly property bool inTrash: folder.url.toString().startsWith("trash:")
@@ -312,7 +317,28 @@ Window {
                 anchors.horizontalCenter: parent.horizontalCenter
                 text: folder.error ? folder.error : folder.filter ? qsTr("Aucun élément ne correspond à « %1 ».").arg(folder.filter)
                     : win.inTrash ? qsTr("La corbeille est vide.") : qsTr("Ce dossier est vide.")
-                level: Label.Secondary
+                level: folder.error || folder.filter || win.inTrash ? Label.Secondary : Label.Primary
+                font.weight: Font.DemiBold
+            }
+            // Dossier vide : on propose quoi y mettre.
+            readonly property bool offer: !folder.error && !folder.filter && !win.inTrash
+            Label {
+                visible: parent.offer
+                anchors.horizontalCenter: parent.horizontalCenter
+                text: qsTr("Glissez des fichiers ici, ou créez :")
+                level: Label.Secondary; font.pixelSize: Theme.fsSm
+            }
+            Row {
+                visible: parent.offer
+                anchors.horizontalCenter: parent.horizontalCenter
+                spacing: Theme.space2
+                Button { text: qsTr("Nouveau dossier"); variant: Button.Primary; onClicked: win.newFolder() }
+                Button {
+                    text: qsTr("Nouveau document")
+                    variant: Button.Secondary
+                    visible: folder.url.toString().startsWith("file:")
+                    onClicked: win.newFile(qsTr("Nouveau document") + ".odt")
+                }
             }
         }
 
@@ -390,11 +416,16 @@ Window {
                    { separator: true },
                    { text: qsTr("Renommer…"), act: "rename", shortcut: "F2", enabled: win.selectedCount <= 1 },
                    { text: qsTr("Mettre à la corbeille"), act: "trash", shortcut: qsTr("Suppr") }])
-                : [{ text: qsTr("Nouveau dossier"), act: "mkdir", shortcut: "Ctrl+Maj+N" },
+                : [{ text: qsTr("Nouveau dossier"), act: "mkdir", shortcut: "Ctrl+Maj+N" }].concat(folder.url.toString().startsWith("file:") ? [
+                   { text: qsTr("Nouveau document texte"), act: "new", file: qsTr("Nouveau document") + ".txt" },
+                   { text: qsTr("Nouveau document Writer"), act: "new", file: qsTr("Nouveau document") + ".odt" },
+                   { text: qsTr("Nouveau classeur Calc"), act: "new", file: qsTr("Nouveau classeur") + ".ods" },
+                   { text: qsTr("Nouvelle présentation Impress"), act: "new", file: qsTr("Nouvelle présentation") + ".odp" }] : []).concat([
+                   { separator: true },
                    { text: qsTr("Coller"), act: "paste", shortcut: "Ctrl+V", enabled: FileOps.canPaste },
                    { separator: true },
                    { text: qsTr("Afficher les fichiers cachés"), act: "hidden", checked: folder.showHidden, shortcut: "Ctrl+H" },
-                   { text: qsTr("Ouvrir un terminal ici"), act: "terminal" }]
+                   { text: qsTr("Ouvrir un terminal ici"), act: "terminal" }])
             model: entries
             onTriggered: (i, e) => {
                 switch (e.act) {
@@ -406,6 +437,7 @@ Window {
                 case "rename": win.startRename(); break
                 case "trash": FileOps.trash(win.selectedUrls()); break
                 case "mkdir": win.newFolder(); break
+                case "new": win.newFile(e.file); break
                 case "hidden": Preferences.setValue("files/showHidden", !folder.showHidden); break
                 case "terminal": FileOps.openTerminal(folder.url); break
                 case "empty": FileOps.emptyTrash(); break

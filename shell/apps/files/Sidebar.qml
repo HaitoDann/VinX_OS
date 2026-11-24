@@ -20,7 +20,7 @@ Rectangle {
     Rectangle { anchors { right: parent.right; top: parent.top; bottom: parent.bottom } width: 1; color: Theme.border }
 
     ListView {
-        anchors { fill: parent; margins: Theme.space2; topMargin: Theme.space4 }
+        anchors { fill: parent; margins: Theme.space2; topMargin: Theme.space4; bottomMargin: diskInfo.height + Theme.space3 }
         model: root.places
         spacing: 1
         boundsBehavior: Flickable.StopAtBounds
@@ -37,14 +37,14 @@ Rectangle {
             readonly property bool active: modelData.url.toString() === root.currentUrl.toString()
             width: ListView.view.width; height: 30
             radius: Theme.radiusSm
-            color: active ? Theme.surfaceActive : mouse.containsMouse ? Theme.surfaceHover : "transparent"
+            color: active ? Qt.rgba(Theme.accent.r, Theme.accent.g, Theme.accent.b, 0.2) : mouse.containsMouse ? Theme.surfaceHover : "transparent"
             Accessible.role: Accessible.Button
             Accessible.name: modelData.name
             Row {
                 anchors { left: parent.left; leftMargin: Theme.space2; right: parent.right; verticalCenter: parent.verticalCenter }
                 spacing: Theme.space2
-                Icon { name: place.modelData.icon; width: 16; height: 16; color: place.active ? Theme.accentForeground : Theme.textSecondary; anchors.verticalCenter: parent.verticalCenter }
-                Label { text: place.modelData.name; font.weight: place.active ? Font.DemiBold : Font.Normal; elide: Text.ElideRight; width: parent.width - 30 }
+                Icon { name: place.modelData.icon; width: 16; height: 16; color: place.active ? Theme.accentText : Theme.textSecondary; anchors.verticalCenter: parent.verticalCenter }
+                Label { text: place.modelData.name; color: place.active ? Theme.accentText : Theme.text; font.weight: place.active ? Font.DemiBold : Font.Normal; elide: Text.ElideRight; width: parent.width - 30 }
             }
             MouseArea { id: mouse; anchors.fill: parent; hoverEnabled: true; onClicked: root.openRequested(place.modelData.url) }
             DropArea {
@@ -56,5 +56,16 @@ Rectangle {
             border.width: drop.containsDrag ? 2 : 0
             border.color: Theme.accentForeground
         }
+    }
+
+    // Espace disque : en bas de la barre, mis à jour avec les emplacements.
+    Column {
+        id: diskInfo
+        property string summary: root.source ? (root.places, root.source.homeDiskSummary()) : ""
+        visible: summary !== ""
+        anchors { left: parent.left; right: parent.right; bottom: parent.bottom; margins: Theme.space3 }
+        spacing: 2
+        Label { text: qsTr("Disque"); level: Label.Tertiary; font.pixelSize: Theme.fsXs }
+        Label { text: diskInfo.summary; level: Label.Secondary; font.pixelSize: Theme.fsSm; width: parent.width; elide: Text.ElideRight }
     }
 }

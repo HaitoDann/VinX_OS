@@ -30,7 +30,7 @@ Il construit les ISO en local sur une machine **Debian 13** (`sudo ./distro/buil
 Thème **clair** par défaut, **vert du logo `#10DD8C`** comme accent par défaut (encre `#06130D` dessus,
 `#0A7A4E` pour le texte vert) ; 8 accents au choix + « Automatique » (ADR 0021), le fond « VinX Logo »
 est dessiné en direct à la couleur d'accent, **IBM Plex Sans** (fournie dans `branding/fonts`), formes douces,
-icônes « tuile neutre + pictogramme à l'encre + point de couleur », logos officiels pour les
+icônes d'application pleines sans bordure (ADR 0046), curseurs `vinx-cursors` (ADR 0047), logos officiels pour les
 applications tierces, fond « VinX Logo » (logo vert sur grille de points). Règles complètes :
 **`docs/DESIGN.md`**. Valeurs : **`branding/tokens.toml`** → `Theme.qml` (généré).
 Abandonnés (ne pas réintroduire) : violet/indigo, biseau partout, étiquettes en police technique.

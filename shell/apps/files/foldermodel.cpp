@@ -1,5 +1,7 @@
 #include "foldermodel.h"
 
+#include <QStorageInfo>
+
 #include <QCollator>
 #include <QDir>
 #include <QLocale>
@@ -358,6 +360,14 @@ QUrl FolderModel::urlFromText(const QString &text)
         return QUrl::fromLocalFile(QDir::cleanPath(t));
     const QUrl u(t);
     return u.scheme().isEmpty() ? QUrl::fromLocalFile(QDir::home().absoluteFilePath(t)) : u;
+}
+
+QString FolderModel::homeDiskSummary()
+{
+    const QStorageInfo info(QDir::homePath());
+    if (!info.isValid() || info.bytesTotal() <= 0)
+        return {};
+    return tr("%1 libres sur %2").arg(formatSize(info.bytesAvailable()), formatSize(info.bytesTotal()));
 }
 
 QString FolderModel::formatSize(qint64 bytes)

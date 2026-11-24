@@ -43,6 +43,9 @@ public:
     Q_INVOKABLE void rename(const QUrl &url, const QString &newName);
     // Crée « Nouveau dossier » (ou « Nouveau dossier (2) »…) et renvoie son nom.
     Q_INVOKABLE QString createFolder(const QUrl &dir, const QString &baseName);
+    // Document vide (dossiers locaux) : « Nouveau document.txt », « .odt »… LibreOffice ouvre un
+    // fichier vide comme un nouveau document du type de son extension. Renvoie le nom créé, ou "".
+    Q_INVOKABLE QString createFile(const QUrl &dir, const QString &fileName);
     Q_INVOKABLE void open(const QUrl &url);
     Q_INVOKABLE void openTerminal(const QUrl &dir);
 

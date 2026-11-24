@@ -26,6 +26,10 @@ public:
     // Lance un programme (ex. « systemsettings »). Renvoie false s'il est introuvable.
     Q_INVOKABLE bool launch(const QString &program, const QStringList &arguments = {});
     Q_INVOKABLE bool fileExists(const QString &path) const;
+    // Bureau (ADR 0048) : dossier « Bureau » de l'utilisateur, son contenu, et création d'éléments.
+    Q_INVOKABLE QString desktopPath() const;
+    Q_INVOKABLE QVariantList desktopEntries() const;   // [{ name, path, isDir, ext }], dossiers d'abord
+    Q_INVOKABLE QString createInDesktop(const QString &name, bool folder);   // chemin créé, ou 
     // Déclenche un raccourci global de KWin (ex. « Overview », « Window Close »).
     Q_INVOKABLE void invokeKWinShortcut(const QString &name);
     // Fonds d'écran installés : [{ name, path, preview }] (paquets /usr/share/wallpapers/*).

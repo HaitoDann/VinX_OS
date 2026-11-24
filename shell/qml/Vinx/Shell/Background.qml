@@ -42,6 +42,12 @@ Rectangle {
             else ShellState.close()
         }
     }
+    // Icônes du bureau (ADR 0048), sur le premier écran seulement ; désactivables dans Paramètres → Bureau.
+    DesktopIcons {
+        anchors.fill: parent
+        visible: bg.interactive && (Preferences.revision, String(Preferences.value("desktop/icons", true)) !== "false")
+                 && (!Window.window || !Window.window.screen || Qt.application.screens.length === 0 || Window.window.screen.name === Qt.application.screens[0].name)
+    }
     // Dock à gauche : les widgets se décalent pour ne pas passer dessous.
     DesktopWidgets {
         anchors.fill: parent

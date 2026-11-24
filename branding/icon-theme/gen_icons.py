@@ -13,7 +13,7 @@ import sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 GLYPHS = os.path.join(HERE, "..", "icons")
 
-# Style (ADR 0018) : tuile neutre arrondie, pictogramme à l'encre au trait, point de couleur.
+# Applications : tuile pleine colorée (ADR 0046). Emplacements et types de fichiers : tuile neutre (ADR 0018).
 TILE = "#E3E1DB"
 TILE_LINE = "#CFCCC4"
 INK = "#141414"
@@ -112,6 +112,32 @@ def glyph_body(name):
     return re.sub(r"^.*?<svg[^>]*>|</svg>\s*$", "", svg, flags=re.S)
 
 
+ART = os.path.join(HERE, "..", "appicons")
+# Dessins complets (ADR 0046) : Fichiers, Paramètres, Store.
+ART_FOR = {"org.vinx.files": "files", "system-file-manager": "files", "org.vinx.store": "store",
+           "org.vinx.settings": "settings", "systemsettings": "settings", "preferences-system": "settings"}
+
+
+def _mix(hexc, f):
+    """Éclaircit une couleur (f > 1) vers le blanc."""
+    r, g, b = (int(hexc[i:i + 2], 16) for i in (1, 3, 5))
+    t = min(1.0, f - 1.0)
+    return "#%02X%02X%02X" % tuple(round(c + (255 - c) * t) for c in (r, g, b))
+
+
+def app_svg(glyph, tint):
+    """Tuile pleine en dégradé, pictogramme blanc (encre sur les couleurs claires), sans bordure."""
+    r, g, b = (int(tint[i:i + 2], 16) / 255 for i in (1, 3, 5))
+    light = 0.299 * r + 0.587 * g + 0.114 * b > 0.62
+    ink = "#06130D" if light else ("#10DD8C" if max(r, g, b) < 0.12 else "#FFFFFF")
+    top = _mix(tint, 1.12 if light else 1.35)
+    return ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><defs><linearGradient id="g" x1="0" y1="0" '
+            f'x2=".35" y2="1"><stop offset="0" stop-color="{top}"/><stop offset="1" stop-color="{tint}"/>'
+            '</linearGradient></defs><rect x="4" y="4" width="56" height="56" rx="14" fill="url(#g)"/>'
+            f'<g transform="translate(15.5 15.5) scale(1.375)" fill="none" stroke="{ink}" stroke-width="1.8" '
+            f'stroke-linecap="round" stroke-linejoin="round" color="{ink}">{glyph_body(glyph)}</g></svg>')
+
+
 def icon_svg(glyph, dot):
     parts = [
         '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">',
@@ -167,8 +193,15 @@ def main(out):
     with open(os.path.join(out, "index.theme"), "w", encoding="utf-8") as f:
         f.write(INDEX)
     for name, (glyph, dot, ctx) in ICONS.items():
+        if name in ART_FOR:
+            with open(os.path.join(ART, ART_FOR[name] + ".svg"), encoding="utf-8") as f:
+                svg = f.read()
+        elif ctx == "apps" and dot:
+            svg = app_svg(glyph, dot)
+        else:
+            svg = icon_svg(glyph, dot)
         with open(os.path.join(out, "scalable", ctx, name + ".svg"), "w", encoding="utf-8") as f:
-            f.write(icon_svg(glyph, dot))
+            f.write(svg)
     print(f"{len(ICONS)} icônes générées dans {out}")
 
 

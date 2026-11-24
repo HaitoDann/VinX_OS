@@ -4,6 +4,11 @@ foreach(f IN LISTS ICON_FILES)
     get_filename_component(name "${f}" NAME)
     set_source_files_properties("${f}" PROPERTIES QT_RESOURCE_ALIAS "icons/${name}")
 endforeach()
+file(GLOB APPICON_FILES "${VINX_BRANDING_DIR}/appicons/*.svg")
+foreach(f IN LISTS APPICON_FILES)
+    get_filename_component(name "${f}" NAME)
+    set_source_files_properties("${f}" PROPERTIES QT_RESOURCE_ALIAS "appicons/${name}")
+endforeach()
 
 qt_add_qml_module(vinxcontrols
     URI Vinx.Controls
@@ -29,7 +34,7 @@ qt_add_qml_module(vinxcontrols
         Menu.qml
         MenuItem.qml
         LogoWallpaper.qml
-    RESOURCES ${ICON_FILES}
+    RESOURCES ${ICON_FILES} ${APPICON_FILES}
 )
 target_link_libraries(vinxcontrols PRIVATE Qt6::Quick Qt6::Svg)
 

@@ -1,0 +1,10 @@
+[Unit]
+Description=Limite de charge de la batterie choisie dans VinX (Paramètres → Énergie)
+ConditionPathExists=/etc/vinx/charge-limit
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c 'v=$(cat /etc/vinx/charge-limit); for f in /sys/class/power_supply/BAT*/charge_control_end_threshold; do [ -w "$f" ] && echo "$v" > "$f"; done; true'
+
+[Install]
+WantedBy=multi-user.target
