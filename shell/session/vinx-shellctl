@@ -1,8 +1,38 @@
 #!/bin/sh
 # Pilote le shell VinX par D-Bus (raccourcis globaux, scripts).
 # Usage : vinx-shellctl search|control|calendar|system|clipboard
+#         vinx-shellctl volume up|down|mute      (touches multimédia du clavier)
+#         vinx-shellctl brightness up|down        (touches de luminosité)
+osd() { busctl --user call org.kde.osdService /org/kde/osdService org.kde.osdService "$1" i "$2" >/dev/null 2>&1 || true; }
 case "${1:-}" in
-	search|control|calendar|system|clipboard) ;;
-	*) echo "usage : vinx-shellctl search|control|calendar|system|clipboard" >&2; exit 2 ;;
+	search|control|calendar|system|clipboard)
+		exec busctl --user call org.vinx.Shell /Shell org.vinx.Shell togglePanel s "$1" ;;
+	volume)
+		sink=@DEFAULT_AUDIO_SINK@
+		case "${2:-}" in
+			up) wpctl set-mute "$sink" 0; wpctl set-volume -l 1.0 "$sink" 5%+ ;;
+			down) wpctl set-volume "$sink" 5%- ;;
+			mute) wpctl set-mute "$sink" toggle ;;
+			*) echo "usage : vinx-shellctl volume up|down|mute" >&2; exit 2 ;;
+		esac
+		# « Volume: 0.45 [MUTED] » → 45, ou 0 si coupé.
+		v=$(wpctl get-volume "$sink" 2>/dev/null) || exit 0
+		case "$v" in *MUTED*) pct=0 ;; *) pct=$(echo "$v" | awk '{printf "%d", $2 * 100 + 0.5}') ;; esac
+		osd volumeChanged "$pct" ;;
+	brightness)
+		case "${2:-}" in up) sign=+ ;; down) sign=- ;; *) echo "usage : vinx-shellctl brightness up|down" >&2; exit 2 ;; esac
+		# 1) PowerDevil (KDE) ; 2) brightnessctl (logind, sans droits root).
+		BC="org.kde.Solid.PowerManagement /org/kde/Solid/PowerManagement/Actions/BrightnessControl org.kde.Solid.PowerManagement.Actions.BrightnessControl"
+		max=$(busctl --user call $BC brightnessMax 2>/dev/null | awk '{print $2}')
+		if [ -n "$max" ] && [ "$max" -gt 0 ]; then
+			cur=$(busctl --user call $BC brightness | awk '{print $2}')
+			step=$(( max / 20 )); [ "$step" -lt 1 ] && step=1
+			new=$(( cur $sign step )); [ "$new" -lt 1 ] && new=1; [ "$new" -gt "$max" ] && new=$max
+			busctl --user call $BC setBrightness i "$new" >/dev/null
+			osd brightnessChanged $(( new * 100 / max ))
+		elif command -v brightnessctl >/dev/null; then
+			if [ "$sign" = + ]; then brightnessctl -q set 5%+; else brightnessctl -q -n1 set 5%-; fi
+			osd brightnessChanged "$(brightnessctl -m | cut -d, -f4 | tr -d %)"
+		fi ;;
+	*) echo "usage : vinx-shellctl search|control|calendar|system|clipboard|volume|brightness" >&2; exit 2 ;;
 esac
-exec busctl --user call org.vinx.Shell /Shell org.vinx.Shell togglePanel s "$1"

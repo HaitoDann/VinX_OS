@@ -22,9 +22,21 @@ if [ -n "$KWC" ]; then
 		"$KWC" --file kwinrc --group org.kde.kdecoration2 --key "${kv%%=*}" "${kv#*=}"
 	done
 	# Raccourcis globaux du shell (kglobalaccel lit les .desktop listés dans [services]).
-	for p in search:Meta+Space control:Meta+A calendar:Meta+N clipboard:Meta+V; do
+	# Touche Windows seule (Plasma 6 passe par kglobalaccel ; ModifierOnlyShortcuts ci-dessus pour les KWin plus anciens).
+	"$KWC" --file kglobalshortcutsrc --group services --group org.vinx.shellctl.search.desktop --key _launch "$(printf 'Meta\tMeta+Space')"
+	"$KWC" --file kglobalshortcutsrc --group plasmashell --key "activate application launcher" "none,Meta	Alt+F1,Activer le lanceur d'applications"
+	for p in control:Meta+A calendar:Meta+N clipboard:Meta+V \
+		volume-up:"Volume Up" volume-down:"Volume Down" volume-mute:"Volume Mute" \
+		brightness-up:"Monitor Brightness Up" brightness-down:"Monitor Brightness Down"; do
 		"$KWC" --file kglobalshortcutsrc --group services --group "org.vinx.shellctl.${p%%:*}.desktop" --key _launch "${p#*:}"
 	done
+	# Pas de clavier virtuel au démarrage (KWin le réactivait sur les portables à écran tactile).
+	"$KWC" --file kwinrc --group Wayland --key InputMethod --delete
+	"$KWC" --file kwinrc --group Wayland --key VirtualKeyboardEnabled false
+	# Lancement d'application : curseur d'attente au lieu de l'icône qui sautille.
+	"$KWC" --file klaunchrc --group BusyCursorSettings --key Bouncing false
+	"$KWC" --file klaunchrc --group BusyCursorSettings --key Blinking false
+	"$KWC" --file klaunchrc --group FeedbackStyle --key BusyCursor true
 	# Moniteur système VinX à la place de celui de KDE (ADR 0035).
 	"$KWC" --file kglobalshortcutsrc --group services --group org.vinx.monitor.desktop --key _launch "Ctrl+Esc"
 	# Capture d'écran VinX (ADR 0036) : Méta+Maj+S pour choisir, Impr. écran pour tout l'écran.
@@ -43,9 +55,10 @@ if [ -n "$KWC" ]; then
 	for k in library theme ButtonsOnLeft ButtonsOnRight BorderSize BorderSizeAuto; do
 		"$KWC" --file kwinrc --group org.kde.kdecoration2 --key "$k" --delete
 	done
+	"$KWC" --file kglobalshortcutsrc --group plasmashell --key "activate application launcher" --delete
 	"$KWC" --file ksplashrc --group KSplash --key Engine --delete
 	"$KWC" --file ksplashrc --group KSplash --key Theme --delete
-	for n in search control calendar clipboard; do
+	for n in search control calendar clipboard volume-up volume-down volume-mute brightness-up brightness-down; do
 		"$KWC" --file kglobalshortcutsrc --group services --group "org.vinx.shellctl.$n.desktop" --key _launch --delete
 	done
 	"$KWC" --file kglobalshortcutsrc --group services --group org.vinx.monitor.desktop --key _launch --delete

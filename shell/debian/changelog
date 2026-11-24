@@ -1,3 +1,19 @@
+vinx-shell (0.26.3) trixie; urgency=medium
+
+  * Retours du portable :
+    - touche Windows seule : ouvre la recherche (raccourci kglobalaccel, Plasma 6) ;
+    - touches son et luminosité du clavier gérées par VinX (wpctl, PowerDevil ou
+      brightnessctl), avec la bulle de niveau ;
+    - fond d'écran : Paramètres prévient directement le shell (changement immédiat) ;
+    - bureaux virtuels : autorisation Wayland ajoutée (nombre modifiable) ;
+    - clavier virtuel désactivé au démarrage ;
+    - lancement d'application : curseur d'attente au lieu de l'icône qui sautille ;
+    - Pilotes : seuls micrologiciels et vrais pilotes sont proposés (plus de cheese,
+      tlp, pidgin-blinklight… venant d'isenkram) ;
+    - batterie de la barre du haut : le niveau se remplit selon le pourcentage.
+
+ -- VinX OS <vinx@localhost>  Tue, 24 Nov 2026 18:00:00 +0000
+
 vinx-shell (0.26.2) trixie; urgency=medium
 
   * Consolidation 1.0 (ADR 0039) : « vinx-dev rapport » (captures de toutes
