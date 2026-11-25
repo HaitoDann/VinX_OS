@@ -3,6 +3,8 @@
 # anormalement (plantage). Au-delà de 5 plantages en 2 minutes, on abandonne pour ne pas
 # boucler, avec un message dans le journal (journalctl --user -t vinx-shell).
 [ "${VINX_SESSION:-0}" = 1 ] || exit 0
+# Session autonome : vinx-shell est lancé par systemd (vinx-shell.service, ADR 0053).
+[ "${VINX_STANDALONE:-0}" = 1 ] && exit 0
 
 BIN=${VINX_SHELL_BIN:-/usr/bin/vinx-shell}
 MAX=${VINX_SHELL_MAX_CRASHES:-5}

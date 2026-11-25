@@ -1,0 +1,13 @@
+# Session VinX autonome (ADR 0053) : ce que startplasma démarrait, réduit au nécessaire.
+# Les services KDE listés ici sont gardés provisoirement (remplacés à l'étape 3 de l'ADR 0051) ;
+# un service absent est simplement ignoré (Wants).
+[Unit]
+Description=Session VinX OS (sans Plasma)
+BindsTo=graphical-session.target
+Wants=graphical-session-pre.target
+After=graphical-session-pre.target
+# Bureau VinX, puis applications au démarrage (agent polkit VinX, etc.).
+Wants=vinx-shell.service xdg-desktop-autostart.target
+# KDE, provisoirement : réglages souris/clavier au démarrage, services d'arrière-plan (zone de
+# notification, menus globaux, Wi-Fi, Bluetooth, écrans), énergie, portail, raccourcis.
+Wants=plasma-kcminit.service plasma-kded6.service plasma-powerdevil.service plasma-xdg-desktop-portal-kde.service plasma-kglobalaccel.service

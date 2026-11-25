@@ -14,3 +14,7 @@ install(FILES org.vinx.shellctl.search.desktop org.vinx.shellctl.control.desktop
         DESTINATION "${CMAKE_INSTALL_DATADIR}/applications")
 # Lu par Firefox ESR au démarrage (préférences par défaut du dossier de l'application).
 install(FILES firefox/vinx-titlebar.js DESTINATION "lib/firefox-esr/defaults/pref")
+# Session VinX autonome, sans Plasma (ADR 0053) : proposée à côté de « VinX OS » pendant l'essai.
+install(FILES standalone/vinx-standalone.desktop DESTINATION "${CMAKE_INSTALL_DATADIR}/wayland-sessions")
+install(PROGRAMS standalone/vinx-session-standalone standalone/vinx-session-inner DESTINATION "lib/vinx")
+install(FILES standalone/vinx-session.target standalone/vinx-shell.service standalone/vinx-shell-fallback.service DESTINATION "lib/systemd/user")

@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=VinX OS (essai sans Plasma)
+Name[en]=VinX OS (test, without Plasma)
+Comment=Session VinX démarrée sans Plasma : KWin, le bureau VinX et les seuls services nécessaires
+Comment[en]=VinX session started without Plasma: KWin, the VinX desktop and only the services it needs
+Exec=/usr/bin/vinx-session --standalone
+TryExec=/usr/bin/kwin_wayland
+DesktopNames=KDE

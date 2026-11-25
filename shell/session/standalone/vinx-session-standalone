@@ -1,0 +1,10 @@
+#!/bin/sh
+# Session VinX autonome (ADR 0053), lancée par vinx-session --standalone après ses réglages.
+# Démarre KWin sans startplasma ; KWin lance vinx-session-inner et s'arrête quand celui-ci se termine.
+# Variables que startplasma définissait et dont les applications KDE et Qt ont besoin.
+export XDG_SESSION_TYPE=wayland
+export XDG_CURRENT_DESKTOP="${XDG_CURRENT_DESKTOP:-KDE}"
+export KDE_FULL_SESSION=true KDE_SESSION_VERSION=6 KDE_APPLICATIONS_AS_SCOPE=1
+export VINX_STANDALONE=1
+KWIN=$(command -v kwin_wayland_wrapper || command -v kwin_wayland) || { logger -t vinx-session "KWin introuvable"; exit 1; }
+exec "$KWIN" --xwayland --exit-with-session=/usr/lib/vinx/vinx-session-inner

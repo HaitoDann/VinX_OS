@@ -97,7 +97,7 @@ Préférences utilisateur : `~/.config/vinx/shell.ini` (QSettings, clés `sectio
   restent : comptes en ligne et réseau expert (802.1X, proxy).
 - **À vérifier sur une nouvelle ISO** : installation en btrfs, instantanés automatiques, entrée « revenir à un
   état précédent » du menu de démarrage (grub-btrfs, ADR 0031).
-- **Se détacher de KDE au maximum** (ADR 0051) : étapes 1 (applications, faite : ADR 0052) à 5 (compositeur), chacune validée avant.
+- **Se détacher de KDE au maximum** (ADR 0051) : étapes 1 (applications, faite : ADR 0052), 2 (session sans Plasma, en essai : ADR 0053) à 5 (compositeur), chacune validée avant.
 - Canaux (ADR 0049) : `main` = essai (`vinx-dev`), `stable` = publié par le dépôt APT (« passe en stable »).
 - Ensuite : version publique 1.0 (site, ISO signée, guide). Traduction anglaise faite (ADR 0034) ; reste le
   catalogue du Store, les noms d'accents et les messages des scripts.

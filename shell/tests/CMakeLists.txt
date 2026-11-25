@@ -178,7 +178,7 @@ add_test(NAME snapshots COMMAND sh "${CMAKE_CURRENT_SOURCE_DIR}/snapshots-test.s
 # Scripts shell installés : syntaxe valide et aucun marqueur de conflit de fusion
 # (un « <<<<<<< » oublié dans vinx-session renvoyait à l'écran de connexion, 0.30.0).
 add_test(NAME shell-scripts-syntax
-         COMMAND sh -c "fail=0; for f in \"$1\"/session/vinx-session \"$1\"/session/vinx-session-setup \"$1\"/session/vinx-safe-notice \"$1\"/session/vinx-shellctl \"$1\"/session/vinx-shell-autostart \"$1\"/system/vinx-*; do case \"$f\" in *.service|*.timer|*.in) continue;; esac; head -1 \"$f\" | grep -q '^#!/bin/\\(ba\\)\\?sh' || continue; sh -n \"$f\" || fail=1; done; if grep -rIlE '^(<<<<<<<|>>>>>>>) ' \"$1\"/.. --exclude-dir=.git; then fail=1; fi; exit $fail" sh "${CMAKE_SOURCE_DIR}")
+         COMMAND sh -c "fail=0; for f in \"$1\"/session/vinx-session \"$1\"/session/vinx-session-setup \"$1\"/session/vinx-safe-notice \"$1\"/session/standalone/vinx-session-standalone \"$1\"/session/standalone/vinx-session-inner \"$1\"/session/vinx-shellctl \"$1\"/session/vinx-shell-autostart \"$1\"/system/vinx-*; do case \"$f\" in *.service|*.timer|*.in) continue;; esac; head -1 \"$f\" | grep -q '^#!/bin/\\(ba\\)\\?sh' || continue; sh -n \"$f\" || fail=1; done; if grep -rIlE '^(<<<<<<<|>>>>>>>) ' \"$1\"/.. --exclude-dir=.git; then fail=1; fi; exit $fail" sh "${CMAKE_SOURCE_DIR}")
 
 # Session de secours (ADR 0049).
 add_test(NAME session-fallback COMMAND sh "${CMAKE_CURRENT_SOURCE_DIR}/session-fallback-test.sh" "${CMAKE_SOURCE_DIR}")

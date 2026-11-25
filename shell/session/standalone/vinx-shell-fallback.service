@@ -1,0 +1,10 @@
+# Bureau de secours si vinx-shell plante en boucle dans la session autonome (ADR 0049, 0053).
+[Unit]
+Description=Bureau de secours (vinx-shell ne démarre plus)
+PartOf=graphical-session.target
+
+[Service]
+Environment=VINX_SAFE_MODE=crash
+ExecStartPre=-/bin/sh -c '/usr/lib/vinx/vinx-safe-notice &'
+ExecStart=/bin/sh -c 'command -v plasmashell >/dev/null && exec plasmashell; exec sleep infinity'
+Slice=session.slice

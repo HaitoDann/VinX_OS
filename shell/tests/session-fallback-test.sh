@@ -28,4 +28,18 @@ VINX_SESSION_SETUP="$T/ok" sh "$SRC/session/vinx-session"
 
 VINX_SESSION_SETUP="$T/ok" sh "$SRC/session/vinx-session"
 [ "$(tail -1 "$RUNS")" = "normal 1" ] || fail "retour à la normale après le secours"
+# Session autonome (ADR 0053) : --standalone lance la session VinX sans Plasma…
+cat > "$T/standalone" <<'S'
+#!/bin/sh
+echo "standalone ${VINX_SESSION:-0}" >> "$RUNS"
+exit "${FAKE_STATUS:-0}"
+S
+chmod +x "$T/standalone"
+export VINX_STANDALONE_START="$T/standalone"
+VINX_SESSION_SETUP="$T/ok" sh "$SRC/session/vinx-session" --standalone
+[ "$(tail -1 "$RUNS")" = "standalone 1" ] || fail "--standalone → session autonome attendue"
+# … et, après deux arrêts immédiats, le secours reste le bureau Plasma.
+for _ in 1 2; do VINX_SESSION_SETUP="$T/ok" FAKE_STATUS=1 sh "$SRC/session/vinx-session" --standalone || true; done
+VINX_SESSION_SETUP="$T/ok" sh "$SRC/session/vinx-session" --standalone
+[ "$(tail -1 "$RUNS")" = "crash 0" ] || fail "session autonome en échec → secours Plasma attendu"
 echo "session de secours : OK"

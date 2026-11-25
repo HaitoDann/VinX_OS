@@ -73,3 +73,31 @@ Envoyer l'archive ou les captures à Claude avec la liste des ❌.
 ## Problèmes connus acceptés pour la 1.0
 
 (à remplir pendant la recette)
+
+
+## Session sans Plasma (essai, ADR 0053)
+
+À l'écran de connexion, choisir **« VinX OS (essai sans Plasma) »**. En cas de problème : se reconnecter
+avec « VinX OS ». Si la session ne s'ouvre pas deux fois de suite, le bureau Plasma de secours s'ouvre.
+
+| Point | Attendu | État |
+|---|---|---|
+| Ouverture de session | Bureau VinX, sans écran de chargement KDE | |
+| Icônes de la zone de notification (Nextcloud, Discord…) | Présentes | |
+| Wi-Fi : nouveau réseau protégé | La demande de mot de passe s'affiche | |
+| Bluetooth : appairer un appareil | Code ou confirmation affichés | |
+| Écran externe branché / débranché | Image, puis retour à l'écran du portable | |
+| Disposition du clavier, pavé tactile (tap) | Comme dans « VinX OS » | |
+| Touches son et luminosité | Fonctionnent, bulle affichée | |
+| Veille, couvercle, batterie faible | Comme dans « VinX OS » | |
+| Verrouillage (Méta+L) | Écran VinX, mot de passe accepté | |
+| Fermer la session, redémarrer, éteindre | Sans blocage | |
+| Applications au démarrage | Lancées | |
+| Firefox : « Enregistrer sous », partage d'écran (visio) | Fenêtre de fichiers, choix de l'écran | |
+| Mots de passe enregistrés (Wi-Fi, applications) | Retrouvés | |
+
+Inventaire à joindre au rapport, une fois dans chaque session (« VinX OS » puis « essai ») :
+
+```bash
+{ systemctl --user list-units --type=service,target --state=running --no-pager; echo "== D-Bus"; busctl --user list --no-pager | awk '{print $1, $3}'; echo "== kded"; qdbus6 org.kde.kded6 /kded org.kde.kded6.loadedModules 2>/dev/null; echo "== env"; env | grep -E '^(XDG_|KDE_|QT_|GTK_|DESKTOP|VINX)'; } > ~/inventaire-session-$(date +%H%M).txt
+```

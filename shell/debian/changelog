@@ -1,3 +1,12 @@
+vinx-shell (0.33.0) trixie; urgency=medium
+
+  * Étape 2 sans KDE, en essai (ADR 0053) : nouvelle session « VinX OS (essai sans
+    Plasma) » à l'écran de connexion. KWin et vinx-session.target (systemd) au lieu de
+    startplasma ; vinx-shell relancé par systemd ; services KDE gardés provisoirement.
+    La session « VinX OS » reste inchangée ; secours = bureau Plasma.
+
+ -- VinX OS <vinx@localhost>  Wed, 25 Nov 2026 21:00:00 +0000
+
 vinx-shell (0.32.0) trixie; urgency=medium
 
   * Étape 1 sans KDE (ADR 0051, 0052) :

@@ -7,6 +7,13 @@
 SETUP=${VINX_SESSION_SETUP:-/usr/lib/vinx/vinx-session-setup}
 # Remplaçables pour les tests (tests/session-fallback-test.sh).
 STARTPLASMA=${VINX_STARTPLASMA:-/usr/bin/startplasma-wayland}
+# Session autonome, sans Plasma (ADR 0053) : KWin et vinx-session.target au lieu de startplasma.
+# La session de secours reste le bureau Plasma (variable STARTPLASMA ci-dessus).
+STANDALONE=""
+if [ "${1:-}" = "--standalone" ]; then
+	shift
+	STANDALONE=${VINX_STANDALONE_START:-/usr/lib/vinx/vinx-session-standalone}
+fi
 SAFE_NOTICE=${VINX_SAFE_NOTICE:-/usr/lib/vinx/vinx-safe-notice}
 STATE=${XDG_STATE_HOME:-$HOME/.local/state}/vinx
 FAILS="$STATE/session-failures"
@@ -38,7 +45,7 @@ fi
 vinx_setup_start
 
 begin=$(date +%s)
-"$STARTPLASMA" "$@"
+"${STANDALONE:-$STARTPLASMA}" "$@"
 status=$?
 # Arrêt en moins de 30 s avec une erreur : compté comme un échec de démarrage.
 if [ "$status" -ne 0 ] && [ $(( $(date +%s) - begin )) -lt 30 ]; then

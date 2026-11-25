@@ -1,0 +1,16 @@
+# Bureau VinX dans la session autonome (ADR 0053) ; remplace vinx-shell-autostart.
+[Unit]
+Description=Bureau VinX (barre, dock, panneaux)
+PartOf=graphical-session.target
+After=graphical-session.target plasma-kded6.service
+# 5 plantages en 2 minutes : le bureau Plasma de secours prend le relais (ADR 0049).
+StartLimitIntervalSec=120
+StartLimitBurst=5
+OnFailure=vinx-shell-fallback.service
+
+[Service]
+Environment=VINX_SESSION=1
+ExecStart=/usr/bin/vinx-shell
+Restart=on-failure
+RestartSec=1
+Slice=session.slice
