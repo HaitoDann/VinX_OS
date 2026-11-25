@@ -1,3 +1,12 @@
+vinx-shell (0.30.1) trixie; urgency=high
+
+  * Correctif : vinx-session contenait des marqueurs de conflit de fusion (0.30.0) ;
+    la session s'arrêtait aussitôt et ramenait à l'écran de connexion.
+  * Écran de connexion : plus de clavier virtuel affiché d'office (InputMethod vide).
+  * Test « shell-scripts-syntax » : syntaxe des scripts et absence de marqueurs de conflit.
+
+ -- VinX OS <vinx@localhost>  Wed, 25 Nov 2026 09:00:00 +0000
+
 vinx-shell (0.30.0) trixie; urgency=medium
 
   * Retours du portable (lot 0.26.3 repris) : touche Windows = recherche, touches son

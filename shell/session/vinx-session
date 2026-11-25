@@ -40,7 +40,6 @@ if [ -n "$KWC" ]; then
 		brightness-up:"Monitor Brightness Up" brightness-down:"Monitor Brightness Down"; do
 		"$KWC" --file kglobalshortcutsrc --group services --group "org.vinx.shellctl.${p%%:*}.desktop" --key _launch "${p#*:}"
 	done
-<<<<<<< HEAD
 	# Un « ShellPackage » écrit dans plasmashellrc passerait avant PLASMA_DEFAULT_SHELL : on retire
 	# seulement la valeur par défaut de Plasma (sans effet sur la session Plasma, qui y revient d'office).
 	if [ "$(kreadconfig6 --file plasmashellrc --group Shell --key ShellPackage 2>/dev/null)" = org.kde.plasma.desktop ]; then
@@ -53,7 +52,6 @@ if [ -n "$KWC" ]; then
 	for n in 1 2 3 4 5 6 7 8 9; do
 		"$KWC" --file kglobalshortcutsrc --group kwin --key "Switch to Desktop $n" "Meta+$n,none,Switch to Desktop $n"
 	done
-=======
 	# Pas de clavier virtuel au démarrage (KWin le réactivait sur les portables à écran tactile).
 	"$KWC" --file kwinrc --group Wayland --key InputMethod --delete
 	"$KWC" --file kwinrc --group Wayland --key VirtualKeyboardEnabled false
@@ -64,7 +62,6 @@ if [ -n "$KWC" ]; then
 	# Curseurs VinX (ADR 0047) : flèche arrondie, attente en grille 2 × 2.
 	"$KWC" --file kcminputrc --group Mouse --key cursorTheme vinx-cursors
 	export XCURSOR_THEME=vinx-cursors
->>>>>>> 00426e0 (Retours du portable : touche Windows, touches son/luminosité, fond d'écran, bureaux virtuels, pilotes, batterie (vinx-shell 0.26.3))
 	# Moniteur système VinX à la place de celui de KDE (ADR 0035).
 	"$KWC" --file kglobalshortcutsrc --group services --group org.vinx.monitor.desktop --key _launch "Ctrl+Esc"
 	# Capture d'écran VinX (ADR 0036) : Méta+Maj+S pour choisir, Impr. écran pour tout l'écran.

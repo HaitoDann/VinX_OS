@@ -174,3 +174,8 @@ add_test(NAME greeter-sync COMMAND sh "${CMAKE_CURRENT_SOURCE_DIR}/greeter-sync-
 
 # vinx-snapshots restore : Timeshift appelé pour un nom valide, noms douteux refusés.
 add_test(NAME snapshots COMMAND sh "${CMAKE_CURRENT_SOURCE_DIR}/snapshots-test.sh" "${PROJECT_SOURCE_DIR}/system/vinx-snapshots")
+
+# Scripts shell installés : syntaxe valide et aucun marqueur de conflit de fusion
+# (un « <<<<<<< » oublié dans vinx-session renvoyait à l'écran de connexion, 0.30.0).
+add_test(NAME shell-scripts-syntax
+         COMMAND sh -c "fail=0; for f in \"$1\"/session/vinx-session \"$1\"/session/vinx-shellctl \"$1\"/session/vinx-shell-autostart \"$1\"/system/vinx-*; do case \"$f\" in *.service|*.timer|*.in) continue;; esac; head -1 \"$f\" | grep -q '^#!/bin/\\(ba\\)\\?sh' || continue; sh -n \"$f\" || fail=1; done; if grep -rIlE '^(<<<<<<<|>>>>>>>) ' \"$1\"/.. --exclude-dir=.git; then fail=1; fi; exit $fail" sh "${CMAKE_SOURCE_DIR}")
