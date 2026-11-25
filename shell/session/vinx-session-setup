@@ -65,6 +65,11 @@ vinx_setup_start() {
 		"$KWC" --file klaunchrc --group FeedbackStyle --key BusyCursor true
 		# Curseurs VinX (ADR 0047) : flèche arrondie, attente en grille 2 × 2.
 		"$KWC" --file kcminputrc --group Mouse --key cursorTheme vinx-cursors
+		# Réglages GTK écrits par VinX (ADR 0052) : le module KDE gtkconfig de kded les écraserait.
+		"$KWC" --file kded6rc --group Module-gtkconfig --key autoload false
+		# Mises à jour annoncées par VinX : pas de notificateur Discover en double (ADR 0025).
+		mkdir -p "$HOME/.config/autostart"
+		printf '[Desktop Entry]\nType=Application\nName=Discover\nHidden=true\nX-VinX=1\n' > "$HOME/.config/autostart/org.kde.discover.notifier.desktop"
 		export XCURSOR_THEME=vinx-cursors
 		# Moniteur système VinX à la place de celui de KDE (ADR 0035).
 		"$KWC" --file kglobalshortcutsrc --group services --group org.vinx.monitor.desktop --key _launch "Ctrl+Esc"
@@ -85,6 +90,8 @@ vinx_setup_stop() {
 		done
 		"$KWC" --file kglobalshortcutsrc --group plasmashell --key "activate application launcher" --delete
 		"$KWC" --file kcminputrc --group Mouse --key cursorTheme --delete
+		"$KWC" --file kded6rc --group Module-gtkconfig --key autoload --delete
+		grep -q '^X-VinX=1' "$HOME/.config/autostart/org.kde.discover.notifier.desktop" 2>/dev/null && rm -f "$HOME/.config/autostart/org.kde.discover.notifier.desktop"
 		"$KWC" --file ksplashrc --group KSplash --key Engine --delete
 		"$KWC" --file ksplashrc --group KSplash --key Theme --delete
 		for n in search control calendar clipboard volume-up volume-down volume-mute brightness-up brightness-down; do

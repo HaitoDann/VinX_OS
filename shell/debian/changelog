@@ -1,3 +1,12 @@
+vinx-shell (0.34.2) trixie; urgency=medium
+
+  * Session sans Plasma, d'après l'inventaire du portable : raccourcis globaux dans KWin
+    (plasma-kglobalaccel retiré), kaccess, xembedsniproxy et gmenudbusmenuproxy ajoutés.
+  * Session VinX : module kded gtkconfig désactivé (il écrasait les réglages GTK de VinX) ;
+    notificateur Discover masqué (mises à jour annoncées par VinX).
+
+ -- VinX OS <vinx@localhost>  Thu, 26 Nov 2026 11:00:00 +0000
+
 vinx-shell (0.34.1) trixie; urgency=medium
 
   * vinx-dev échouait sur le portable : deux tests héritaient de la session VinX en

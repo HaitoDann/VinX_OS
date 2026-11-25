@@ -8,6 +8,8 @@ Wants=graphical-session-pre.target
 After=graphical-session-pre.target
 # Bureau VinX, puis applications au démarrage (agent polkit VinX, etc.).
 Wants=vinx-shell.service xdg-desktop-autostart.target
-# KDE, provisoirement : réglages souris/clavier au démarrage, services d'arrière-plan (zone de
-# notification, menus globaux, Wi-Fi, Bluetooth, écrans), énergie, portail, raccourcis.
-Wants=plasma-kcminit.service plasma-kded6.service plasma-powerdevil.service plasma-xdg-desktop-portal-kde.service plasma-kglobalaccel.service
+# KDE, provisoirement (relevé sur le portable le 25/11/2026) : réglages souris/clavier au démarrage,
+# services d'arrière-plan (zone de notification, menus globaux, Wi-Fi, Bluetooth, écrans), énergie,
+# portail, accessibilité du clavier, icônes X11 et menus GTK. Les raccourcis globaux sont dans KWin.
+Wants=plasma-kcminit.service plasma-kded6.service plasma-powerdevil.service plasma-xdg-desktop-portal-kde.service
+Wants=plasma-kaccess.service plasma-xembedsniproxy.service plasma-gmenudbusmenuproxy.service

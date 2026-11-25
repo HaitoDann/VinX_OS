@@ -32,3 +32,13 @@ L'inventaire réel du portable n'a pas encore été fait : la session part de ce
 Démarrage plus court, plus de réglages KDE réécrits. Risques connus : icônes X11 de la zone de
 notification (xembedsniproxy) et menus globaux des applications GTK (gmenudbusmenuproxy) absents ;
 applications non restaurées à l'ouverture. Bascule par défaut seulement après la recette sur le portable.
+
+## Mise à jour du 26/11/2026 (inventaire réel du portable)
+
+- `plasma-kglobalaccel` n'existe pas : les raccourcis globaux sont dans KWin (`org.kde.kglobalaccel`).
+- Ajoutés à la cible pour un essai à l'identique : `plasma-kaccess`, `plasma-xembedsniproxy`,
+  `plasma-gmenudbusmenuproxy`.
+- Modules kded actifs relevés : networkmanagement, bluedevil, statusnotifierwatcher, appmenu, keyboard,
+  audioshortcutsservice, gtkconfig, smbwatcher, devicenotifications, freespacenotifier… (à remplacer à
+  l'étape 3). `gtkconfig` est désactivé en session VinX (il écrasait les réglages GTK de l'ADR 0052).
+- Le notificateur de Discover est masqué en session VinX (mises à jour annoncées par VinX).
