@@ -2,7 +2,7 @@
 # Intérieur de la session VinX autonome (ADR 0053) : tourne dans KWin (WAYLAND_DISPLAY défini).
 # Transmet l'environnement à systemd et D-Bus, démarre vinx-session.target, puis attend la fin de
 # session : quand la cible s'arrête (fermeture de session), ce script se termine et KWin avec lui.
-VARS="WAYLAND_DISPLAY DISPLAY XAUTHORITY XDG_CURRENT_DESKTOP XDG_SESSION_TYPE XDG_SESSION_ID XDG_SEAT
+VARS="XKB_DEFAULT_LAYOUT XKB_DEFAULT_VARIANT XKB_DEFAULT_MODEL XKB_DEFAULT_OPTIONS WAYLAND_DISPLAY DISPLAY XAUTHORITY XDG_CURRENT_DESKTOP XDG_SESSION_TYPE XDG_SESSION_ID XDG_SEAT
 XDG_CONFIG_DIRS XDG_DATA_DIRS VINX_SESSION VINX_STANDALONE PLASMA_DEFAULT_SHELL XCURSOR_THEME
 KDE_FULL_SESSION KDE_SESSION_VERSION KDE_APPLICATIONS_AS_SCOPE"
 log() { logger -t vinx-session "$*" 2>/dev/null || true; }
@@ -11,6 +11,10 @@ log() { logger -t vinx-session "$*" 2>/dev/null || true; }
 systemctl --user import-environment $VARS 2>/dev/null
 # shellcheck disable=SC2086
 dbus-update-activation-environment --systemd $VARS 2>/dev/null
+
+# Restes d'une session précédente (fermeture brutale, veille interrompue) : on repart de zéro.
+systemctl --user stop vinx-session.target vinx-shell.service vinx-shell-fallback.service 2>/dev/null
+systemctl --user reset-failed vinx-session.target vinx-shell.service vinx-shell-fallback.service 2>/dev/null
 
 log "session autonome : démarrage de vinx-session.target"
 if ! systemctl --user start vinx-session.target; then

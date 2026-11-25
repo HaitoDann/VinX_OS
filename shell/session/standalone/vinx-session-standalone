@@ -6,5 +6,18 @@ export XDG_SESSION_TYPE=wayland
 export XDG_CURRENT_DESKTOP="${XDG_CURRENT_DESKTOP:-KDE}"
 export KDE_FULL_SESSION=true KDE_SESSION_VERSION=6 KDE_APPLICATIONS_AS_SCOPE=1
 export VINX_STANDALONE=1
+# Disposition du clavier : startplasma la lisait dans la configuration du système quand l'utilisateur
+# n'en a pas choisi dans KDE (kxkbrc). Sans lui, KWin prenait le clavier américain (QWERTY).
+if ! grep -qs '^LayoutList=.' "${XDG_CONFIG_HOME:-$HOME/.config}/kxkbrc"; then
+	if [ -r /etc/default/keyboard ]; then
+		# shellcheck source=/dev/null
+		. /etc/default/keyboard
+	fi
+	[ -n "${XKBLAYOUT:-}" ] || XKBLAYOUT=$(localectl status 2>/dev/null | sed -n 's/.*X11 Layout: *//p')
+	[ -n "${XKBLAYOUT:-}" ] && export XKB_DEFAULT_LAYOUT="$XKBLAYOUT"
+	[ -n "${XKBVARIANT:-}" ] && export XKB_DEFAULT_VARIANT="$XKBVARIANT"
+	[ -n "${XKBMODEL:-}" ] && export XKB_DEFAULT_MODEL="$XKBMODEL"
+	[ -n "${XKBOPTIONS:-}" ] && export XKB_DEFAULT_OPTIONS="$XKBOPTIONS"
+fi
 KWIN=$(command -v kwin_wayland_wrapper || command -v kwin_wayland) || { logger -t vinx-session "KWin introuvable"; exit 1; }
 exec "$KWIN" --xwayland --exit-with-session=/usr/lib/vinx/vinx-session-inner

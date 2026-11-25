@@ -1,3 +1,13 @@
+vinx-shell (0.34.3) trixie; urgency=medium
+
+  * Session sans Plasma (essai) :
+    - clavier : disposition du système (/etc/default/keyboard) transmise à KWin, comme le
+      faisait startplasma (le clavier passait en QWERTY) ;
+    - fermeture de session propre (arrêt de vinx-session.target au lieu de couper la session) ;
+    - restes d'une session précédente nettoyés au démarrage.
+
+ -- VinX OS <vinx@localhost>  Thu, 26 Nov 2026 12:00:00 +0000
+
 vinx-shell (0.34.2) trixie; urgency=medium
 
   * Session sans Plasma, d'après l'inventaire du portable : raccourcis globaux dans KWin

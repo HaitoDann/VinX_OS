@@ -57,7 +57,14 @@ void Session::callSession(const QString &method)
 }
 
 void Session::lock() { callSession(QStringLiteral("Lock")); }
-void Session::logout() { callSession(QStringLiteral("Terminate")); }
+void Session::logout()
+{
+    // Session autonome (ADR 0053) : arrêt propre de la cible ; KWin et la session se terminent ensuite.
+    if (qEnvironmentVariableIntValue("VINX_STANDALONE") == 1
+        && QProcess::startDetached(QStringLiteral("systemctl"), {QStringLiteral("--user"), QStringLiteral("stop"), QStringLiteral("vinx-session.target")}))
+        return;
+    callSession(QStringLiteral("Terminate"));
+}
 void Session::suspend() { callManager(QStringLiteral("Suspend")); }
 void Session::reboot() { callManager(QStringLiteral("Reboot")); }
 void Session::powerOff() { callManager(QStringLiteral("PowerOff")); }
