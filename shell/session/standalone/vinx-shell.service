@@ -11,6 +11,7 @@ OnFailure=vinx-shell-fallback.service
 [Service]
 Environment=VINX_SESSION=1
 ExecStart=/usr/bin/vinx-shell
-Restart=on-failure
+# Toujours relancé (plantage ou arrêt par « pkill ») ; l'arrêt de la session, lui, ne relance rien.
+Restart=always
 RestartSec=1
 Slice=session.slice

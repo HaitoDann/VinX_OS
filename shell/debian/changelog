@@ -1,3 +1,10 @@
+vinx-shell (0.34.4) trixie; urgency=medium
+
+  * Session sans Plasma : vinx-dev relance le bureau par systemd (il restait éteint
+    après une mise à jour) ; vinx-shell.service toujours relancé s'il s'arrête.
+
+ -- VinX OS <vinx@localhost>  Thu, 26 Nov 2026 13:00:00 +0000
+
 vinx-shell (0.34.3) trixie; urgency=medium
 
   * Session sans Plasma (essai) :

@@ -54,6 +54,12 @@ fi
 installed_version() { dpkg-query -W -f '${Version}' vinx-shell 2>/dev/null || echo "aucune"; }
 
 restart_shell() {
+	# Session sans Plasma (ADR 0053) : le bureau est un service systemd, relancé par systemd.
+	if [ "${VINX_STANDALONE:-0}" = 1 ] || systemctl --user -q is-active vinx-session.target 2>/dev/null; then
+		say "Relance du shell (session sans Plasma)"
+		systemctl --user restart vinx-shell.service
+		return
+	fi
 	if pgrep -x vinx-shell >/dev/null 2>&1; then
 		say "Relance du shell"
 		# vinx-shell-autostart le relance aussitôt (ADR : relance automatique).
