@@ -1,3 +1,16 @@
+vinx-shell (0.31.0) trixie; urgency=medium
+
+  * Filet de sécurité (ADR 0049) :
+    - lanceur de session minimal ; réglages dans /usr/lib/vinx/vinx-session-setup,
+      vérifiés avant d'être chargés ;
+    - session de secours (bureau Plasma + explication) si les réglages sont illisibles
+      ou après deux sessions arrêtées aussitôt ; bureau Plasma si vinx-shell plante en boucle ;
+    - les 3 dernières versions de vinx-shell sont gardées (hook APT) ;
+    - Mises à jour : « Revenir à la version précédente » (vinx-admin shell-rollback) ;
+    - dépôt APT publié quand la branche « stable » avance.
+
+ -- VinX OS <vinx@localhost>  Wed, 25 Nov 2026 12:00:00 +0000
+
 vinx-shell (0.30.1) trixie; urgency=high
 
   * Correctif : vinx-session contenait des marqueurs de conflit de fusion (0.30.0) ;

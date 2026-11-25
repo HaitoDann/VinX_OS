@@ -3174,13 +3174,13 @@
     </message>
     <message>
         <location filename="../apps/settings/Main.qml" line="873" />
-        <location filename="../apps/updates/Main.qml" line="382" />
+        <location filename="../apps/updates/Main.qml" line="419" />
         <source>Toutes les 6 heures ; une notification signale les mises à jour disponibles.</source>
         <translation>Every 6 hours; a notification tells you about available updates.</translation>
     </message>
     <message>
         <location filename="../apps/settings/Main.qml" line="877" />
-        <location filename="../apps/updates/Main.qml" line="383" />
+        <location filename="../apps/updates/Main.qml" line="420" />
         <source>Mettre à jour les applications automatiquement</source>
         <translation>Update applications automatically</translation>
     </message>
@@ -3489,24 +3489,25 @@
     </message>
     <message>
         <location filename="../apps/updates/Main.qml" line="21" />
-        <location filename="../apps/updates/Main.qml" line="233" />
+        <location filename="../apps/updates/Main.qml" line="270" />
         <source>Historique</source>
         <translation>History</translation>
     </message>
     <message>
         <location filename="../apps/updates/Main.qml" line="22" />
-        <location filename="../apps/updates/Main.qml" line="281" />
+        <location filename="../apps/updates/Main.qml" line="318" />
         <source>Instantanés</source>
         <translation>Snapshots</translation>
     </message>
     <message>
         <location filename="../apps/updates/Main.qml" line="23" />
-        <location filename="../apps/updates/Main.qml" line="378" />
+        <location filename="../apps/updates/Main.qml" line="415" />
         <source>Réglages</source>
         <translation>Settings</translation>
     </message>
     <message>
         <location filename="../apps/updates/Main.qml" line="109" />
+        <location filename="../apps/updates/Main.qml" line="239" />
         <source>Bureau VinX %1</source>
         <translation>VinX desktop %1</translation>
     </message>
@@ -3606,148 +3607,168 @@
         <translation>Everything is up to date: Debian system, VinX desktop and applications.</translation>
     </message>
     <message>
-        <location filename="../apps/updates/Main.qml" line="224" />
+        <location filename="../apps/updates/Main.qml" line="242" />
+        <source>Retour demandé : fermez puis rouvrez la session une fois l'installation terminée.</source>
+        <translation>Rollback requested: log out and back in once the installation is done.</translation>
+    </message>
+    <message>
+        <location filename="../apps/updates/Main.qml" line="243" />
+        <source>Un problème depuis la dernière mise à jour ? Revenez à la version %1.</source>
+        <translation>A problem since the last update? Go back to version %1.</translation>
+    </message>
+    <message>
+        <location filename="../apps/updates/Main.qml" line="244" />
+        <source>Aucune version précédente gardée pour l'instant (elles le sont à chaque mise à jour).</source>
+        <translation>No previous version kept yet (one is kept at each update).</translation>
+    </message>
+    <message>
+        <location filename="../apps/updates/Main.qml" line="252" />
+        <source>Revenir à la version précédente</source>
+        <translation>Go back to the previous version</translation>
+    </message>
+    <message>
+        <location filename="../apps/updates/Main.qml" line="261" />
         <source>PackageKit est absent : seules les applications Flathub peuvent être mises à jour ici.</source>
         <translation>PackageKit is missing: only Flathub applications can be updated here.</translation>
     </message>
     <message>
-        <location filename="../apps/updates/Main.qml" line="243" />
+        <location filename="../apps/updates/Main.qml" line="280" />
         <source>mis à jour</source>
         <translation>updated</translation>
     </message>
     <message>
-        <location filename="../apps/updates/Main.qml" line="244" />
+        <location filename="../apps/updates/Main.qml" line="281" />
         <source>installé</source>
         <translation>installed</translation>
     </message>
     <message>
-        <location filename="../apps/updates/Main.qml" line="244" />
+        <location filename="../apps/updates/Main.qml" line="281" />
         <source>installés</source>
         <translation>installed</translation>
     </message>
     <message>
-        <location filename="../apps/updates/Main.qml" line="245" />
+        <location filename="../apps/updates/Main.qml" line="282" />
         <source>supprimé</source>
         <translation>deleted</translation>
     </message>
     <message>
-        <location filename="../apps/updates/Main.qml" line="245" />
+        <location filename="../apps/updates/Main.qml" line="282" />
         <source>supprimés</source>
         <translation>deleted</translation>
     </message>
     <message>
-        <location filename="../apps/updates/Main.qml" line="253" />
+        <location filename="../apps/updates/Main.qml" line="290" />
         <source>Aucune opération enregistrée pour l'instant.</source>
         <translation>No operation recorded yet.</translation>
     </message>
     <message>
-        <location filename="../apps/updates/Main.qml" line="276" />
+        <location filename="../apps/updates/Main.qml" line="313" />
         <source>Instantané créé.</source>
         <translation>Snapshot created.</translation>
     </message>
     <message>
-        <location filename="../apps/updates/Main.qml" line="277" />
+        <location filename="../apps/updates/Main.qml" line="314" />
         <source>L'opération n'a pas abouti (mot de passe refusé ou erreur).</source>
         <translation>The operation did not complete (password refused or error).</translation>
     </message>
     <message>
-        <location filename="../apps/updates/Main.qml" line="287" />
+        <location filename="../apps/updates/Main.qml" line="324" />
         <source>Instantané avant chaque mise à jour</source>
         <translation>Snapshot before each update</translation>
     </message>
     <message>
-        <location filename="../apps/updates/Main.qml" line="289" />
+        <location filename="../apps/updates/Main.qml" line="326" />
         <source>Le système (pas vos documents) est enregistré juste avant d'installer, un par jour au plus. En cas de problème, vous revenez à l'état d'avant.</source>
         <translation>The system (not your documents) is saved just before installing, at most once a day. If something goes wrong, you go back to the previous state.</translation>
     </message>
     <message>
-        <location filename="../apps/updates/Main.qml" line="307" />
+        <location filename="../apps/updates/Main.qml" line="344" />
         <source>Le système a été remis dans l'état choisi. Redémarrez pour terminer.</source>
         <translation>The system has been restored to the chosen state. Restart to finish.</translation>
     </message>
     <message>
-        <location filename="../apps/updates/Main.qml" line="309" />
+        <location filename="../apps/updates/Main.qml" line="346" />
         <source>Redémarrer maintenant</source>
         <translation>Restart now</translation>
     </message>
     <message>
-        <location filename="../apps/updates/Main.qml" line="315" />
+        <location filename="../apps/updates/Main.qml" line="352" />
         <source>États enregistrés</source>
         <translation>Saved states</translation>
     </message>
     <message>
-        <location filename="../apps/updates/Main.qml" line="317" />
+        <location filename="../apps/updates/Main.qml" line="354" />
         <source>Création…</source>
         <translation>Creating…</translation>
     </message>
     <message>
-        <location filename="../apps/updates/Main.qml" line="317" />
+        <location filename="../apps/updates/Main.qml" line="354" />
         <source>Créer maintenant</source>
         <translation>Create now</translation>
     </message>
     <message>
-        <location filename="../apps/updates/Main.qml" line="318" />
+        <location filename="../apps/updates/Main.qml" line="355" />
         <source>Créé à la main</source>
         <translation>Created manually</translation>
     </message>
     <message>
-        <location filename="../apps/updates/Main.qml" line="323" />
+        <location filename="../apps/updates/Main.qml" line="360" />
         <source>Aucun instantané pour l'instant : le premier sera pris avant la prochaine mise à jour, ou tout de suite avec « Créer maintenant ».</source>
         <translation>No snapshot yet: the first one will be taken before the next update, or right away with "Create now".</translation>
     </message>
     <message>
-        <location filename="../apps/updates/Main.qml" line="339" />
+        <location filename="../apps/updates/Main.qml" line="376" />
         <source>Instantané quotidien</source>
         <translation>Daily snapshot</translation>
     </message>
     <message>
-        <location filename="../apps/updates/Main.qml" line="340" />
+        <location filename="../apps/updates/Main.qml" line="377" />
         <source>Instantané hebdomadaire</source>
         <translation>Weekly snapshot</translation>
     </message>
     <message>
-        <location filename="../apps/updates/Main.qml" line="340" />
+        <location filename="../apps/updates/Main.qml" line="377" />
         <source>Instantané</source>
         <translation>Snapshot</translation>
     </message>
     <message>
-        <location filename="../apps/updates/Main.qml" line="343" />
+        <location filename="../apps/updates/Main.qml" line="380" />
         <source>Revenir à cet état…</source>
         <translation>Go back to this state…</translation>
     </message>
     <message>
-        <location filename="../apps/updates/Main.qml" line="357" />
+        <location filename="../apps/updates/Main.qml" line="394" />
         <source>Revenir au %1 ?</source>
         <translation>Go back to %1?</translation>
     </message>
     <message>
-        <location filename="../apps/updates/Main.qml" line="359" />
+        <location filename="../apps/updates/Main.qml" line="396" />
         <source>Les programmes et réglages du système reviennent à cet état. Vos documents, photos et téléchargements ne sont pas touchés. L'ordinateur devra redémarrer.</source>
         <translation>System programs and settings go back to this state. Your documents, photos and downloads are not touched. The computer will need to restart.</translation>
     </message>
     <message>
-        <location filename="../apps/updates/Main.qml" line="362" />
+        <location filename="../apps/updates/Main.qml" line="399" />
         <location filename="../apps/viewer/Main.qml" line="155" />
         <source>Annuler</source>
         <translation>Cancel</translation>
     </message>
     <message>
-        <location filename="../apps/updates/Main.qml" line="363" />
+        <location filename="../apps/updates/Main.qml" line="400" />
         <source>Retour en cours…</source>
         <translation>Restoring…</translation>
     </message>
     <message>
-        <location filename="../apps/updates/Main.qml" line="363" />
+        <location filename="../apps/updates/Main.qml" line="400" />
         <source>Revenir à cet état</source>
         <translation>Go back to this state</translation>
     </message>
     <message>
-        <location filename="../apps/updates/Main.qml" line="381" />
+        <location filename="../apps/updates/Main.qml" line="418" />
         <source>Rechercher automatiquement</source>
         <translation>Check automatically</translation>
     </message>
     <message>
-        <location filename="../apps/updates/Main.qml" line="384" />
+        <location filename="../apps/updates/Main.qml" line="421" />
         <source>Applications Flathub, en arrière-plan et sans mot de passe. Le système reste à votre initiative.</source>
         <translation>Flathub applications, in the background and without a password. System updates stay up to you.</translation>
     </message>

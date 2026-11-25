@@ -1,0 +1,15 @@
+#!/bin/sh
+# Hook APT (DPkg::Pre-Install-Pkgs, ADR 0049) : garde une copie de chaque paquet vinx-shell installé,
+# pour pouvoir y revenir depuis « Mises à jour » ou « vinx-dev rollback ». Les 3 plus récents sont gardés.
+# Reçoit sur l'entrée standard les chemins des .deb en cours d'installation.
+DIR=${VINX_KEEP_DIR:-/var/lib/vinx/versions}
+KEEP=3
+mkdir -p "$DIR" 2>/dev/null || exit 0
+while IFS= read -r deb; do
+	case "$deb" in */vinx-shell_*.deb|vinx-shell_*.deb) [ -f "$deb" ] && cp -f "$deb" "$DIR/" ;; esac
+done
+# Plus récentes d'abord (ordre des versions Debian), on supprime au-delà de KEEP.
+ls "$DIR"/vinx-shell_*.deb 2>/dev/null | while read -r f; do
+	printf '%s %s\n' "$(dpkg-deb -f "$f" Version 2>/dev/null)" "$f"
+done | sort -r -V | tail -n +$((KEEP + 1)) | cut -d' ' -f2- | while read -r old; do rm -f "$old"; done
+exit 0

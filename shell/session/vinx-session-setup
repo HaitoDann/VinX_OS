@@ -1,0 +1,100 @@
+#!/bin/sh
+# Réglages de la session VinX OS, chargés par /usr/bin/vinx-session (ADR 0049).
+# Ce fichier évolue souvent : vinx-session vérifie sa syntaxe avant de le charger, et démarre une
+# session de secours s'il est illisible, pour qu'une erreur ici n'empêche jamais de se connecter.
+# shellcheck disable=SC2034
+
+vinx_setup_start() {
+	export VINX_SESSION=1
+	# Écran de verrouillage VinX (ADR 0045) : kscreenlocker (Plasma 6) le lit dans le paquet de shell
+	# désigné ici ; plasmashell ne démarre pas en session VinX, la session Plasma garde Breeze.
+	export PLASMA_DEFAULT_SHELL=org.vinx.lockscreen
+	# Réglages propres à la session (KWin…), prioritaires sur ceux du système.
+	export XDG_CONFIG_DIRS="/usr/share/vinx/xdg:${XDG_CONFIG_DIRS:-/etc/xdg}"
+	# Applications KDE remplacées par VinX (Konsole, Dolphin, Discover, Configuration du système) :
+	# masquées par des entrées « Hidden=true » prioritaires, sans désinstaller les paquets (ADR 0025).
+	export XDG_DATA_DIRS="/usr/share/vinx/data:${XDG_DATA_DIRS:-/usr/local/share:/usr/share}"
+
+	# Touche Méta seule = recherche VinX. KWin la lit dans la configuration de l'utilisateur :
+	# on l'y écrit pour la durée de la session et on rétablit le comportement Plasma ensuite.
+	KWC=$(command -v kwriteconfig6 || true)
+	if [ -n "$KWC" ]; then
+		"$KWC" --file kwinrc --group ModifierOnlyShortcuts --key Meta "org.vinx.Shell,/Shell,org.vinx.Shell,toggleSearch"
+		# Pas d'écran de chargement KDE entre l'écran de connexion et le bureau VinX.
+		"$KWC" --file ksplashrc --group KSplash --key Engine none
+		"$KWC" --file ksplashrc --group KSplash --key Theme None
+		# Fenêtres VinX : la configuration de l'utilisateur (souvent Breeze, écrite par Plasma) passerait
+		# avant celle de la session ; on l'impose pour la durée de la session (ADR 0024).
+		for kv in library=org.kde.kwin.aurorae theme=__aurorae__svg__VinX ButtonsOnLeft= ButtonsOnRight=IAX BorderSize=Normal BorderSizeAuto=false; do
+			"$KWC" --file kwinrc --group org.kde.kdecoration2 --key "${kv%%=*}" "${kv#*=}"
+		done
+		# Thème d'icônes VinX (ADR 0018) : les anciens réglages d'apparence (kdedefaults, écrits par le
+		# paquet d'apparence) imposaient breeze-dark et masquaient /etc/xdg/kdeglobals. Un choix de
+		# l'utilisateur (~/.config/kdeglobals) reste prioritaire.
+		KDEF="${XDG_CONFIG_HOME:-$HOME/.config}/kdedefaults/kdeglobals"
+		if [ -f "$KDEF" ] && grep -qx 'Theme=breeze-dark' "$KDEF"; then
+			"$KWC" --file "$KDEF" --group Icons --key Theme VinX
+		fi
+		# Raccourcis globaux du shell (kglobalaccel lit les .desktop listés dans [services]).
+		# Touche Windows seule (Plasma 6 passe par kglobalaccel ; ModifierOnlyShortcuts ci-dessus pour les KWin plus anciens).
+		"$KWC" --file kglobalshortcutsrc --group services --group org.vinx.shellctl.search.desktop --key _launch "$(printf 'Meta\tMeta+Space')"
+		"$KWC" --file kglobalshortcutsrc --group plasmashell --key "activate application launcher" "none,Meta	Alt+F1,Activer le lanceur d'applications"
+		for p in control:Meta+A calendar:Meta+N clipboard:Meta+V \
+			volume-up:"Volume Up" volume-down:"Volume Down" volume-mute:"Volume Mute" \
+			brightness-up:"Monitor Brightness Up" brightness-down:"Monitor Brightness Down"; do
+			"$KWC" --file kglobalshortcutsrc --group services --group "org.vinx.shellctl.${p%%:*}.desktop" --key _launch "${p#*:}"
+		done
+		# Un « ShellPackage » écrit dans plasmashellrc passerait avant PLASMA_DEFAULT_SHELL : on retire
+		# seulement la valeur par défaut de Plasma (sans effet sur la session Plasma, qui y revient d'office).
+		if [ "$(kreadconfig6 --file plasmashellrc --group Shell --key ShellPackage 2>/dev/null)" = org.kde.plasma.desktop ]; then
+			"$KWC" --file plasmashellrc --group Shell --key ShellPackage --delete
+		fi
+		# Apparence VinX dans la configuration de l'utilisateur (Plasma y écrit parfois Breeze, qui passe
+		# avant /etc/xdg). L'écran de verrouillage, lui, vient de PLASMA_DEFAULT_SHELL (plus haut).
+		"$KWC" --file kdeglobals --group KDE --key LookAndFeelPackage org.vinx.desktop
+		# Espaces de travail (ADR 0044) : Méta+1…9 pour aller à l'espace N (bureaux virtuels de KWin).
+		for n in 1 2 3 4 5 6 7 8 9; do
+			"$KWC" --file kglobalshortcutsrc --group kwin --key "Switch to Desktop $n" "Meta+$n,none,Switch to Desktop $n"
+		done
+		# Pas de clavier virtuel au démarrage (KWin le réactivait sur les portables à écran tactile).
+		"$KWC" --file kwinrc --group Wayland --key InputMethod --delete
+		"$KWC" --file kwinrc --group Wayland --key VirtualKeyboardEnabled false
+		# Lancement d'application : curseur d'attente au lieu de l'icône qui sautille.
+		"$KWC" --file klaunchrc --group BusyCursorSettings --key Bouncing false
+		"$KWC" --file klaunchrc --group BusyCursorSettings --key Blinking false
+		"$KWC" --file klaunchrc --group FeedbackStyle --key BusyCursor true
+		# Curseurs VinX (ADR 0047) : flèche arrondie, attente en grille 2 × 2.
+		"$KWC" --file kcminputrc --group Mouse --key cursorTheme vinx-cursors
+		export XCURSOR_THEME=vinx-cursors
+		# Moniteur système VinX à la place de celui de KDE (ADR 0035).
+		"$KWC" --file kglobalshortcutsrc --group services --group org.vinx.monitor.desktop --key _launch "Ctrl+Esc"
+		# Capture d'écran VinX (ADR 0036) : Méta+Maj+S pour choisir, Impr. écran pour tout l'écran.
+		"$KWC" --file kglobalshortcutsrc --group services --group org.vinx.screenshot.desktop --key _launch "Meta+Shift+S"
+		"$KWC" --file kglobalshortcutsrc --group services --group org.vinx.screenshot.desktop --key FullScreen "Print"
+	fi
+
+	# Sauvegarde des documents : vérification toutes les heures (ADR 0032).
+	systemctl --user start vinx-backup.timer >/dev/null 2>&1 || true
+}
+
+vinx_setup_stop() {
+	if [ -n "$KWC" ]; then
+		"$KWC" --file kwinrc --group ModifierOnlyShortcuts --key Meta --delete
+		for k in library theme ButtonsOnLeft ButtonsOnRight BorderSize BorderSizeAuto; do
+			"$KWC" --file kwinrc --group org.kde.kdecoration2 --key "$k" --delete
+		done
+		"$KWC" --file kglobalshortcutsrc --group plasmashell --key "activate application launcher" --delete
+		"$KWC" --file kcminputrc --group Mouse --key cursorTheme --delete
+		"$KWC" --file ksplashrc --group KSplash --key Engine --delete
+		"$KWC" --file ksplashrc --group KSplash --key Theme --delete
+		for n in search control calendar clipboard volume-up volume-down volume-mute brightness-up brightness-down; do
+			"$KWC" --file kglobalshortcutsrc --group services --group "org.vinx.shellctl.$n.desktop" --key _launch --delete
+		done
+		for n in 1 2 3 4 5 6 7 8 9; do
+			"$KWC" --file kglobalshortcutsrc --group kwin --key "Switch to Desktop $n" --delete
+		done
+		"$KWC" --file kglobalshortcutsrc --group services --group org.vinx.monitor.desktop --key _launch --delete
+		"$KWC" --file kglobalshortcutsrc --group services --group org.vinx.screenshot.desktop --key _launch --delete
+		"$KWC" --file kglobalshortcutsrc --group services --group org.vinx.screenshot.desktop --key FullScreen --delete
+	fi
+}

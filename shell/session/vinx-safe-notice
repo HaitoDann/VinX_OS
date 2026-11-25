@@ -1,0 +1,15 @@
+#!/bin/sh
+# Session de secours (ADR 0049) : bulle d'explication une fois le bureau Plasma prêt.
+. /usr/lib/vinx/vinx-i18n.sh 2>/dev/null || T() { printf '%s' "$1"; }
+sleep 12
+if [ "${VINX_SAFE_MODE:-}" = setup ]; then
+	body=$(T "Une erreur dans la mise à jour de VinX empêche son démarrage : vous êtes sur le bureau de secours. Ouvrez « Mises à jour » → « Revenir à la version précédente », ou lancez « vinx-dev rollback » dans un terminal." \
+	         "An error in the VinX update prevents it from starting: you are on the fallback desktop. Open “Updates” → “Go back to the previous version”, or run “vinx-dev rollback” in a terminal.")
+else
+	body=$(T "VinX s'est arrêté deux fois au démarrage : vous êtes sur le bureau de secours. Ouvrez « Mises à jour » → « Revenir à la version précédente », puis reconnectez-vous." \
+	         "VinX stopped twice while starting: you are on the fallback desktop. Open “Updates” → “Go back to the previous version”, then log in again.")
+fi
+gdbus call --session --dest org.freedesktop.Notifications --object-path /org/freedesktop/Notifications \
+	--method org.freedesktop.Notifications.Notify "VinX OS" 0 dialog-warning \
+	"$(T "Session de secours" "Fallback session")" "$body" '[]' '{"urgency": <byte 2>}' 0 >/dev/null 2>&1 || true
+command -v vinx-updates >/dev/null && vinx-updates --page overview >/dev/null 2>&1 &

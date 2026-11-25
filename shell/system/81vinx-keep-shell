@@ -1,0 +1,2 @@
+// VinX OS (ADR 0049) : garde les anciennes versions de vinx-shell pour pouvoir y revenir.
+DPkg::Pre-Install-Pkgs { "[ -x /usr/lib/vinx/vinx-keep-shell ] && /usr/lib/vinx/vinx-keep-shell || true"; };

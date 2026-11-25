@@ -482,4 +482,9 @@ T = {
 'Rechercher un réglage': 'Search settings',
 'Santé de la batterie': 'Battery health',
 'Verrouiller': 'Lock',
+"Aucune version précédente gardée pour l'instant (elles le sont à chaque mise à jour).": 'No previous version kept yet (one is kept at each update).',
+"Retour demandé : fermez puis rouvrez la session une fois l'installation terminée.": 'Rollback requested: log out and back in once the installation is done.',
+'Revenir à la version précédente': 'Go back to the previous version',
+'Un problème depuis la dernière mise à jour ? Revenez à la version %1.': 'A problem since the last update? Go back to version %1.',
+'Bureau VinX %1': 'VinX desktop %1',
 }

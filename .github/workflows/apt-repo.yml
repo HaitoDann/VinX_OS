@@ -1,9 +1,12 @@
 name: Dépôt APT
 
-# Publie vinx-shell dans le dépôt APT (GitHub Pages) : uniquement sur une étiquette
-# « shell-v* » (ex. shell-v0.8.0) ou à la demande, pour ne pas consommer de minutes inutilement.
+# Publie vinx-shell dans le dépôt APT (GitHub Pages) : quand la branche « stable » avance (version
+# validée sur le portable, ADR 0049), sur une étiquette « shell-v* », ou à la demande.
+# Jamais à chaque poussée sur main, pour ne pas consommer de minutes inutilement.
 on:
   push:
+    branches: [stable]
+    paths: ["shell/**"]
     tags: ["shell-v*"]
   workflow_dispatch:
 

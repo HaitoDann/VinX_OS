@@ -22,7 +22,10 @@ while :; do
 	crashes=$((crashes + 1))
 	log "arrêt anormal (code $status), relance $crashes/$MAX"
 	if [ "$crashes" -ge "$MAX" ]; then
-		log "trop de plantages, abandon"
+		log "trop de plantages : bureau Plasma de secours (ADR 0049)"
+		# Écran vide sinon : le bureau Plasma prend le relais, avec une bulle d'explication.
+		VINX_SAFE_MODE=crash /usr/lib/vinx/vinx-safe-notice &
+		command -v plasmashell >/dev/null && exec plasmashell
 		exit "$status"
 	fi
 	sleep 1

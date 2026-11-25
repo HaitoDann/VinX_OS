@@ -38,3 +38,14 @@ La première fois, `vinx-dev` installe les outils de construction (mot de passe 
 Les réglages système fournis par l'ISO (paquets installés, écran de démarrage Plymouth, thèmes
 KDE et GTK, installateur) : ils changent à la prochaine installation, ou se copient à la main
 depuis `distro/live/config/includes.chroot`.
+
+
+## Filet de sécurité et canaux (ADR 0049)
+
+- **Si la session VinX ne s'ouvre plus** : après deux échecs, la connexion suivante ouvre le bureau Plasma
+  de secours, avec une bulle d'explication. Revenir en arrière : « Mises à jour » → « Revenir à la version
+  précédente », ou `vinx-dev rollback`. Les 3 dernières versions installées sont gardées dans
+  `/var/lib/vinx/versions`.
+- **Canaux** : `main` = essai, installé sur le portable avec `vinx-dev`. Quand une version est validée, on
+  avance la branche `stable` sur ce commit (`git push origin main:stable`) : le dépôt APT est publié, et
+  « Mises à jour » la propose sans `vinx-dev`.

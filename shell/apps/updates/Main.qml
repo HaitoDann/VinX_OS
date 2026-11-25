@@ -217,6 +217,43 @@ Window {
                     level: Label.Secondary
                     text: qsTr("Tout est à jour : système Debian, bureau VinX et applications.")
                 }
+                // Bureau VinX : revenir à une version gardée (ADR 0049).
+                Item {
+                    id: shellBack
+                    // « 0.30.0 » de chaque paquet gardé dans /var/lib/vinx/versions, la plus récente d'abord.
+                    property var kept: []
+                    property string installed: ""
+                    property bool asked: false
+                    function load() {
+                        installed = Session.capture("dpkg-query", ["-W", "-f", "${Version}", "vinx-shell"]).trim()
+                        const out = Session.capture("sh", ["-c", "for f in /var/lib/vinx/versions/vinx-shell_*.deb; do [ -f \"$f\" ] && dpkg-deb -f \"$f\" Version; done | sort -r -V"])
+                        kept = out.split("\n").map(v => v.trim()).filter(v => v !== "" && v !== installed)
+                    }
+                    Component.onCompleted: load()
+                    readonly property string previous: kept.length > 0 ? kept[0] : ""
+                    width: parent.width
+                    height: Math.max(64, backTexts.implicitHeight + Theme.space3 * 2)
+                    Column {
+                        id: backTexts
+                        anchors { left: parent.left; right: backBtn.left; rightMargin: Theme.space4; verticalCenter: parent.verticalCenter }
+                        Label { text: qsTr("Bureau VinX %1").arg(shellBack.installed); font.weight: Font.DemiBold; width: parent.width }
+                        Label {
+                            width: parent.width; wrapMode: Text.WordWrap; level: Label.Secondary; font.pixelSize: Theme.fsSm
+                            text: shellBack.asked ? qsTr("Retour demandé : fermez puis rouvrez la session une fois l'installation terminée.")
+                                : shellBack.previous !== "" ? qsTr("Un problème depuis la dernière mise à jour ? Revenez à la version %1.").arg(shellBack.previous)
+                                : qsTr("Aucune version précédente gardée pour l'instant (elles le sont à chaque mise à jour).")
+                        }
+                    }
+                    Button {
+                        id: backBtn
+                        anchors { right: parent.right; verticalCenter: parent.verticalCenter }
+                        visible: shellBack.previous !== ""
+                        enabled: !shellBack.asked
+                        text: qsTr("Revenir à la version précédente")
+                        onClicked: { Session.launch("pkexec", ["/usr/lib/vinx/vinx-admin", "shell-rollback", shellBack.previous]); shellBack.asked = true }
+                    }
+                    Rectangle { anchors.top: parent.top; width: parent.width; height: 1; color: Theme.border }
+                }
                 Label {
                     visible: !Updates.packageKitAvailable
                     width: parent.width; wrapMode: Text.WordWrap

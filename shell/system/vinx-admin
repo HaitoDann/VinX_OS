@@ -6,6 +6,7 @@
 #   printer-remove FILE       supprime une imprimante
 #   install PAQUET…           installe des pilotes ; active les dépôts « non-free » si nécessaire
 #   charge-limit 80|100       limite de charge de la batterie (si le matériel le permet)
+#   shell-rollback VERSION    réinstalle une version gardée de vinx-shell (/var/lib/vinx/versions)
 #   journal                   avertissements et erreurs du journal système (assistant de dépannage)
 set -eu
 [ "$(id -u)" = 0 ] || [ "${VINX_ADMIN_CHECK:-0}" = 1 ] || { echo "À lancer via pkexec." >&2; exit 1; }
@@ -68,11 +69,21 @@ charge-limit)
 	mkdir -p /etc/vinx && echo "$2" > /etc/vinx/charge-limit
 	systemctl enable vinx-charge-limit.service >/dev/null 2>&1 || true
 	;;
+shell-rollback)
+	[ $# -eq 2 ] && one_line "$2" && printf '%s' "$2" | grep -Eq '^[0-9][0-9A-Za-z.+~-]{0,40}$' || { echo "Arguments invalides." >&2; exit 2; }
+	deb=""
+	for f in /var/lib/vinx/versions/vinx-shell_*.deb; do
+		[ -f "$f" ] && [ "$(dpkg-deb -f "$f" Version)" = "$2" ] && deb=$f
+	done
+	[ -n "$deb" ] || { echo "Version $2 introuvable." >&2; exit 3; }
+	[ "${VINX_ADMIN_CHECK:-0}" = 1 ] && exit 0
+	DEBIAN_FRONTEND=noninteractive apt-get install -y --allow-downgrades "$deb"
+	;;
 journal)
 	journalctl -b -p 4 -n 4000 -o short --no-pager
 	;;
 *)
-	echo "usage : vinx-admin printer-add FILE URI | printer-remove FILE | install PAQUET… | charge-limit 80|100 | journal" >&2
+	echo "usage : vinx-admin printer-add FILE URI | printer-remove FILE | install PAQUET… | charge-limit 80|100 | shell-rollback VERSION | journal" >&2
 	exit 2
 	;;
 esac
