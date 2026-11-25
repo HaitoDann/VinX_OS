@@ -1684,7 +1684,43 @@
         <translation>Could not create the file.</translation>
     </message>
     <message>
-        <location filename="../apps/files/fileops.cpp" line="333" />
+        <location filename="../apps/files/fileops.cpp" line="321" />
+        <source>Impossible de créer le dossier d'extraction.</source>
+        <translation>Could not create the extraction folder.</translation>
+    </message>
+    <message>
+        <location filename="../apps/files/fileops.cpp" line="325" />
+        <source>Extraction de « %1 »</source>
+        <translation>Extracting “%1”</translation>
+    </message>
+    <message>
+        <location filename="../apps/files/fileops.cpp" line="329" />
+        <source>L'archive n'a pas pu être extraite (format inconnu, abîmée ou protégée par un mot de passe).</source>
+        <translation>The archive could not be extracted (unknown format, damaged or password-protected).</translation>
+    </message>
+    <message>
+        <location filename="../apps/files/fileops.cpp" line="352" />
+        <location filename="../apps/files/fileops.cpp" line="382" />
+        <source>L'outil d'archives (bsdtar) est absent : installez le paquet libarchive-tools.</source>
+        <translation>The archive tool (bsdtar) is missing: install the libarchive-tools package.</translation>
+    </message>
+    <message>
+        <location filename="../apps/files/fileops.cpp" line="371" />
+        <source>Archive</source>
+        <translation>Archive</translation>
+    </message>
+    <message>
+        <location filename="../apps/files/fileops.cpp" line="373" />
+        <source>Compression en « %1 »</source>
+        <translation>Compressing to “%1”</translation>
+    </message>
+    <message>
+        <location filename="../apps/files/fileops.cpp" line="376" />
+        <source>La compression a échoué.</source>
+        <translation>Compression failed.</translation>
+    </message>
+    <message>
+        <location filename="../apps/files/fileops.cpp" line="409" />
         <source>Aucun terminal n'est installé.</source>
         <translation>No terminal is installed.</translation>
     </message>
@@ -1936,197 +1972,207 @@
 <context>
     <name>Main</name>
     <message>
-        <location filename="../apps/files/Main.qml" line="118" />
-        <location filename="../apps/files/Main.qml" line="335" />
-        <location filename="../apps/files/Main.qml" line="419" />
+        <location filename="../apps/files/Main.qml" line="122" />
+        <location filename="../apps/files/Main.qml" line="341" />
+        <location filename="../apps/files/Main.qml" line="429" />
         <source>Nouveau dossier</source>
         <translation>New folder</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="178" />
+        <location filename="../apps/files/Main.qml" line="184" />
         <source>Précédent (Alt+←)</source>
         <translation>Back (Alt+←)</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="179" />
+        <location filename="../apps/files/Main.qml" line="185" />
         <source>Suivant (Alt+→)</source>
         <translation>Forward (Alt+→)</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="203" />
+        <location filename="../apps/files/Main.qml" line="209" />
         <source>Filtrer ce dossier</source>
         <translation>Filter this folder</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="207" />
+        <location filename="../apps/files/Main.qml" line="213" />
         <source>Filtrer</source>
         <translation>Filter</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="212" />
+        <location filename="../apps/files/Main.qml" line="218" />
         <source>Icônes</source>
         <translation>Icons</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="212" />
+        <location filename="../apps/files/Main.qml" line="218" />
         <source>Liste</source>
         <translation>List</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="216" />
+        <location filename="../apps/files/Main.qml" line="222" />
         <source>Nouveau dossier (Ctrl+Maj+N)</source>
         <translation>New folder (Ctrl+Shift+N)</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="253" />
+        <location filename="../apps/files/Main.qml" line="259" />
         <source>Fermer l'onglet (Ctrl+W)</source>
         <translation>Close tab (Ctrl+W)</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="271" />
+        <location filename="../apps/files/Main.qml" line="277" />
         <source>Les éléments de la corbeille peuvent être restaurés depuis leur menu.</source>
         <translation>Items in the trash can be restored from their menu.</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="272" />
-        <location filename="../apps/files/Main.qml" line="408" />
+        <location filename="../apps/files/Main.qml" line="278" />
+        <location filename="../apps/files/Main.qml" line="414" />
         <source>Vider la corbeille</source>
         <translation>Empty trash</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="318" />
+        <location filename="../apps/files/Main.qml" line="324" />
         <source>Aucun élément ne correspond à « %1 ».</source>
         <translation>Nothing matches "%1".</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="319" />
+        <location filename="../apps/files/Main.qml" line="325" />
         <source>La corbeille est vide.</source>
         <translation>The trash is empty.</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="319" />
+        <location filename="../apps/files/Main.qml" line="325" />
         <source>Ce dossier est vide.</source>
         <translation>This folder is empty.</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="328" />
+        <location filename="../apps/files/Main.qml" line="334" />
         <source>Glissez des fichiers ici, ou créez :</source>
         <translation>Drop files here, or create:</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="337" />
-        <location filename="../apps/files/Main.qml" line="340" />
-        <location filename="../apps/files/Main.qml" line="420" />
-        <location filename="../apps/files/Main.qml" line="421" />
+        <location filename="../apps/files/Main.qml" line="343" />
+        <location filename="../apps/files/Main.qml" line="346" />
+        <location filename="../apps/files/Main.qml" line="430" />
+        <location filename="../apps/files/Main.qml" line="431" />
         <source>Nouveau document</source>
         <translation>New document</translation>
     </message>
     <message numerus="yes">
-        <location filename="../apps/files/Main.qml" line="370" />
+        <location filename="../apps/files/Main.qml" line="376" />
         <source>%n élément(s)</source>
         <translation><numerusform>%n item</numerusform><numerusform>%n items</numerusform></translation>
     </message>
     <message numerus="yes">
-        <location filename="../apps/files/Main.qml" line="372" />
+        <location filename="../apps/files/Main.qml" line="378" />
         <source>%n sélectionné(s)</source>
         <translation><numerusform>%n selected</numerusform><numerusform>%n selected</numerusform></translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="407" />
+        <location filename="../apps/files/Main.qml" line="413" />
         <source>Restaurer</source>
         <translation>Restore</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="407" />
+        <location filename="../apps/files/Main.qml" line="413" />
         <source>Supprimer définitivement</source>
         <translation>Delete permanently</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="410" />
+        <location filename="../apps/files/Main.qml" line="416" />
         <source>Ouvrir</source>
         <translation>Open</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="410" />
+        <location filename="../apps/files/Main.qml" line="416" />
         <source>Entrée</source>
         <translation>Enter</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="411" />
+        <location filename="../apps/files/Main.qml" line="417" />
         <source>Ouvrir dans un nouvel onglet</source>
         <translation>Open in a new tab</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="413" />
+        <location filename="../apps/files/Main.qml" line="420" />
+        <source>Extraire ici</source>
+        <translation>Extract here</translation>
+    </message>
+    <message>
+        <location filename="../apps/files/Main.qml" line="421" />
+        <source>Compresser en .zip</source>
+        <translation>Compress to .zip</translation>
+    </message>
+    <message>
+        <location filename="../apps/files/Main.qml" line="423" />
         <source>Couper</source>
         <translation>Cut</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="414" />
+        <location filename="../apps/files/Main.qml" line="424" />
         <source>Copier</source>
         <translation>Copy</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="415" />
         <location filename="../apps/files/Main.qml" line="425" />
+        <location filename="../apps/files/Main.qml" line="435" />
         <source>Coller</source>
         <translation>Paste</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="417" />
+        <location filename="../apps/files/Main.qml" line="427" />
         <source>Renommer…</source>
         <translation>Rename…</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="418" />
+        <location filename="../apps/files/Main.qml" line="428" />
         <location filename="../apps/viewer/Main.qml" line="265" />
         <source>Mettre à la corbeille</source>
         <translation>Move to trash</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="418" />
+        <location filename="../apps/files/Main.qml" line="428" />
         <location filename="../apps/monitor/Main.qml" line="396" />
         <location filename="../apps/viewer/Main.qml" line="265" />
         <source>Suppr</source>
         <translation>Del</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="420" />
+        <location filename="../apps/files/Main.qml" line="430" />
         <source>Nouveau document texte</source>
         <translation>New text document</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="421" />
+        <location filename="../apps/files/Main.qml" line="431" />
         <source>Nouveau document Writer</source>
         <translation>New Writer document</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="422" />
+        <location filename="../apps/files/Main.qml" line="432" />
         <source>Nouveau classeur Calc</source>
         <translation>New Calc spreadsheet</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="422" />
+        <location filename="../apps/files/Main.qml" line="432" />
         <source>Nouveau classeur</source>
         <translation>New spreadsheet</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="423" />
+        <location filename="../apps/files/Main.qml" line="433" />
         <source>Nouvelle présentation Impress</source>
         <translation>New Impress presentation</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="423" />
+        <location filename="../apps/files/Main.qml" line="433" />
         <source>Nouvelle présentation</source>
         <translation>New presentation</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="427" />
+        <location filename="../apps/files/Main.qml" line="437" />
         <source>Afficher les fichiers cachés</source>
         <translation>Show hidden files</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="428" />
+        <location filename="../apps/files/Main.qml" line="438" />
         <source>Ouvrir un terminal ici</source>
         <translation>Open a terminal here</translation>
     </message>
@@ -4057,6 +4103,16 @@
         <source>Éteindre</source>
         <translation>Shut down</translation>
     </message>
+    <message>
+        <location filename="../apps/calculator/Main.qml" line="14" />
+        <source>Calculatrice</source>
+        <translation>Calculator</translation>
+    </message>
+    <message>
+        <location filename="../apps/calculator/Main.qml" line="116" />
+        <source>Calcul impossible</source>
+        <translation>Cannot calculate</translation>
+    </message>
 </context>
 <context>
     <name>NetConfig</name>
@@ -4374,6 +4430,72 @@
         <location filename="../apps/files/PathBar.qml" line="58" />
         <source>Chemin</source>
         <translation>Path</translation>
+    </message>
+</context>
+<context>
+    <name>PdfDoc</name>
+    <message>
+        <location filename="../apps/viewer/pdfdoc.h" line="32" />
+        <source>Ce document est protégé par un mot de passe.</source>
+        <translation>This document is password-protected.</translation>
+    </message>
+    <message>
+        <location filename="../apps/viewer/pdfdoc.h" line="33" />
+        <source>Impossible d'ouvrir ce document PDF.</source>
+        <translation>Could not open this PDF document.</translation>
+    </message>
+</context>
+<context>
+    <name>PdfMain</name>
+    <message>
+        <location filename="../apps/viewer/PdfMain.qml" line="14" />
+        <source>Lecteur PDF</source>
+        <translation>PDF Reader</translation>
+    </message>
+    <message>
+        <location filename="../apps/viewer/PdfMain.qml" line="30" />
+        <source>« %1 » introuvable dans ce document.</source>
+        <translation>“%1” not found in this document.</translation>
+    </message>
+    <message>
+        <location filename="../apps/viewer/PdfMain.qml" line="31" />
+        <source>« %1 » : page %2</source>
+        <translation>“%1”: page %2</translation>
+    </message>
+    <message>
+        <location filename="../apps/viewer/PdfMain.qml" line="57" />
+        <source>Page %1 / %2</source>
+        <translation>Page %1 / %2</translation>
+    </message>
+    <message>
+        <location filename="../apps/viewer/PdfMain.qml" line="64" />
+        <source>Réduire (−)</source>
+        <translation>Zoom out (−)</translation>
+    </message>
+    <message>
+        <location filename="../apps/viewer/PdfMain.qml" line="70" />
+        <source>Agrandir (+)</source>
+        <translation>Zoom in (+)</translation>
+    </message>
+    <message>
+        <location filename="../apps/viewer/PdfMain.qml" line="87" />
+        <source>Rechercher dans le document</source>
+        <translation>Search the document</translation>
+    </message>
+    <message>
+        <location filename="../apps/viewer/PdfMain.qml" line="90" />
+        <source>Rechercher</source>
+        <translation>Search</translation>
+    </message>
+    <message>
+        <location filename="../apps/viewer/PdfMain.qml" line="92" />
+        <source>Ouvrir dans Firefox</source>
+        <translation>Open in Firefox</translation>
+    </message>
+    <message>
+        <location filename="../apps/viewer/PdfMain.qml" line="176" />
+        <source>Aucun document.</source>
+        <translation>No document.</translation>
     </message>
 </context>
 <context>
@@ -4711,7 +4833,7 @@
         <translation>Could not copy "%1".</translation>
     </message>
     <message>
-        <location filename="../apps/files/main.cpp" line="21" />
+        <location filename="../apps/files/main.cpp" line="23" />
         <source>Fichiers</source>
         <translation>Files</translation>
     </message>

@@ -1,0 +1,14 @@
+[Desktop Entry]
+Type=Application
+Name=Calculatrice
+Name[en]=Calculator
+GenericName=Calculatrice
+GenericName[en]=Calculator
+Comment=Faire des calculs simples
+Comment[en]=Do simple calculations
+Exec=vinx-calculator
+Icon=org.vinx.calculator
+Terminal=false
+Categories=Utility;Calculator;
+Keywords=calcul;calculatrice;addition;pourcentage;tva;
+Keywords[en]=calculator;math;sum;percent;

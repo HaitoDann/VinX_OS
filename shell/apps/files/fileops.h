@@ -1,6 +1,8 @@
 #pragma once
 
 #include <QObject>
+
+#include "fileops_archive.h"
 #include <QUrl>
 #include <QVariantList>
 #include <QtQml/qqmlregistration.h>
@@ -46,6 +48,12 @@ public:
     // Document vide (dossiers locaux) : « Nouveau document.txt », « .odt »… LibreOffice ouvre un
     // fichier vide comme un nouveau document du type de son extension. Renvoie le nom créé, ou "".
     Q_INVOKABLE QString createFile(const QUrl &dir, const QString &fileName);
+    // Archives (ADR 0052), avec bsdtar (libarchive) : extraction dans un dossier du même nom, à côté
+    // de l'archive (signal extracted), et compression en .zip. Dossiers locaux seulement.
+    Q_INVOKABLE static bool isArchive(const QString &name) { return !archiveStem(name).isEmpty(); }
+    Q_INVOKABLE QString extract(const QUrl &archive);
+    Q_INVOKABLE QString compress(const QList<QUrl> &urls, const QUrl &dir);
+    static QString archiveStem(const QString &name) { return archive::stem(name); }
     Q_INVOKABLE void open(const QUrl &url);
     Q_INVOKABLE void openTerminal(const QUrl &dir);
 
@@ -61,6 +69,7 @@ Q_SIGNALS:
     void clipboardChanged();
     void failed(const QString &message);
     void done();
+    void extracted(const QUrl &folder);
 
 private:
     void begin(const QString &task);

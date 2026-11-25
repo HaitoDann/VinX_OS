@@ -31,6 +31,8 @@ ICONS = {
     "org.vinx.welcome": ("info", "#10DD8C", "apps"),
     "org.vinx.monitor": ("chip", "#0B7285", "apps"),
     "org.vinx.images": ("image", "#E8590C", "apps"),
+    "org.vinx.pdf": ("doc", "#E5484D", "apps"),
+    "org.vinx.calculator": ("calculator", "#E8590C", "apps"),
     "org.vinx.screenshot": ("fullscreen", "#C2255C", "apps"),
     "utilities-terminal": ("terminal", INK, "apps"),
     "org.kde.konsole": ("terminal", INK, "apps"),
@@ -56,6 +58,8 @@ ICONS = {
     "kwalletmanager": ("lock", "#8A8983", "apps"),
     "org.kde.skanlite": ("scanner", "#2F6FD0", "apps"),
     "skanlite": ("scanner", "#2F6FD0", "apps"),
+    "org.gnome.SimpleScan": ("scanner", "#2F6FD0", "apps"),
+    "simple-scan": ("scanner", "#2F6FD0", "apps"),
     # Emplacements
     "folder": ("folder", None, "places"),
     "inode-directory": ("folder", None, "mimetypes"),

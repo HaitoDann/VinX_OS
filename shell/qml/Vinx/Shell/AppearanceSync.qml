@@ -30,6 +30,8 @@ QtObject {
             ShellState.syncWindowTheme(String(g.fill), String(g.ink), Theme.dark)
         if (windowTheme)
             ShellState.syncGreeter(Theme.dark, globalAccent)
+        if (windowTheme)
+            ShellState.syncGtk(Theme.dark, globalAccent, String(g.fill), String(g.ink))
         Notifications.doNotDisturb = truthy(Preferences.value("notifications/dnd"), false)
     }
     // Accent : identifiant du nuancier, « auto » (d'après le fond d'écran) ou vide/inconnu (défaut).

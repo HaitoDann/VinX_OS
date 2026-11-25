@@ -1,5 +1,6 @@
 #include "session.h"
 #include "accentpick.h"
+#include "gtksync.h"
 
 #include <QImageReader>
 
@@ -194,4 +195,34 @@ QString Session::createInDesktop(const QString &name, bool folder)
         return dir.mkdir(candidate) ? path : QString();
     QFile file(path);
     return file.open(QIODevice::WriteOnly | QIODevice::NewOnly) ? path : QString();
+}
+
+void Session::syncGtk(bool dark, const QString &accentId, const QString &fill, const QString &ink) const
+{
+    const QString config = QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation);
+    for (const char *dir : {"gtk-3.0", "gtk-4.0"}) {
+        const QString d = config + QLatin1Char('/') + QLatin1String(dir);
+        QDir().mkpath(d);
+        QFile ini(d + QStringLiteral("/settings.ini"));
+        if (ini.open(QIODevice::WriteOnly | QIODevice::Truncate))
+            ini.write(gtksync::settingsIni(dark).toUtf8());
+        // gtk.css personnel (sans la marque VinX) : on n'y touche pas.
+        QFile css(d + QStringLiteral("/gtk.css"));
+        if (css.exists() && css.open(QIODevice::ReadOnly) && !css.readLine().startsWith(gtksync::marker()))
+            continue;
+        css.close();
+        if (css.open(QIODevice::WriteOnly | QIODevice::Truncate))
+            css.write(gtksync::css(fill, ink).toUtf8());
+    }
+    // libadwaita et portail : thème sombre, accent, police, curseurs (gsettings, si présent).
+    const QString iface = QStringLiteral("org.gnome.desktop.interface");
+    const QList<QStringList> keys = {
+        {QStringLiteral("color-scheme"), dark ? QStringLiteral("prefer-dark") : QStringLiteral("default")},
+        {QStringLiteral("accent-color"), gtksync::adwaitaAccent(accentId)},
+        {QStringLiteral("font-name"), QStringLiteral("IBM Plex Sans 10")},
+        {QStringLiteral("cursor-theme"), QStringLiteral("vinx-cursors")},
+        {QStringLiteral("icon-theme"), QStringLiteral("VinX")},
+        {QStringLiteral("gtk-theme"), QStringLiteral("Adwaita")}};
+    for (const QStringList &kv : keys)
+        QProcess::startDetached(QStringLiteral("gsettings"), {QStringLiteral("set"), iface, kv[0], kv[1]});
 }

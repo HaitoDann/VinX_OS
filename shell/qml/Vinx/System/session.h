@@ -27,6 +27,8 @@ public:
     Q_INVOKABLE bool launch(const QString &program, const QStringList &arguments = {});
     Q_INVOKABLE bool fileExists(const QString &path) const;
     // Bureau (ADR 0048) : dossier « Bureau » de l'utilisateur, son contenu, et création d'éléments.
+    // Applications GTK aux couleurs de VinX (ADR 0052) : settings.ini, gtk.css, gsettings.
+    Q_INVOKABLE void syncGtk(bool dark, const QString &accentId, const QString &fill, const QString &ink) const;
     Q_INVOKABLE QString desktopPath() const;
     Q_INVOKABLE QVariantList desktopEntries() const;   // [{ name, path, isDir, ext }], dossiers d'abord
     Q_INVOKABLE QString createInDesktop(const QString &name, bool folder);   // chemin créé, ou 

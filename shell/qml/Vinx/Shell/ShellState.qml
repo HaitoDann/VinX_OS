@@ -50,6 +50,14 @@ QtObject {
         if (dark) args.push("--dark")
         Session.run("vinx-window-theme", args)
     }
+    // Applications GTK (ADR 0052) : écrit seulement quand l'apparence change.
+    property string _gtkKey: ""
+    function syncGtk(dark, accentId, fill, ink) {
+        const key = [dark, accentId, fill, ink].join(" ")
+        if (key === _gtkKey || Session.environment("VINX_SESSION") !== "1") return
+        _gtkKey = key
+        Session.syncGtk(dark, accentId, fill, ink)
+    }
     // Écran de connexion (ADR 0041) : même clair/sombre et même accent que la session. pkexec ne demande
     // pas de mot de passe (action org.vinx.greeter-sync) ; appelé seulement quand la valeur change.
     function syncGreeter(dark, accentId) {

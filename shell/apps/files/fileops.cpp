@@ -310,6 +310,82 @@ QString FileOps::createFile(const QUrl &dir, const QString &fileName)
     return name;
 }
 
+QString FileOps::extract(const QUrl &archive)
+{
+    if (!archive.isLocalFile())
+        return {};
+    const QFileInfo fi(archive.toLocalFile());
+    QDir parent = fi.dir();
+    const QString name = uniqueName(archiveStem(fi.fileName()), [&parent](const QString &n) { return parent.exists(n); });
+    if (name.isEmpty() || !parent.mkdir(name)) {
+        Q_EMIT failed(tr("Impossible de créer le dossier d'extraction."));
+        return {};
+    }
+    const QString dest = parent.filePath(name);
+    begin(tr("Extraction de « %1 »").arg(fi.fileName()));
+    auto *p = new QProcess(this);
+    connect(p, &QProcess::finished, this, [this, p, dest](int code, QProcess::ExitStatus st) {
+        const bool ok = st == QProcess::NormalExit && code == 0;
+        finish(ok, tr("L'archive n'a pas pu être extraite (format inconnu, abîmée ou protégée par un mot de passe)."));
+        if (ok) {
+            // Archive contenant un seul dossier : pas de « photos/photos », on remonte son contenu.
+            QDir d(dest);
+            const QFileInfoList top = d.entryInfoList(QDir::AllEntries | QDir::NoDotAndDotDot | QDir::Hidden);
+            if (top.size() == 1 && top.first().isDir()) {
+                QDir inner(top.first().absoluteFilePath());
+                const QString innerName = top.first().fileName();
+                bool moved = true;
+                for (const QFileInfo &f : inner.entryInfoList(QDir::AllEntries | QDir::NoDotAndDotDot | QDir::Hidden))
+                    if (f.fileName() == innerName || !QFile::rename(f.absoluteFilePath(), d.filePath(f.fileName())))
+                        moved = false;
+                if (moved)
+                    d.rmdir(innerName);
+            }
+            Q_EMIT extracted(QUrl::fromLocalFile(dest));
+        }
+        else
+            QDir(dest).removeRecursively();
+        p->deleteLater();
+    });
+    p->start(QStringLiteral("bsdtar"), {QStringLiteral("-xf"), fi.absoluteFilePath(), QStringLiteral("-C"), dest});
+    if (!p->waitForStarted(3000)) {
+        finish(false, tr("L'outil d'archives (bsdtar) est absent : installez le paquet libarchive-tools."));
+        QDir(dest).removeRecursively();
+        p->deleteLater();
+        return {};
+    }
+    return name;
+}
+
+QString FileOps::compress(const QList<QUrl> &urls, const QUrl &dir)
+{
+    if (urls.isEmpty() || !dir.isLocalFile())
+        return {};
+    const QDir d(dir.toLocalFile());
+    QStringList names;
+    for (const QUrl &u : urls)
+        if (u.isLocalFile())
+            names << QFileInfo(u.toLocalFile()).fileName();
+    if (names.isEmpty())
+        return {};
+    const QString base = names.size() == 1 ? QFileInfo(names.first()).completeBaseName() : tr("Archive");
+    const QString zip = uniqueName((base.isEmpty() ? names.first() : base) + QStringLiteral(".zip"), [&d](const QString &n) { return d.exists(n); });
+    begin(tr("Compression en « %1 »").arg(zip));
+    auto *p = new QProcess(this);
+    connect(p, &QProcess::finished, this, [this, p](int code, QProcess::ExitStatus st) {
+        finish(st == QProcess::NormalExit && code == 0, tr("La compression a échoué."));
+        p->deleteLater();
+    });
+    // -a : format choisi d'après l'extension (.zip).
+    p->start(QStringLiteral("bsdtar"), QStringList{QStringLiteral("-a"), QStringLiteral("-cf"), d.filePath(zip), QStringLiteral("-C"), d.absolutePath(), QStringLiteral("--")} + names);
+    if (!p->waitForStarted(3000)) {
+        finish(false, tr("L'outil d'archives (bsdtar) est absent : installez le paquet libarchive-tools."));
+        p->deleteLater();
+        return {};
+    }
+    return zip;
+}
+
 void FileOps::open(const QUrl &url)
 {
 #ifdef VINX_HAVE_KIO

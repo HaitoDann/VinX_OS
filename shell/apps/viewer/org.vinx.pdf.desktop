@@ -1,0 +1,16 @@
+[Desktop Entry]
+Type=Application
+Name=Lecteur PDF
+Name[en]=PDF Reader
+GenericName=Lire des documents PDF
+GenericName[en]=Read PDF documents
+Comment=Lire, parcourir et rechercher dans des documents PDF
+Comment[en]=Read, browse and search PDF documents
+Exec=vinx-images %f
+Icon=org.vinx.pdf
+Terminal=false
+NoDisplay=true
+Categories=Office;Viewer;
+MimeType=application/pdf;
+Keywords=pdf;document;lire;facture;
+Keywords[en]=pdf;document;read;invoice;

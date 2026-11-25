@@ -182,3 +182,9 @@ add_test(NAME shell-scripts-syntax
 
 # Session de secours (ADR 0049).
 add_test(NAME session-fallback COMMAND sh "${CMAKE_CURRENT_SOURCE_DIR}/session-fallback-test.sh" "${CMAKE_SOURCE_DIR}")
+
+# Réglages GTK et archives (ADR 0052).
+qt_add_executable(tst_gtksync tst_gtksync.cpp)
+target_include_directories(tst_gtksync PRIVATE "${PROJECT_SOURCE_DIR}/qml/Vinx/System" "${PROJECT_SOURCE_DIR}/apps/files")
+target_link_libraries(tst_gtksync PRIVATE Qt6::Test)
+add_test(NAME gtk-sync COMMAND tst_gtksync)

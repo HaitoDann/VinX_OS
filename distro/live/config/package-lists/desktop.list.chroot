@@ -7,24 +7,18 @@ plasma-pa
 bluedevil
 powerdevil
 kscreen
-# Konsole reste installé en secours (masqué dans la session VinX, remplacé par le Terminal VinX).
 # Dolphin et Discover : remplacés par Fichiers et le Store VinX (ADR 0025).
-konsole
-ark
-# Gwenview : en secours, masqué, remplacé par Images (ADR 0038).
-gwenview
-okular
-kcalc
-# Spectacle : en secours, masqué, remplacé par la capture VinX (ADR 0036).
-kde-spectacle
+# Applications KDE retirées (ADR 0052) : Konsole → Terminal VinX, Ark → archives dans Fichiers
+# (libarchive-tools), Okular → lecteur PDF de la Visionneuse VinX, KCalc → Calculatrice VinX,
+# Spectacle → Capture VinX, Gwenview → Images.
+libarchive-tools
 kde-config-sddm
 libkf6config-bin
 
 # Mises à jour système depuis le Store (PackageKit + polkit)
 packagekit
 packagekit-tools
-# Thème unifié : applications GTK aux couleurs de VinX (synchronisées par kde-config-gtk-style)
-kde-config-gtk-style
+# Applications GTK aux couleurs de VinX : réglages écrits par vinx-shell (ADR 0052), plus de module KDE.
 breeze-gtk-theme
 # Compléments du quotidien (pages Paramètres) : instantanés, impression, profils d'énergie
 timeshift

@@ -1,3 +1,15 @@
+vinx-shell (0.32.0) trixie; urgency=medium
+
+  * Étape 1 sans KDE (ADR 0051, 0052) :
+    - Calculatrice VinX (pourcentage à la calculatrice, clavier) ;
+    - lecteur PDF dans la Visionneuse VinX (miniatures, zoom, recherche) ;
+    - archives dans Fichiers : extraire ici, double-clic, compresser en .zip (bsdtar) ;
+    - réglages GTK écrits par VinX (Adwaita, accent, police, curseurs) ;
+    - ISO : Ark, KCalc, Okular, Spectacle, Konsole, Gwenview, Skanlite et
+      kde-config-gtk-style retirés ; Simple Scan et libarchive-tools ajoutés.
+
+ -- VinX OS <vinx@localhost>  Wed, 25 Nov 2026 18:00:00 +0000
+
 vinx-shell (0.31.1) trixie; urgency=medium
 
   * Mises à jour : le système passe par apt-get full-upgrade (vinx-admin upgrade, mot de

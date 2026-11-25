@@ -22,7 +22,8 @@ kio-extras
 gstreamer1.0-libav
 gstreamer1.0-plugins-good
 # Numérisation : scanners USB et réseau sans pilote (eSCL/WSD, imprimantes multifonctions)
-skanlite
+# Numériseur de documents de GNOME (ADR 0052), à la place de Skanlite.
+simple-scan
 sane-utils
 sane-airscan
 ipp-usb

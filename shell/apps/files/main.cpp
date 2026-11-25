@@ -4,6 +4,8 @@
 #include <QDir>
 #include <QIcon>
 #include <QQmlApplicationEngine>
+
+#include "fileops.h"
 #include <QQuickWindow>
 #include <QTimer>
 #include <QUrl>
@@ -32,12 +34,16 @@ int main(int argc, char *argv[])
     parser.process(app);
 
     QUrl start = QUrl::fromLocalFile(QDir::homePath());
+    QUrl extractArchive;
     if (!parser.positionalArguments().isEmpty()) {
         const QString arg = parser.positionalArguments().constFirst();
         start = QUrl::fromUserInput(arg, QDir::currentPath(), QUrl::AssumeLocalFile);
-        // Un fichier passé en argument : on ouvre son dossier et on le sélectionne.
-        if (start.isLocalFile() && QFileInfo(start.toLocalFile()).isFile())
+        // Un fichier passé en argument : on ouvre son dossier ; une archive y est extraite (ADR 0052).
+        if (start.isLocalFile() && QFileInfo(start.toLocalFile()).isFile()) {
+            if (FileOps::isArchive(start.fileName()))
+                extractArchive = start;
             start = QUrl::fromLocalFile(QFileInfo(start.toLocalFile()).absolutePath());
+        }
     }
 
     QQmlApplicationEngine engine;
@@ -45,7 +51,7 @@ int main(int argc, char *argv[])
     engine.addImportPath(QStringLiteral("qrc:/qt/qml"));
     if (QDir(QStringLiteral(VINX_BUILD_QML_DIR)).exists())
         engine.addImportPath(QStringLiteral(VINX_BUILD_QML_DIR));
-    engine.setInitialProperties({{QStringLiteral("startUrl"), start}});
+    engine.setInitialProperties({{QStringLiteral("startUrl"), start}, {QStringLiteral("extractOnStart"), extractArchive}});
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreationFailed, &app, [] { QCoreApplication::exit(1); }, Qt::QueuedConnection);
     engine.load(QUrl(QStringLiteral("qrc:/qt/qml/Vinx/Files/Main.qml")));
 

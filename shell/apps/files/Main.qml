@@ -17,6 +17,7 @@ Window {
     AppearanceSync {}
 
     property url startUrl
+    property url extractOnStart          // archive ouverte depuis le bureau ou une autre application
     readonly property int rev: Preferences.revision
     readonly property bool listView: (rev, Preferences.value("files/view", "grid") === "list")
 
@@ -92,7 +93,10 @@ Window {
     function activate(index) {
         const e = folder.get(index)
         if (!e.name) return
-        if (e.isDir) go(e.url); else FileOps.open(e.url)
+        if (e.isDir) go(e.url)
+        // Archive locale : extraite dans un dossier du même nom, ouvert ensuite (ADR 0052).
+        else if (FileOps.isArchive(e.name) && e.url.toString().startsWith("file:")) FileOps.extract(e.url)
+        else FileOps.open(e.url)
     }
     function paste() { if (FileOps.canPaste) conflict.ask(FileOps.clipboardUrls(), folder.url, FileOps.clipboardIsCut()) }
     // Glisser-déposer : déplacement par défaut (même disque local), copie avec Ctrl ou vers ailleurs.
@@ -131,6 +135,8 @@ Window {
         }
     }
     Connections { target: FileOps; function onFailed(message) { banner.show(message) } }
+    // Archive extraite : on ouvre le dossier créé.
+    Connections { target: FileOps; function onExtracted(dir) { win.go(dir) } }
 
     // ---------- Raccourcis ----------
     Shortcut { sequences: [StandardKey.Back, "Alt+Left", "Backspace"]; enabled: !win.renaming && !filterField.activeFocus && !pathBar.editing; onActivated: win.goBack() }
@@ -408,7 +414,11 @@ Window {
                           : [{ text: qsTr("Vider la corbeille"), act: "empty", enabled: folder.count > 0 }])
                 : onItem
                 ? [{ text: qsTr("Ouvrir"), act: "open", shortcut: qsTr("Entrée") }].concat(
-                   win.current >= 0 && folder.get(win.current).isDir ? [{ text: qsTr("Ouvrir dans un nouvel onglet"), act: "tab" }] : []).concat([
+                   win.current >= 0 && folder.get(win.current).isDir ? [{ text: qsTr("Ouvrir dans un nouvel onglet"), act: "tab" }] : []).concat(
+                   // Archives (ADR 0052) : extraire une archive, compresser la sélection.
+                   folder.url.toString().startsWith("file:") ? (win.selectedCount <= 1 && win.current >= 0 && FileOps.isArchive(folder.get(win.current).name)
+                       ? [{ separator: true }, { text: qsTr("Extraire ici"), act: "extract" }]
+                       : [{ separator: true }, { text: qsTr("Compresser en .zip"), act: "zip" }]) : []).concat([
                    { separator: true },
                    { text: qsTr("Couper"), act: "cut", shortcut: "Ctrl+X" },
                    { text: qsTr("Copier"), act: "copy", shortcut: "Ctrl+C" },
@@ -438,6 +448,8 @@ Window {
                 case "trash": FileOps.trash(win.selectedUrls()); break
                 case "mkdir": win.newFolder(); break
                 case "new": win.newFile(e.file); break
+                case "extract": FileOps.extract(folder.get(win.current).url); break
+                case "zip": { const z = FileOps.compress(win.selectedUrls(), folder.url); if (z !== "") { win.pendingSelect = z } break }
                 case "hidden": Preferences.setValue("files/showHidden", !folder.showHidden); break
                 case "terminal": FileOps.openTerminal(folder.url); break
                 case "empty": FileOps.emptyTrash(); break
@@ -451,5 +463,5 @@ Window {
 
     ConflictDialog { id: conflict }
 
-    Component.onCompleted: view.forceActiveFocus()
+    Component.onCompleted: { view.forceActiveFocus(); if (extractOnStart.toString() !== "") FileOps.extract(extractOnStart) }
 }

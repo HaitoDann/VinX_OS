@@ -11,6 +11,7 @@ image/svg+xml=org.vinx.images.desktop;org.kde.gwenview.desktop;
 image/heic=org.vinx.images.desktop;org.kde.gwenview.desktop;
 image/heif=org.vinx.images.desktop;org.kde.gwenview.desktop;
 image/avif=org.vinx.images.desktop;org.kde.gwenview.desktop;
+application/pdf=org.vinx.pdf.desktop;org.kde.okular.desktop;
 
 [Added Associations]
 inode/directory=org.vinx.files.desktop;
@@ -24,3 +25,4 @@ image/svg+xml=org.vinx.images.desktop;
 image/heic=org.vinx.images.desktop;
 image/heif=org.vinx.images.desktop;
 image/avif=org.vinx.images.desktop;
+application/pdf=org.vinx.pdf.desktop;

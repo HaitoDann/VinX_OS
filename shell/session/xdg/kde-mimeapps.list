@@ -13,3 +13,4 @@ image/svg+xml=org.vinx.images.desktop;org.kde.gwenview.desktop;
 image/heic=org.vinx.images.desktop;org.kde.gwenview.desktop;
 image/heif=org.vinx.images.desktop;org.kde.gwenview.desktop;
 image/avif=org.vinx.images.desktop;org.kde.gwenview.desktop;
+application/pdf=org.vinx.pdf.desktop;
