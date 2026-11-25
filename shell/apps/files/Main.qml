@@ -137,6 +137,8 @@ Window {
     Connections { target: FileOps; function onFailed(message) { banner.show(message) } }
     // Archive extraite : on ouvre le dossier créé.
     Connections { target: FileOps; function onExtracted(dir) { win.go(dir) } }
+    Connections { target: FileOps; function onMounted(dir) { win.go(dir) } }
+    Connections { target: FileOps; function onEjected(name) { banner.show(qsTr("« %1 » peut être retiré en toute sécurité.").arg(name)) } }
 
     // ---------- Raccourcis ----------
     Shortcut { sequences: [StandardKey.Back, "Alt+Left", "Backspace"]; enabled: !win.renaming && !filterField.activeFocus && !pathBar.editing; onActivated: win.goBack() }
@@ -167,7 +169,9 @@ Window {
         anchors { top: parent.top; bottom: parent.bottom; left: parent.left }
         currentUrl: folder.url
         source: folder
-        onOpenRequested: (url) => win.go(url)
+        // Appareil pas encore monté (ADR 0054) : monté, puis ouvert (signal FileOps.mounted).
+        onOpenRequested: (url) => url.toString().startsWith("device:") ? FileOps.mount(url) : win.go(url)
+        onEjectRequested: (url) => { if (folder.url.toString().startsWith(url.toString())) win.go(folder.urlFromText("~")); FileOps.eject(url) }
         // Corbeille : y déposer = mettre à la corbeille.
         onDropRequested: (urls, dest, copy) => dest.toString().startsWith("trash:") ? FileOps.trash(urls) : win.dropUrls(urls, dest, copy)
     }

@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.22)
-project(vinx-shell VERSION 0.33.0 LANGUAGES CXX)
+project(vinx-shell VERSION 0.34.0 LANGUAGES CXX)
 
 # Shell de bureau VinX OS — Qt 6 / QML, au-dessus de KWin.
 # Modules : Vinx.Theme, Vinx.Controls, Vinx.System, Vinx.Shell ; programmes vinx-shell et vinx-gallery.
@@ -12,7 +12,12 @@ find_package(Qt6 6.4 REQUIRED COMPONENTS Core Gui Widgets Qml Quick Svg DBus)
 find_package(Python3 3.11 REQUIRED COMPONENTS Interpreter)
 # KIO (KDE Frameworks 6) : moteur du gestionnaire de fichiers (réseau, corbeille, conflits).
 # Facultatif : sans lui, Fichiers se limite aux dossiers locaux.
-find_package(KF6KIO 6.0 QUIET CONFIG)
+# Étape 4 sans KDE (ADR 0054) : Fichiers fonctionne sans KIO par défaut (Qt seul, corbeille freedesktop,
+# udisks). -DVINX_FILES_KIO=ON reprend l'ancien moteur KIO (retour arrière, réseau KIO).
+option(VINX_FILES_KIO "Fichiers avec le moteur KIO de KDE" OFF)
+if(VINX_FILES_KIO)
+    find_package(KF6KIO 6.0 QUIET CONFIG)
+endif()
 message(STATUS "KIO pour Fichiers : ${KF6KIO_FOUND}")
 # KGuiAddons (KSystemClipboard) : historique du presse-papiers sous Wayland (ADR 0037).
 find_package(KF6GuiAddons 6.0 QUIET CONFIG)

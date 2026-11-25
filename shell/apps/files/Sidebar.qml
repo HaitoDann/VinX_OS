@@ -9,6 +9,7 @@ Rectangle {
     property url currentUrl
     property FolderModel source
     signal openRequested(url url)
+    signal ejectRequested(url url)
     signal dropRequested(var urls, url dest, bool copy)
 
     width: 210
@@ -44,9 +45,17 @@ Rectangle {
                 anchors { left: parent.left; leftMargin: Theme.space2; right: parent.right; verticalCenter: parent.verticalCenter }
                 spacing: Theme.space2
                 Icon { name: place.modelData.icon; width: 16; height: 16; color: place.active ? Theme.accentText : Theme.textSecondary; anchors.verticalCenter: parent.verticalCenter }
-                Label { text: place.modelData.name; color: place.active ? Theme.accentText : Theme.text; font.weight: place.active ? Font.DemiBold : Font.Normal; elide: Text.ElideRight; width: parent.width - 30 }
+                Label { text: place.modelData.name; color: place.active ? Theme.accentText : Theme.text; font.weight: place.active ? Font.DemiBold : Font.Normal; elide: Text.ElideRight; width: parent.width - (place.modelData.ejectable ? 56 : 30) }
             }
             MouseArea { id: mouse; anchors.fill: parent; hoverEnabled: true; onClicked: root.openRequested(place.modelData.url) }
+            // Clé USB ou disque externe monté : bouton d'éjection.
+            IconButton {
+                visible: place.modelData.ejectable === true
+                flat: true; iconName: "arrow-up"; toolTip: qsTr("Éjecter")
+                width: 26; height: 26
+                anchors { right: parent.right; rightMargin: 2; verticalCenter: parent.verticalCenter }
+                onClicked: root.ejectRequested(place.modelData.url)
+            }
             DropArea {
                 id: drop
                 anchors.fill: parent

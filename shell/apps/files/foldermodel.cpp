@@ -1,4 +1,8 @@
 #include "foldermodel.h"
+#include "trashspec.h"
+#include "devices.h"
+
+#include <QProcess>
 
 #include <QStorageInfo>
 
@@ -172,12 +176,30 @@ void FolderModel::refresh()
         m_watcher.removePaths(m_watcher.directories());
     if (m_url.isLocalFile())
         m_watcher.addPath(m_url.toLocalFile());
+    else if (m_url.scheme() == QLatin1String("trash")) {
+        QDir().mkpath(trashspec::homeTrash() + QStringLiteral("/files"));
+        m_watcher.addPath(trashspec::homeTrash() + QStringLiteral("/files"));
+    }
     listLocal();
 #endif
 }
 
 void FolderModel::listLocal()
 {
+    // Corbeille (ADR 0054) : éléments de Trash/files, adresses « trash:/nom ».
+    if (m_url.scheme() == QLatin1String("trash")) {
+        QList<FolderEntry> list;
+        for (const trashspec::Item &it : trashspec::list()) {
+            FolderEntry e = FolderEntry::fromFileInfo(QFileInfo(it.filesPath));
+            e.url = QUrl(QStringLiteral("trash:/") + QString::fromUtf8(QUrl::toPercentEncoding(it.name)));
+            e.hidden = false;
+            if (it.deleted.isValid())
+                e.modified = it.deleted;
+            list.append(e);
+        }
+        setEntries(list);
+        return;
+    }
     if (!m_url.isLocalFile()) {
         setEntries({});
         setError(tr("Cet emplacement nécessite les bibliothèques KDE (KIO)."));
@@ -332,10 +354,21 @@ QVariantList FolderModel::places()
     std(QStandardPaths::PicturesLocation, tr("Images"), QStringLiteral("image"));
     std(QStandardPaths::MusicLocation, tr("Musique"), QStringLiteral("music"));
     std(QStandardPaths::MoviesLocation, tr("Vidéos"), QStringLiteral("video"));
-    if (kioAvailable()) {
-        add(tr("Corbeille"), QUrl(QStringLiteral("trash:/")), QStringLiteral("trash"), tr("Emplacements"));
+    add(tr("Corbeille"), QUrl(QStringLiteral("trash:/")), QStringLiteral("trash"), tr("Emplacements"));
+    if (kioAvailable())
         add(tr("Réseau"), QUrl(QStringLiteral("remote:/")), QStringLiteral("globe"), tr("Appareils"));
-    }
+    // Clés USB et disques amovibles pas encore montés (ADR 0054) : montés au clic (« device:/dev/… »).
+    QProcess lsblk;
+    lsblk.start(QStringLiteral("lsblk"), {QStringLiteral("-J"), QStringLiteral("-o"), QStringLiteral("PATH,LABEL,MOUNTPOINT,RM,HOTPLUG,TYPE,FSTYPE,SIZE")});
+    if (lsblk.waitForFinished(2000))
+        for (const QVariant &v : devices::parseLsblk(lsblk.readAllStandardOutput())) {
+            const QVariantMap d = v.toMap();
+            if (!d.value(QStringLiteral("mountpoint")).toString().isEmpty())
+                continue;   // monté : listé plus bas avec les volumes
+            const QString label = d.value(QStringLiteral("label")).toString();
+            add(label.isEmpty() ? tr("Disque de %1").arg(d.value(QStringLiteral("size")).toString()) : label,
+                QUrl(QStringLiteral("device:") + d.value(QStringLiteral("path")).toString()), QStringLiteral("drive"), tr("Appareils"));
+        }
     // Disques et clés USB montés.
     const auto volumes = QStorageInfo::mountedVolumes();
     for (const QStorageInfo &v : volumes) {
@@ -346,6 +379,9 @@ QVariantList FolderModel::places()
             continue;
         const QString name = v.displayName().isEmpty() || v.displayName() == root ? QDir(root).dirName() : v.displayName();
         add(name, QUrl::fromLocalFile(root), QStringLiteral("drive"), tr("Appareils"));
+        QVariantMap m = out.last().toMap();
+        m.insert(QStringLiteral("ejectable"), true);
+        out.last() = m;
     }
     add(tr("Système de fichiers"), QUrl::fromLocalFile(QStringLiteral("/")), QStringLiteral("drive"), tr("Appareils"));
     return out;

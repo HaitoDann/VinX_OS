@@ -40,6 +40,7 @@ Depends: ${shlibs:Depends},
          xdg-user-dirs,
          libarchive-tools
 Recommends: plasma-workspace,
+            udisks2,
             simple-scan,
             orca,
             network-manager-openvpn,

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <QObject>
+#include <functional>
 
 #include "fileops_archive.h"
 #include <QUrl>
@@ -52,6 +53,9 @@ public:
     // de l'archive (signal extracted), et compression en .zip. Dossiers locaux seulement.
     Q_INVOKABLE static bool isArchive(const QString &name) { return !archiveStem(name).isEmpty(); }
     Q_INVOKABLE QString extract(const QUrl &archive);
+    // Appareils amovibles (ADR 0054) : monter « device:/dev/sdb1 » (signal mounted), éjecter un volume.
+    Q_INVOKABLE void mount(const QUrl &device);
+    Q_INVOKABLE void eject(const QUrl &mountPoint);
     Q_INVOKABLE QString compress(const QList<QUrl> &urls, const QUrl &dir);
     static QString archiveStem(const QString &name) { return archive::stem(name); }
     Q_INVOKABLE void open(const QUrl &url);
@@ -70,8 +74,12 @@ Q_SIGNALS:
     void failed(const QString &message);
     void done();
     void extracted(const QUrl &folder);
+    void mounted(const QUrl &folder);
+    void ejected(const QString &name);
 
 private:
+    // Travail long hors du fil de l'interface : renvoie un message d'erreur, ou "" si tout va bien.
+    void runInThread(const std::function<QString(const std::function<void(int)> &)> &work);
     void begin(const QString &task);
     void finish(bool ok, const QString &error);
 

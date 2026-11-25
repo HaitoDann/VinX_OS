@@ -44,7 +44,7 @@ Abandonnés (ne pas réintroduire) : violet/indigo, biseau partout, étiquettes 
 | `shell/qml/Vinx/System` | Singletons C++ : Network, Wifi (nmcli), Audio (wpctl), Bluetooth, Battery, Session, Preferences, Notifications, Flatpak, DebianPackages, Updates, Printers, Drivers, Accounts, Diagnostics, MenuBridge… ; analyseurs testés `sysparse.h`, `diagparse.h`, `updateparse.h`, `wpctl.h` |
 | `shell/qml/Vinx/Shell` | Bureau : TopBar, Dock, ControlCenter, Toasts, Panels, Search, WifiNetworks, DisplayHotplug… |
 | `shell/src/main.cpp` | Process `vinx-shell` (fenêtres layer-shell par écran) |
-| `shell/apps/` | `settings` (pages *Page.qml), `store`, `files` (KIO), `welcome`, `updates` (Mises à jour), `terminal` (Qt Widgets + QTermWidget, compilé seulement en CI Debian) |
+| `shell/apps/` | `settings` (pages *Page.qml), `store`, `files` (Qt seul, KIO en option : ADR 0054), `calculator`, `viewer` (images et PDF), `welcome`, `updates` (Mises à jour), `terminal` (Qt Widgets + QTermWidget, compilé seulement en CI Debian) |
 | `shell/windowtheme/` | `vinx-window-theme` : décoration de fenêtre Aurorae « pastilles » générée (accent, clair/sombre) |
 | `shell/polkitagent/` | `vinx-polkit-agent` : fenêtre de mot de passe administrateur (polkit-qt6, facultatif) |
 | `shell/system/` | `vinx-admin` (pkexec, polkit), `vinx-update`, `vinx-snapshots`, `vinx-backup` (documents), `vinx-dev` |
@@ -97,7 +97,6 @@ Préférences utilisateur : `~/.config/vinx/shell.ini` (QSettings, clés `sectio
   restent : comptes en ligne et réseau expert (802.1X, proxy).
 - **À vérifier sur une nouvelle ISO** : installation en btrfs, instantanés automatiques, entrée « revenir à un
   état précédent » du menu de démarrage (grub-btrfs, ADR 0031).
-- **Se détacher de KDE au maximum** (ADR 0051) : étapes 1 (applications, faite : ADR 0052), 2 (session sans Plasma, en essai : ADR 0053) à 5 (compositeur), chacune validée avant.
+- **Se détacher de KDE au maximum** (ADR 0051) : étapes 1 (applications, faite : ADR 0052), 2 (session sans Plasma, en essai : ADR 0053), 4 (Fichiers sans KIO : ADR 0054, réseau à faire), 3 et 5 après la recette de l'étape 2, chacune validée avant.
 - Canaux (ADR 0049) : `main` = essai (`vinx-dev`), `stable` = publié par le dépôt APT (« passe en stable »).
-- Ensuite : version publique 1.0 (site, ISO signée, guide). Traduction anglaise faite (ADR 0034) ; reste le
-  catalogue du Store, les noms d'accents et les messages des scripts.
+- Ensuite : version publique 1.0 (site, ISO signée, guide). Traduction anglaise faite (ADR 0034), y compris Store, accents et scripts.

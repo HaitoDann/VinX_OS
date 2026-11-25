@@ -1,3 +1,13 @@
+vinx-shell (0.34.0) trixie; urgency=medium
+
+  * Étape 4 sans KDE (ADR 0054) : Fichiers fonctionne sans KIO.
+    - corbeille freedesktop (parcourir, restaurer, supprimer, vider) ;
+    - copies et déplacements en arrière-plan, avec progression ;
+    - clés USB : montage au clic (udisksctl), bouton « Éjecter ».
+    Réseau (SMB, SFTP, téléphones) : lot suivant.
+
+ -- VinX OS <vinx@localhost>  Wed, 25 Nov 2026 23:00:00 +0000
+
 vinx-shell (0.33.0) trixie; urgency=medium
 
   * Étape 2 sans KDE, en essai (ADR 0053) : nouvelle session « VinX OS (essai sans

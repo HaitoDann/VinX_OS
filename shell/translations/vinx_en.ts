@@ -1597,130 +1597,167 @@
 <context>
     <name>FileOps</name>
     <message numerus="yes">
-        <location filename="../apps/files/fileops.cpp" line="149" />
+        <location filename="../apps/files/fileops.cpp" line="164" />
         <source>Copie de %n élément(s)</source>
         <translation><numerusform>Copying %n item</numerusform><numerusform>Copying %n items</numerusform></translation>
     </message>
+    <message>
+        <location filename="../apps/files/fileops.cpp" line="177" />
+        <source>La copie a échoué.</source>
+        <translation>Copy failed.</translation>
+    </message>
     <message numerus="yes">
-        <location filename="../apps/files/fileops.cpp" line="172" />
+        <location filename="../apps/files/fileops.cpp" line="190" />
         <source>Déplacement de %n élément(s)</source>
         <translation><numerusform>Moving %n item</numerusform><numerusform>Moving %n items</numerusform></translation>
     </message>
     <message>
-        <location filename="../apps/files/fileops.cpp" line="187" />
+        <location filename="../apps/files/fileops.cpp" line="206" />
         <source>Impossible de déplacer un dossier dans lui-même.</source>
         <translation>A folder cannot be moved into itself.</translation>
     </message>
     <message>
-        <location filename="../apps/files/fileops.cpp" line="191" />
+        <location filename="../apps/files/fileops.cpp" line="210" />
         <source>Impossible de remplacer « %1 ».</source>
         <translation>Could not replace "%1".</translation>
     </message>
     <message>
-        <location filename="../apps/files/fileops.cpp" line="201" />
+        <location filename="../apps/files/fileops.cpp" line="222" />
         <source>« %1 » a été copié mais pas supprimé de son emplacement d'origine.</source>
         <translation>"%1" was copied but not removed from its original location.</translation>
     </message>
     <message>
-        <location filename="../apps/files/fileops.cpp" line="212" />
+        <location filename="../apps/files/fileops.cpp" line="234" />
         <source>Mise à la corbeille</source>
         <translation>Moving to trash</translation>
     </message>
     <message>
-        <location filename="../apps/files/fileops.cpp" line="220" />
+        <location filename="../apps/files/fileops.cpp" line="242" />
         <source>Impossible de mettre « %1 » à la corbeille.</source>
         <translation>Could not move "%1" to the trash.</translation>
     </message>
     <message>
-        <location filename="../apps/files/fileops.cpp" line="229" />
+        <location filename="../apps/files/fileops.cpp" line="250" />
         <source>Vidage de la corbeille</source>
         <translation>Emptying the trash</translation>
     </message>
     <message>
-        <location filename="../apps/files/fileops.cpp" line="239" />
+        <location filename="../apps/files/fileops.cpp" line="254" />
+        <source>Certains éléments de la corbeille n'ont pas pu être supprimés.</source>
+        <translation>Some items in the trash could not be deleted.</translation>
+    </message>
+    <message>
+        <location filename="../apps/files/fileops.cpp" line="263" />
+        <location filename="../apps/files/fileops.cpp" line="268" />
         <source>Restauration</source>
         <translation>Restore</translation>
     </message>
     <message>
-        <location filename="../apps/files/fileops.cpp" line="250" />
+        <location filename="../apps/files/fileops.cpp" line="273" />
+        <source>Impossible de restaurer « %1 ».</source>
+        <translation>Could not restore “%1”.</translation>
+    </message>
+    <message>
+        <location filename="../apps/files/fileops.cpp" line="283" />
         <source>Suppression</source>
         <translation>Deleting</translation>
     </message>
     <message>
-        <location filename="../apps/files/fileops.cpp" line="258" />
+        <location filename="../apps/files/fileops.cpp" line="292" />
+        <location filename="../apps/files/fileops.cpp" line="297" />
         <source>Impossible de supprimer « %1 ».</source>
         <translation>Could not delete "%1".</translation>
     </message>
     <message>
-        <location filename="../apps/files/fileops.cpp" line="270" />
-        <location filename="../apps/files/fileops.cpp" line="273" />
+        <location filename="../apps/files/fileops.cpp" line="309" />
+        <location filename="../apps/files/fileops.cpp" line="312" />
         <source>Renommage</source>
         <translation>Renaming</translation>
     </message>
     <message>
-        <location filename="../apps/files/fileops.cpp" line="275" />
+        <location filename="../apps/files/fileops.cpp" line="314" />
         <source>« %1 » existe déjà.</source>
         <translation>"%1" already exists.</translation>
     </message>
     <message>
-        <location filename="../apps/files/fileops.cpp" line="276" />
+        <location filename="../apps/files/fileops.cpp" line="315" />
         <source>Impossible de renommer « %1 ».</source>
         <translation>Could not rename "%1".</translation>
     </message>
     <message>
-        <location filename="../apps/files/fileops.cpp" line="290" />
-        <location filename="../apps/files/fileops.cpp" line="293" />
+        <location filename="../apps/files/fileops.cpp" line="329" />
+        <location filename="../apps/files/fileops.cpp" line="332" />
         <source>Création d'un dossier</source>
         <translation>Creating a folder</translation>
     </message>
     <message>
-        <location filename="../apps/files/fileops.cpp" line="294" />
+        <location filename="../apps/files/fileops.cpp" line="333" />
         <source>Impossible de créer le dossier.</source>
         <translation>Could not create the folder.</translation>
     </message>
     <message>
-        <location filename="../apps/files/fileops.cpp" line="307" />
+        <location filename="../apps/files/fileops.cpp" line="346" />
         <source>Impossible de créer le fichier.</source>
         <translation>Could not create the file.</translation>
     </message>
     <message>
-        <location filename="../apps/files/fileops.cpp" line="321" />
+        <location filename="../apps/files/fileops.cpp" line="360" />
         <source>Impossible de créer le dossier d'extraction.</source>
         <translation>Could not create the extraction folder.</translation>
     </message>
     <message>
-        <location filename="../apps/files/fileops.cpp" line="325" />
+        <location filename="../apps/files/fileops.cpp" line="364" />
         <source>Extraction de « %1 »</source>
         <translation>Extracting “%1”</translation>
     </message>
     <message>
-        <location filename="../apps/files/fileops.cpp" line="329" />
+        <location filename="../apps/files/fileops.cpp" line="368" />
         <source>L'archive n'a pas pu être extraite (format inconnu, abîmée ou protégée par un mot de passe).</source>
         <translation>The archive could not be extracted (unknown format, damaged or password-protected).</translation>
     </message>
     <message>
-        <location filename="../apps/files/fileops.cpp" line="352" />
-        <location filename="../apps/files/fileops.cpp" line="382" />
+        <location filename="../apps/files/fileops.cpp" line="391" />
+        <location filename="../apps/files/fileops.cpp" line="459" />
         <source>L'outil d'archives (bsdtar) est absent : installez le paquet libarchive-tools.</source>
         <translation>The archive tool (bsdtar) is missing: install the libarchive-tools package.</translation>
     </message>
     <message>
-        <location filename="../apps/files/fileops.cpp" line="371" />
+        <location filename="../apps/files/fileops.cpp" line="402" />
+        <source>Ouverture de l'appareil</source>
+        <translation>Opening the device</translation>
+    </message>
+    <message>
+        <location filename="../apps/files/fileops.cpp" line="407" />
+        <source>Impossible d'ouvrir cet appareil (format non reconnu, ou retiré trop tôt).</source>
+        <translation>Could not open this device (unrecognised format, or removed too early).</translation>
+    </message>
+    <message>
+        <location filename="../apps/files/fileops.cpp" line="424" />
+        <source>Éjection</source>
+        <translation>Ejecting</translation>
+    </message>
+    <message>
+        <location filename="../apps/files/fileops.cpp" line="429" />
+        <source>« %1 » est encore utilisé : fermez les fichiers ouverts dessus, puis réessayez.</source>
+        <translation>“%1” is still in use: close the files open on it, then try again.</translation>
+    </message>
+    <message>
+        <location filename="../apps/files/fileops.cpp" line="448" />
         <source>Archive</source>
         <translation>Archive</translation>
     </message>
     <message>
-        <location filename="../apps/files/fileops.cpp" line="373" />
+        <location filename="../apps/files/fileops.cpp" line="450" />
         <source>Compression en « %1 »</source>
         <translation>Compressing to “%1”</translation>
     </message>
     <message>
-        <location filename="../apps/files/fileops.cpp" line="376" />
+        <location filename="../apps/files/fileops.cpp" line="453" />
         <source>La compression a échoué.</source>
         <translation>Compression failed.</translation>
     </message>
     <message>
-        <location filename="../apps/files/fileops.cpp" line="409" />
+        <location filename="../apps/files/fileops.cpp" line="486" />
         <source>Aucun terminal n'est installé.</source>
         <translation>No terminal is installed.</translation>
     </message>
@@ -1766,96 +1803,102 @@
 <context>
     <name>FolderModel</name>
     <message>
-        <location filename="../apps/files/foldermodel.cpp" line="183" />
+        <location filename="../apps/files/foldermodel.cpp" line="205" />
         <source>Cet emplacement nécessite les bibliothèques KDE (KIO).</source>
         <translation>This location requires the KDE libraries (KIO).</translation>
     </message>
     <message>
-        <location filename="../apps/files/foldermodel.cpp" line="189" />
+        <location filename="../apps/files/foldermodel.cpp" line="211" />
         <source>Impossible d'ouvrir ce dossier.</source>
         <translation>Could not open this folder.</translation>
     </message>
     <message>
-        <location filename="../apps/files/foldermodel.cpp" line="244" />
-        <location filename="../apps/files/foldermodel.cpp" line="336" />
+        <location filename="../apps/files/foldermodel.cpp" line="266" />
+        <location filename="../apps/files/foldermodel.cpp" line="357" />
         <source>Corbeille</source>
         <translation>Trash</translation>
     </message>
     <message>
-        <location filename="../apps/files/foldermodel.cpp" line="246" />
-        <location filename="../apps/files/foldermodel.cpp" line="337" />
+        <location filename="../apps/files/foldermodel.cpp" line="268" />
+        <location filename="../apps/files/foldermodel.cpp" line="359" />
         <source>Réseau</source>
         <translation>Network</translation>
     </message>
     <message>
-        <location filename="../apps/files/foldermodel.cpp" line="250" />
-        <location filename="../apps/files/foldermodel.cpp" line="301" />
-        <location filename="../apps/files/foldermodel.cpp" line="328" />
+        <location filename="../apps/files/foldermodel.cpp" line="272" />
+        <location filename="../apps/files/foldermodel.cpp" line="323" />
+        <location filename="../apps/files/foldermodel.cpp" line="350" />
         <source>Dossier personnel</source>
         <translation>Home folder</translation>
     </message>
     <message>
-        <location filename="../apps/files/foldermodel.cpp" line="252" />
-        <location filename="../apps/files/foldermodel.cpp" line="350" />
+        <location filename="../apps/files/foldermodel.cpp" line="274" />
+        <location filename="../apps/files/foldermodel.cpp" line="386" />
         <source>Système de fichiers</source>
         <translation>File system</translation>
     </message>
     <message>
-        <location filename="../apps/files/foldermodel.cpp" line="298" />
+        <location filename="../apps/files/foldermodel.cpp" line="320" />
         <source>Système</source>
         <translation>System</translation>
     </message>
     <message>
-        <location filename="../apps/files/foldermodel.cpp" line="326" />
-        <location filename="../apps/files/foldermodel.cpp" line="328" />
-        <location filename="../apps/files/foldermodel.cpp" line="336" />
+        <location filename="../apps/files/foldermodel.cpp" line="348" />
+        <location filename="../apps/files/foldermodel.cpp" line="350" />
+        <location filename="../apps/files/foldermodel.cpp" line="357" />
         <source>Emplacements</source>
         <translation>Places</translation>
     </message>
     <message>
-        <location filename="../apps/files/foldermodel.cpp" line="329" />
+        <location filename="../apps/files/foldermodel.cpp" line="351" />
         <source>Bureau</source>
         <translation>Desktop</translation>
     </message>
     <message>
-        <location filename="../apps/files/foldermodel.cpp" line="330" />
+        <location filename="../apps/files/foldermodel.cpp" line="352" />
         <source>Documents</source>
         <translation>Documents</translation>
     </message>
     <message>
-        <location filename="../apps/files/foldermodel.cpp" line="331" />
+        <location filename="../apps/files/foldermodel.cpp" line="353" />
         <source>Téléchargements</source>
         <translation>Downloads</translation>
     </message>
     <message>
-        <location filename="../apps/files/foldermodel.cpp" line="332" />
+        <location filename="../apps/files/foldermodel.cpp" line="354" />
         <source>Images</source>
         <translation>Pictures</translation>
     </message>
     <message>
-        <location filename="../apps/files/foldermodel.cpp" line="333" />
+        <location filename="../apps/files/foldermodel.cpp" line="355" />
         <source>Musique</source>
         <translation>Music</translation>
     </message>
     <message>
-        <location filename="../apps/files/foldermodel.cpp" line="334" />
+        <location filename="../apps/files/foldermodel.cpp" line="356" />
         <source>Vidéos</source>
         <translation>Videos</translation>
     </message>
     <message>
-        <location filename="../apps/files/foldermodel.cpp" line="337" />
-        <location filename="../apps/files/foldermodel.cpp" line="348" />
-        <location filename="../apps/files/foldermodel.cpp" line="350" />
+        <location filename="../apps/files/foldermodel.cpp" line="359" />
+        <location filename="../apps/files/foldermodel.cpp" line="370" />
+        <location filename="../apps/files/foldermodel.cpp" line="381" />
+        <location filename="../apps/files/foldermodel.cpp" line="386" />
         <source>Appareils</source>
         <translation>Devices</translation>
     </message>
     <message>
-        <location filename="../apps/files/foldermodel.cpp" line="370" />
+        <location filename="../apps/files/foldermodel.cpp" line="369" />
+        <source>Disque de %1</source>
+        <translation>%1 drive</translation>
+    </message>
+    <message>
+        <location filename="../apps/files/foldermodel.cpp" line="406" />
         <source>%1 libres sur %2</source>
         <translation>%1 free of %2</translation>
     </message>
     <message numerus="yes">
-        <location filename="../apps/files/foldermodel.cpp" line="378" />
+        <location filename="../apps/files/foldermodel.cpp" line="414" />
         <source>%n octet(s)</source>
         <translation><numerusform>%n byte</numerusform><numerusform>%n bytes</numerusform></translation>
     </message>
@@ -1973,206 +2016,211 @@
     <name>Main</name>
     <message>
         <location filename="../apps/files/Main.qml" line="122" />
-        <location filename="../apps/files/Main.qml" line="341" />
-        <location filename="../apps/files/Main.qml" line="429" />
+        <location filename="../apps/files/Main.qml" line="345" />
+        <location filename="../apps/files/Main.qml" line="433" />
         <source>Nouveau dossier</source>
         <translation>New folder</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="184" />
+        <location filename="../apps/files/Main.qml" line="141" />
+        <source>« %1 » peut être retiré en toute sécurité.</source>
+        <translation>“%1” can now be safely removed.</translation>
+    </message>
+    <message>
+        <location filename="../apps/files/Main.qml" line="188" />
         <source>Précédent (Alt+←)</source>
         <translation>Back (Alt+←)</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="185" />
+        <location filename="../apps/files/Main.qml" line="189" />
         <source>Suivant (Alt+→)</source>
         <translation>Forward (Alt+→)</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="209" />
+        <location filename="../apps/files/Main.qml" line="213" />
         <source>Filtrer ce dossier</source>
         <translation>Filter this folder</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="213" />
+        <location filename="../apps/files/Main.qml" line="217" />
         <source>Filtrer</source>
         <translation>Filter</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="218" />
+        <location filename="../apps/files/Main.qml" line="222" />
         <source>Icônes</source>
         <translation>Icons</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="218" />
+        <location filename="../apps/files/Main.qml" line="222" />
         <source>Liste</source>
         <translation>List</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="222" />
+        <location filename="../apps/files/Main.qml" line="226" />
         <source>Nouveau dossier (Ctrl+Maj+N)</source>
         <translation>New folder (Ctrl+Shift+N)</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="259" />
+        <location filename="../apps/files/Main.qml" line="263" />
         <source>Fermer l'onglet (Ctrl+W)</source>
         <translation>Close tab (Ctrl+W)</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="277" />
+        <location filename="../apps/files/Main.qml" line="281" />
         <source>Les éléments de la corbeille peuvent être restaurés depuis leur menu.</source>
         <translation>Items in the trash can be restored from their menu.</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="278" />
-        <location filename="../apps/files/Main.qml" line="414" />
+        <location filename="../apps/files/Main.qml" line="282" />
+        <location filename="../apps/files/Main.qml" line="418" />
         <source>Vider la corbeille</source>
         <translation>Empty trash</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="324" />
+        <location filename="../apps/files/Main.qml" line="328" />
         <source>Aucun élément ne correspond à « %1 ».</source>
         <translation>Nothing matches "%1".</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="325" />
+        <location filename="../apps/files/Main.qml" line="329" />
         <source>La corbeille est vide.</source>
         <translation>The trash is empty.</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="325" />
+        <location filename="../apps/files/Main.qml" line="329" />
         <source>Ce dossier est vide.</source>
         <translation>This folder is empty.</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="334" />
+        <location filename="../apps/files/Main.qml" line="338" />
         <source>Glissez des fichiers ici, ou créez :</source>
         <translation>Drop files here, or create:</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="343" />
-        <location filename="../apps/files/Main.qml" line="346" />
-        <location filename="../apps/files/Main.qml" line="430" />
-        <location filename="../apps/files/Main.qml" line="431" />
+        <location filename="../apps/files/Main.qml" line="347" />
+        <location filename="../apps/files/Main.qml" line="350" />
+        <location filename="../apps/files/Main.qml" line="434" />
+        <location filename="../apps/files/Main.qml" line="435" />
         <source>Nouveau document</source>
         <translation>New document</translation>
     </message>
     <message numerus="yes">
-        <location filename="../apps/files/Main.qml" line="376" />
+        <location filename="../apps/files/Main.qml" line="380" />
         <source>%n élément(s)</source>
         <translation><numerusform>%n item</numerusform><numerusform>%n items</numerusform></translation>
     </message>
     <message numerus="yes">
-        <location filename="../apps/files/Main.qml" line="378" />
+        <location filename="../apps/files/Main.qml" line="382" />
         <source>%n sélectionné(s)</source>
         <translation><numerusform>%n selected</numerusform><numerusform>%n selected</numerusform></translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="413" />
+        <location filename="../apps/files/Main.qml" line="417" />
         <source>Restaurer</source>
         <translation>Restore</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="413" />
+        <location filename="../apps/files/Main.qml" line="417" />
         <source>Supprimer définitivement</source>
         <translation>Delete permanently</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="416" />
+        <location filename="../apps/files/Main.qml" line="420" />
         <source>Ouvrir</source>
         <translation>Open</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="416" />
+        <location filename="../apps/files/Main.qml" line="420" />
         <source>Entrée</source>
         <translation>Enter</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="417" />
+        <location filename="../apps/files/Main.qml" line="421" />
         <source>Ouvrir dans un nouvel onglet</source>
         <translation>Open in a new tab</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="420" />
+        <location filename="../apps/files/Main.qml" line="424" />
         <source>Extraire ici</source>
         <translation>Extract here</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="421" />
+        <location filename="../apps/files/Main.qml" line="425" />
         <source>Compresser en .zip</source>
         <translation>Compress to .zip</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="423" />
+        <location filename="../apps/files/Main.qml" line="427" />
         <source>Couper</source>
         <translation>Cut</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="424" />
+        <location filename="../apps/files/Main.qml" line="428" />
         <source>Copier</source>
         <translation>Copy</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="425" />
-        <location filename="../apps/files/Main.qml" line="435" />
+        <location filename="../apps/files/Main.qml" line="429" />
+        <location filename="../apps/files/Main.qml" line="439" />
         <source>Coller</source>
         <translation>Paste</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="427" />
+        <location filename="../apps/files/Main.qml" line="431" />
         <source>Renommer…</source>
         <translation>Rename…</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="428" />
+        <location filename="../apps/files/Main.qml" line="432" />
         <location filename="../apps/viewer/Main.qml" line="265" />
         <source>Mettre à la corbeille</source>
         <translation>Move to trash</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="428" />
+        <location filename="../apps/files/Main.qml" line="432" />
         <location filename="../apps/monitor/Main.qml" line="396" />
         <location filename="../apps/viewer/Main.qml" line="265" />
         <source>Suppr</source>
         <translation>Del</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="430" />
+        <location filename="../apps/files/Main.qml" line="434" />
         <source>Nouveau document texte</source>
         <translation>New text document</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="431" />
+        <location filename="../apps/files/Main.qml" line="435" />
         <source>Nouveau document Writer</source>
         <translation>New Writer document</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="432" />
+        <location filename="../apps/files/Main.qml" line="436" />
         <source>Nouveau classeur Calc</source>
         <translation>New Calc spreadsheet</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="432" />
+        <location filename="../apps/files/Main.qml" line="436" />
         <source>Nouveau classeur</source>
         <translation>New spreadsheet</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="433" />
+        <location filename="../apps/files/Main.qml" line="437" />
         <source>Nouvelle présentation Impress</source>
         <translation>New Impress presentation</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="433" />
+        <location filename="../apps/files/Main.qml" line="437" />
         <source>Nouvelle présentation</source>
         <translation>New presentation</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="437" />
+        <location filename="../apps/files/Main.qml" line="441" />
         <source>Afficher les fichiers cachés</source>
         <translation>Show hidden files</translation>
     </message>
     <message>
-        <location filename="../apps/files/Main.qml" line="438" />
+        <location filename="../apps/files/Main.qml" line="442" />
         <source>Ouvrir un terminal ici</source>
         <translation>Open a terminal here</translation>
     </message>
@@ -4813,22 +4861,22 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../apps/files/fileops.cpp" line="36" />
+        <location filename="../apps/files/fileops.cpp" line="39" />
         <source>Impossible de remplacer « %1 ».</source>
         <translation>Could not replace "%1".</translation>
     </message>
     <message>
-        <location filename="../apps/files/fileops.cpp" line="45" />
+        <location filename="../apps/files/fileops.cpp" line="48" />
         <source>Impossible de copier un dossier dans lui-même.</source>
         <translation>A folder cannot be copied into itself.</translation>
     </message>
     <message>
-        <location filename="../apps/files/fileops.cpp" line="49" />
+        <location filename="../apps/files/fileops.cpp" line="52" />
         <source>Impossible de créer « %1 ».</source>
         <translation>Could not create "%1".</translation>
     </message>
     <message>
-        <location filename="../apps/files/fileops.cpp" line="59" />
+        <location filename="../apps/files/fileops.cpp" line="62" />
         <source>Impossible de copier « %1 ».</source>
         <translation>Could not copy "%1".</translation>
     </message>
@@ -5120,7 +5168,12 @@
 <context>
     <name>Sidebar</name>
     <message>
-        <location filename="../apps/files/Sidebar.qml" line="68" />
+        <location filename="../apps/files/Sidebar.qml" line="54" />
+        <source>Éjecter</source>
+        <translation>Eject</translation>
+    </message>
+    <message>
+        <location filename="../apps/files/Sidebar.qml" line="77" />
         <source>Disque</source>
         <translation>Disk</translation>
     </message>

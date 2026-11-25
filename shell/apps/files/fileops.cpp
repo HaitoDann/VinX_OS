@@ -1,5 +1,7 @@
 #include "fileops.h"
 #include "folderentry.h"
+#include "trashspec.h"
+#include "devices.h"
 
 #include <QClipboard>
 #include <QDesktopServices>
@@ -8,6 +10,7 @@
 #include <QGuiApplication>
 #include <QMimeData>
 #include <QProcess>
+#include <QThread>
 #include <QTimer>
 
 #ifdef VINX_HAVE_KIO
@@ -141,6 +144,18 @@ static void track(FileOps *self, KJob *job, std::function<void(bool, const QStri
 }
 #endif
 
+void FileOps::runInThread(const std::function<QString(const std::function<void(int)> &)> &work)
+{
+    QThread *thread = QThread::create([this, work] {
+        const QString error = work([this](int p) {
+            QMetaObject::invokeMethod(this, [this, p] { m_progress = p; Q_EMIT progressChanged(); }, Qt::QueuedConnection);
+        });
+        QMetaObject::invokeMethod(this, [this, error] { finish(error.isEmpty(), error); }, Qt::QueuedConnection);
+    });
+    connect(thread, &QThread::finished, thread, &QObject::deleteLater);
+    thread->start();
+}
+
 void FileOps::copy(const QList<QUrl> &input, const QUrl &destDir, int conflict)
 {
     const QList<QUrl> urls = conflict == Skip ? withoutConflicts(input, conflicts(input, destDir)) : input;
@@ -153,13 +168,16 @@ void FileOps::copy(const QList<QUrl> &input, const QUrl &destDir, int conflict)
     track(this, job, [this](bool ok, const QString &e) { finish(ok, e); },
           [this](int p) { m_progress = p; Q_EMIT progressChanged(); });
 #else
-    QTimer::singleShot(0, this, [this, urls, destDir, conflict] {
+    // Fil séparé : la fenêtre reste utilisable pendant une longue copie (ADR 0054).
+    runInThread([urls, destDir, conflict](const std::function<void(int)> &report) -> QString {
         QString error;
-        bool ok = true;
-        for (const QUrl &u : urls)
-            if (!(ok = copyRecursive(u.toLocalFile(), destDir.toLocalFile(), &error, conflict == Replace)))
-                break;
-        finish(ok, error);
+        int done = 0;
+        for (const QUrl &u : urls) {
+            if (!copyRecursive(u.toLocalFile(), destDir.toLocalFile(), &error, conflict == Replace))
+                return error.isEmpty() ? tr("La copie a échoué.") : error;
+            report(++done * 100 / int(urls.size()));
+        }
+        return {};
     });
 #endif
 }
@@ -176,31 +194,35 @@ void FileOps::move(const QList<QUrl> &input, const QUrl &destDir, int conflict)
     track(this, job, [this](bool ok, const QString &e) { finish(ok, e); },
           [this](int p) { m_progress = p; Q_EMIT progressChanged(); });
 #else
-    QTimer::singleShot(0, this, [this, urls, destDir, conflict] {
+    runInThread([urls, destDir, conflict](const std::function<void(int)> &report) -> QString {
         QString error;
+        int done = 0;
         const QDir dest(destDir.toLocalFile());
         for (const QUrl &u : urls) {
             const QFileInfo fi(u.toLocalFile());
             if (fi.absolutePath() == dest.absolutePath())
                 continue;   // déjà dans ce dossier
             if (dest.absolutePath().startsWith(fi.absoluteFilePath() + QLatin1Char('/')))
-                return finish(false, tr("Impossible de déplacer un dossier dans lui-même."));
+                return tr("Impossible de déplacer un dossier dans lui-même.");
             if (conflict == Replace && dest.exists(fi.fileName())) {
                 const QFileInfo old(dest.filePath(fi.fileName()));
                 if (!(old.isDir() ? QDir(old.absoluteFilePath()).removeRecursively() : QFile::remove(old.absoluteFilePath())))
-                    return finish(false, tr("Impossible de remplacer « %1 ».").arg(fi.fileName()));
+                    return tr("Impossible de remplacer « %1 ».").arg(fi.fileName());
             }
             const QString name = uniqueName(fi.fileName(), [&dest](const QString &n) { return dest.exists(n); });
-            if (QFile::rename(fi.absoluteFilePath(), dest.filePath(name)))
+            if (QFile::rename(fi.absoluteFilePath(), dest.filePath(name))) {
+                report(++done * 100 / int(urls.size()));
                 continue;
+            }
             // Autre disque : copie puis suppression.
             if (!copyRecursive(fi.absoluteFilePath(), dest.absolutePath(), &error))
-                return finish(false, error);
+                return error;
             const bool removed = fi.isDir() ? QDir(fi.absoluteFilePath()).removeRecursively() : QFile::remove(fi.absoluteFilePath());
             if (!removed)
-                return finish(false, tr("« %1 » a été copié mais pas supprimé de son emplacement d'origine.").arg(fi.fileName()));
+                return tr("« %1 » a été copié mais pas supprimé de son emplacement d'origine.").arg(fi.fileName());
+            report(++done * 100 / int(urls.size()));
         }
-        finish(true, {});
+        return {};
     });
 #endif
 }
@@ -225,9 +247,11 @@ void FileOps::trash(const QList<QUrl> &urls)
 
 void FileOps::emptyTrash()
 {
-#ifdef VINX_HAVE_KIO
     begin(tr("Vidage de la corbeille"));
+#ifdef VINX_HAVE_KIO
     track(this, KIO::emptyTrash(), [this](bool ok, const QString &e) { finish(ok, e); }, [](int) {});
+#else
+    finish(trashspec::empty(), tr("Certains éléments de la corbeille n'ont pas pu être supprimés."));
 #endif
 }
 
@@ -239,7 +263,16 @@ void FileOps::restore(const QList<QUrl> &trashUrls)
     begin(tr("Restauration"));
     track(this, KIO::restoreFromTrash(trashUrls), [this](bool ok, const QString &e) { finish(ok, e); }, [](int) {});
 #else
-    Q_UNUSED(trashUrls)
+    if (trashUrls.isEmpty())
+        return;
+    begin(tr("Restauration"));
+    for (const QUrl &u : trashUrls) {
+        trashspec::Item it;
+        const QString name = u.path().mid(1);
+        if (!trashspec::find(name, &it) || trashspec::restore(it).isEmpty())
+            return finish(false, tr("Impossible de restaurer « %1 ».").arg(name));
+    }
+    finish(true, {});
 #endif
 }
 
@@ -253,6 +286,12 @@ void FileOps::deletePermanently(const QList<QUrl> &urls)
           [this](int p) { m_progress = p; Q_EMIT progressChanged(); });
 #else
     for (const QUrl &u : urls) {
+        if (u.scheme() == QLatin1String("trash")) {
+            trashspec::Item it;
+            if (!trashspec::find(u.path().mid(1), &it) || !trashspec::erase(it))
+                return finish(false, tr("Impossible de supprimer « %1 ».").arg(u.path().mid(1)));
+            continue;
+        }
         const QFileInfo fi(u.toLocalFile());
         if (!(fi.isDir() ? QDir(fi.absoluteFilePath()).removeRecursively() : QFile::remove(fi.absoluteFilePath())))
             return finish(false, tr("Impossible de supprimer « %1 ».").arg(fi.fileName()));
@@ -355,6 +394,44 @@ QString FileOps::extract(const QUrl &archive)
         return {};
     }
     return name;
+}
+
+void FileOps::mount(const QUrl &device)
+{
+    const QString dev = device.path();
+    begin(tr("Ouverture de l'appareil"));
+    auto *p = new QProcess(this);
+    connect(p, &QProcess::finished, this, [this, p](int code, QProcess::ExitStatus st) {
+        const QString at = devices::parseMountedAt(QString::fromUtf8(p->readAllStandardOutput()));
+        const bool ok = st == QProcess::NormalExit && code == 0 && !at.isEmpty();
+        finish(ok, tr("Impossible d'ouvrir cet appareil (format non reconnu, ou retiré trop tôt)."));
+        if (ok)
+            Q_EMIT mounted(QUrl::fromLocalFile(at));
+        p->deleteLater();
+    });
+    p->start(QStringLiteral("udisksctl"), {QStringLiteral("mount"), QStringLiteral("-b"), dev});
+}
+
+void FileOps::eject(const QUrl &mountPoint)
+{
+    const QString path = mountPoint.toLocalFile();
+    QProcess findmnt;
+    findmnt.start(QStringLiteral("findmnt"), {QStringLiteral("-n"), QStringLiteral("-o"), QStringLiteral("SOURCE"), QStringLiteral("--target"), path});
+    findmnt.waitForFinished(2000);
+    const QString dev = QString::fromUtf8(findmnt.readAllStandardOutput()).trimmed();
+    if (dev.isEmpty())
+        return;
+    begin(tr("Éjection"));
+    auto *p = new QProcess(this);
+    const QString name = QFileInfo(path).fileName();
+    connect(p, &QProcess::finished, this, [this, p, name](int code, QProcess::ExitStatus st) {
+        const bool ok = st == QProcess::NormalExit && code == 0;
+        finish(ok, tr("« %1 » est encore utilisé : fermez les fichiers ouverts dessus, puis réessayez.").arg(name));
+        if (ok)
+            Q_EMIT ejected(name);
+        p->deleteLater();
+    });
+    p->start(QStringLiteral("udisksctl"), {QStringLiteral("unmount"), QStringLiteral("-b"), dev});
 }
 
 QString FileOps::compress(const QList<QUrl> &urls, const QUrl &dir)

@@ -188,3 +188,9 @@ qt_add_executable(tst_gtksync tst_gtksync.cpp)
 target_include_directories(tst_gtksync PRIVATE "${PROJECT_SOURCE_DIR}/qml/Vinx/System" "${PROJECT_SOURCE_DIR}/apps/files")
 target_link_libraries(tst_gtksync PRIVATE Qt6::Test)
 add_test(NAME gtk-sync COMMAND tst_gtksync)
+
+# Fichiers sans KIO (ADR 0054).
+qt_add_executable(tst_filesbackend tst_filesbackend.cpp)
+target_include_directories(tst_filesbackend PRIVATE "${PROJECT_SOURCE_DIR}/apps/files")
+target_link_libraries(tst_filesbackend PRIVATE Qt6::Test)
+add_test(NAME files-backend COMMAND tst_filesbackend)
