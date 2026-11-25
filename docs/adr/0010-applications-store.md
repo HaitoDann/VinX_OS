@@ -1,6 +1,6 @@
 # ADR 0010 — Applications système, Store et préférences partagées
 
-- **Statut** : accepté
+- **Statut** : remplacé en partie : préférences partagées toujours valables ; Store → ADR 0027 ; réglages avancés → ADR 0019 et 0030
 - **Date** : 2026-11-10
 
 ## Contexte

@@ -48,6 +48,10 @@
       "browser.theme.toolbar-theme": {
         "Value": 2,
         "Status": "default"
+      },
+      "browser.tabs.inTitlebar": {
+        "Value": 0,
+        "Status": "default"
       }
     }
   }

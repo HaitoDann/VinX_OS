@@ -1,6 +1,6 @@
 # ADR 0009 — Session « VinX OS » et dock
 
-- **Statut** : accepté
+- **Statut** : accepté, mis à jour le 25/11/2026 : la session VinX est la session par défaut (ADR 0013), plus « expérimentale » ; lanceur découpé (ADR 0049) ; détachement de KDE prévu (ADR 0051)
 - **Date** : 2026-11-10
 
 ## Contexte

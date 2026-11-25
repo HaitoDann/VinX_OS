@@ -1,3 +1,15 @@
+vinx-shell (0.31.1) trixie; urgency=medium
+
+  * Mises à jour : le système passe par apt-get full-upgrade (vinx-admin upgrade, mot de
+    passe administrateur) au lieu de pkcon update, qui refusait les mises à jour Debian
+    demandant de nouveaux paquets ; journal dans ~/.local/state/vinx/vinx-update.log.
+  * Session renommée « VinX OS » (plus « expérimental »).
+  * Firefox : barre de titre VinX (pastilles) par défaut (ADR 0050).
+  * ADR 0050 (règle d'entrée des fonctions), 0051 (se détacher de KDE) ; en-têtes des ADR
+    dépassés mis à jour.
+
+ -- VinX OS <vinx@localhost>  Wed, 25 Nov 2026 15:00:00 +0000
+
 vinx-shell (0.31.0) trixie; urgency=medium
 
   * Filet de sécurité (ADR 0049) :

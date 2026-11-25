@@ -1,6 +1,6 @@
 # ADR 0016 — Instantanés du système et compléments du quotidien
 
-- **Statut** : accepté
+- **Statut** : remplacé en partie : instantanés → ADR 0031 (btrfs) ; comptes en ligne reportés après la 1.0
 - **Date** : 2026-11-15
 
 ## Décision

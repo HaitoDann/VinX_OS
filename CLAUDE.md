@@ -84,7 +84,7 @@ Préférences utilisateur : `~/.config/vinx/shell.ini` (QSettings, clés `sectio
 
 ## En attente
 
-- **Phase de consolidation 1.0** (ADR 0039, gel des fonctions) : suivre `docs/ROADMAP.md` et `docs/RECETTE.md` ;
+- **Vers la 1.0** : règle d'entrée des fonctions (ADR 0050, remplace le gel de l'ADR 0039) ; suivre `docs/ROADMAP.md` et `docs/RECETTE.md` ;
   l'utilisateur envoie ses retours avec `vinx-dev rapport`. Branche principale : `main`.
 
 - **Dépôt APT** : actif depuis le 18/11/2026 (`https://haitodann.github.io/VinX_OS/apt`, clé dans `distro/keys`).
@@ -97,5 +97,7 @@ Préférences utilisateur : `~/.config/vinx/shell.ini` (QSettings, clés `sectio
   restent : comptes en ligne et réseau expert (802.1X, proxy).
 - **À vérifier sur une nouvelle ISO** : installation en btrfs, instantanés automatiques, entrée « revenir à un
   état précédent » du menu de démarrage (grub-btrfs, ADR 0031).
+- **Se détacher de KDE au maximum** (ADR 0051) : étapes 1 (applications) à 5 (compositeur), chacune validée avant.
+- Canaux (ADR 0049) : `main` = essai (`vinx-dev`), `stable` = publié par le dépôt APT (« passe en stable »).
 - Ensuite : version publique 1.0 (site, ISO signée, guide). Traduction anglaise faite (ADR 0034) ; reste le
   catalogue du Store, les noms d'accents et les messages des scripts.

@@ -1,6 +1,6 @@
 # ADR 0006-firefox-esr — Firefox ESR via APT
 
-- **Statut** : accepté
+- **Statut** : accepté, confirmé le 25/11/2026 : Firefox ESR pour la 1.0, à revoir ensuite ; barre de titre VinX imposée (ADR 0050)
 - **Date** : 2026-11-09
 
 ## Contexte

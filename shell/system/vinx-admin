@@ -7,6 +7,7 @@
 #   install PAQUET…           installe des pilotes ; active les dépôts « non-free » si nécessaire
 #   charge-limit 80|100       limite de charge de la batterie (si le matériel le permet)
 #   shell-rollback VERSION    réinstalle une version gardée de vinx-shell (/var/lib/vinx/versions)
+#   upgrade                   met à jour tout le système Debian (apt-get full-upgrade, sans question)
 #   journal                   avertissements et erreurs du journal système (assistant de dépannage)
 set -eu
 [ "$(id -u)" = 0 ] || [ "${VINX_ADMIN_CHECK:-0}" = 1 ] || { echo "À lancer via pkexec." >&2; exit 1; }
@@ -69,6 +70,14 @@ charge-limit)
 	mkdir -p /etc/vinx && echo "$2" > /etc/vinx/charge-limit
 	systemctl enable vinx-charge-limit.service >/dev/null 2>&1 || true
 	;;
+upgrade)
+	[ $# -eq 1 ] || { echo "Arguments invalides." >&2; exit 2; }
+	[ "${VINX_ADMIN_CHECK:-0}" = 1 ] && exit 0
+	export DEBIAN_FRONTEND=noninteractive
+	# Status-Fd=1 : lignes « pmstatus:paquet:pourcentage:… » lues par vinx-update pour la progression.
+	apt-get update
+	apt-get full-upgrade -y -o APT::Status-Fd=1 -o Dpkg::Options::=--force-confdef -o Dpkg::Options::=--force-confold
+	;;
 shell-rollback)
 	[ $# -eq 2 ] && one_line "$2" && printf '%s' "$2" | grep -Eq '^[0-9][0-9A-Za-z.+~-]{0,40}$' || { echo "Arguments invalides." >&2; exit 2; }
 	deb=""
@@ -83,7 +92,7 @@ journal)
 	journalctl -b -p 4 -n 4000 -o short --no-pager
 	;;
 *)
-	echo "usage : vinx-admin printer-add FILE URI | printer-remove FILE | install PAQUET… | charge-limit 80|100 | shell-rollback VERSION | journal" >&2
+	echo "usage : vinx-admin printer-add FILE URI | printer-remove FILE | install PAQUET… | charge-limit 80|100 | shell-rollback VERSION | upgrade | journal" >&2
 	exit 2
 	;;
 esac

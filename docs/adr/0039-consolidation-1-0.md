@@ -1,6 +1,6 @@
 # ADR 0039 — Consolidation et gel des fonctions pour la 1.0
 
-- **Statut** : accepté
+- **Statut** : remplacé par l'ADR 0050 (règle d'entrée des fonctions) ; critère de sortie 1.0 et branches toujours valables
 - **Date** : 2026-11-18
 
 ## Contexte

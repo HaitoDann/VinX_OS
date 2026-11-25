@@ -1,6 +1,6 @@
 # ADR 0004-remaster-avant-shell — Remaster thémé avant le shell maison
 
-- **Statut** : accepté
+- **Statut** : terminé (phase historique : le shell maison remplace plasmashell depuis l'ADR 0009)
 - **Date** : 2026-11-09
 
 ## Contexte

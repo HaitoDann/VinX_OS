@@ -1,7 +1,7 @@
 [Desktop Entry]
 Type=Application
-Name=VinX OS (expérimental)
-Name[en]=VinX OS (experimental)
+Name=VinX OS
+Name[en]=VinX OS
 Comment=Bureau VinX OS : barre supérieure et dock natifs sur KWin
 Comment[en]=VinX OS desktop: native top bar and dock on KWin
 Exec=/usr/bin/vinx-session

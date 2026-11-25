@@ -1,6 +1,6 @@
 # ADR 0011 — Écran de verrouillage VinX sur kscreenlocker
 
-- **Statut** : accepté
+- **Statut** : remplacé par l'ADR 0045 (paquet de shell) ; kscreenlocker conservé jusqu'à l'ADR 0051
 - **Date** : 2026-11-11
 
 ## Contexte

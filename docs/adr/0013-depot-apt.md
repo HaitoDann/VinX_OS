@@ -1,6 +1,6 @@
 # ADR 0013 — Dépôt APT et préparation à l'installation
 
-- **Statut** : accepté
+- **Statut** : remplacé en partie : publication par la branche « stable » (ADR 0049) ; btrfs par défaut (ADR 0031)
 - **Date** : 2026-11-15
 
 ## Contexte

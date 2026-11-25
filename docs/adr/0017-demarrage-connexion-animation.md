@@ -1,6 +1,6 @@
 # ADR 0017 — Démarrage, connexion et animation signature
 
-- **Statut** : accepté ; visuels (fond, couleurs) mis à jour par l'ADR 0018 — la carte et la barre ne sont plus biseautées, l'animation reste
+- **Statut** : remplacé en partie : biseau et violet abandonnés (ADR 0018, 0040), connexion → ADR 0041 ; SDDM et Plymouth maison toujours valables
 - **Date** : 2026-11-16
 
 ## Décision
