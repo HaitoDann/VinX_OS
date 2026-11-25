@@ -1,3 +1,12 @@
+vinx-shell (0.34.1) trixie; urgency=medium
+
+  * vinx-dev échouait sur le portable : deux tests héritaient de la session VinX en
+    cours (VINX_SESSION) et l'un lançait réellement le bureau Plasma de secours.
+    Tests isolés (VINX_FALLBACK_SHELL, VINX_SAFE_NOTICE) ; vinx-session efface les
+    variables VinX héritées avant de démarrer (secours compris).
+
+ -- VinX OS <vinx@localhost>  Thu, 26 Nov 2026 10:00:00 +0000
+
 vinx-shell (0.34.0) trixie; urgency=medium
 
   * Étape 4 sans KDE (ADR 0054) : Fichiers fonctionne sans KIO.

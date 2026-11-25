@@ -26,8 +26,11 @@ while :; do
 	if [ "$crashes" -ge "$MAX" ]; then
 		log "trop de plantages : bureau Plasma de secours (ADR 0049)"
 		# Écran vide sinon : le bureau Plasma prend le relais, avec une bulle d'explication.
-		VINX_SAFE_MODE=crash /usr/lib/vinx/vinx-safe-notice &
-		command -v plasmashell >/dev/null && exec plasmashell
+		# Remplaçables pour les tests : VINX_FALLBACK_SHELL vide = pas de bureau de secours.
+		FALLBACK=${VINX_FALLBACK_SHELL-plasmashell}
+		NOTICE=${VINX_SAFE_NOTICE:-/usr/lib/vinx/vinx-safe-notice}
+		[ -x "$NOTICE" ] && VINX_SAFE_MODE=crash "$NOTICE" &
+		[ -n "$FALLBACK" ] && command -v "$FALLBACK" >/dev/null && exec "$FALLBACK"
 		exit "$status"
 	fi
 	sleep 1

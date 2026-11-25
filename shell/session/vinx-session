@@ -4,6 +4,8 @@
 # illisible, ou si les deux dernières sessions VinX se sont arrêtées aussitôt après leur
 # démarrage, on ouvre une **session de secours** : le bureau Plasma standard, avec une bulle
 # qui explique comment revenir à la version précédente de VinX. On peut toujours se connecter.
+# Rien d'une session VinX précédente ne doit fuir dans celle-ci (secours compris).
+unset VINX_SESSION VINX_STANDALONE VINX_SAFE_MODE
 SETUP=${VINX_SESSION_SETUP:-/usr/lib/vinx/vinx-session-setup}
 # Remplaçables pour les tests (tests/session-fallback-test.sh).
 STARTPLASMA=${VINX_STARTPLASMA:-/usr/bin/startplasma-wayland}
