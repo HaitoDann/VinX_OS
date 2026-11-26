@@ -1,3 +1,14 @@
+vinx-shell (0.34.5) trixie; urgency=medium
+
+  * Session sans Plasma : variables de session de Plasma transmises (XDG_MENU_PREFIX…) ;
+    le dock lançait Firefox avec « Dossier inconnu de l'application ».
+  * Tests de construction : les applications hors écran n'appellent plus les vrais outils
+    du bureau (kscreen-doctor s'arrêtait brutalement 21 fois pendant vinx-dev) ;
+    seul « vinx-dev rapport » le fait (VINX_CAPTURE_LIVE).
+  * Capture d'écran : diagnostic de l'image reçue de KWin (capture noire signalée).
+
+ -- VinX OS <vinx@localhost>  Thu, 26 Nov 2026 15:00:00 +0000
+
 vinx-shell (0.34.4) trixie; urgency=medium
 
   * Session sans Plasma : vinx-dev relance le bureau par systemd (il restait éteint

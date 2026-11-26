@@ -1,6 +1,7 @@
 #include "shot.h"
 
 #include <QClipboard>
+#include <QColor>
 #include <QCursor>
 #include <QDBusConnection>
 #include <QDBusConnectionInterface>
@@ -82,6 +83,15 @@ void Shot::kwinCall(const QString &method, const QVariantList &args, const Callb
         if (!state->read || !state->replied)
             return;
         const QImage image = state->ok ? Capture::imageFromRaw(state->data, state->meta) : QImage();
+        // Diagnostic (capture noire signalée sur le portable) : ce que KWin a réellement envoyé.
+        if (state->ok) {
+            qInfo("KWin : %dx%d, format %d, stride %d, %lld octets reçus, type %s, %s",
+                  state->meta.value(QStringLiteral("width")).toInt(), state->meta.value(QStringLiteral("height")).toInt(),
+                  state->meta.value(QStringLiteral("format")).toInt(), state->meta.value(QStringLiteral("stride")).toInt(),
+                  qlonglong(state->data.size()), qPrintable(state->meta.value(QStringLiteral("type")).toString()),
+                  image.isNull() ? "image illisible"
+                  : image.pixelColor(image.width() / 2, image.height() / 2).name(QColor::HexArgb).toLatin1().constData());
+        }
         done(image);
     };
     QThread *reader = QThread::create([fd = fds[0], state] {

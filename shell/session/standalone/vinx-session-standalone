@@ -5,6 +5,11 @@
 export XDG_SESSION_TYPE=wayland
 export XDG_CURRENT_DESKTOP="${XDG_CURRENT_DESKTOP:-KDE}"
 export KDE_FULL_SESSION=true KDE_SESSION_VERSION=6 KDE_APPLICATIONS_AS_SCOPE=1
+# Relevées dans la session Plasma du portable (inventaire du 25/11/2026) : menu des applications
+# de KDE (lancement depuis le dock : « Dossier inconnu de l'application » sans lui), etc.
+export XDG_MENU_PREFIX=plasma- XDG_SESSION_DESKTOP=KDE QT_WAYLAND_RECONNECT=1
+KDE_SESSION_UID=$(id -u)
+export KDE_SESSION_UID
 export VINX_STANDALONE=1
 # Disposition du clavier : startplasma la lisait dans la configuration du système quand l'utilisateur
 # n'en a pas choisi dans KDE (kxkbrc). Sans lui, KWin prenait le clavier américain (QWERTY).

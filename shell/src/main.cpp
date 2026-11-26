@@ -46,8 +46,10 @@ int main(int argc, char *argv[])
     // (menu global) sont des QMenu, qui exigent une application « widgets ».
     QApplication app(argc, argv);
     // Captures hors écran (vinx-dev rapport) : les commandes lancées (kscreen-doctor…) doivent
-    // voir le vrai bureau, pas l'écran factice de la plateforme « offscreen ».
-    if (QGuiApplication::platformName() == QLatin1String("offscreen"))
+    // voir le vrai bureau, pas l'écran factice de la plateforme « offscreen ». Seulement pour le rapport
+    // (VINX_CAPTURE_LIVE=1) : pendant les tests de construction, il n'y a pas de vrai bureau et
+    // kscreen-doctor s'arrêtait brutalement à chaque appel.
+    if (QGuiApplication::platformName() == QLatin1String("offscreen") && qEnvironmentVariableIntValue("VINX_CAPTURE_LIVE") == 1)
         qunsetenv("QT_QPA_PLATFORM");
     vinxInstallTranslator(app);
     app.setApplicationName(QStringLiteral("vinx-shell"));
