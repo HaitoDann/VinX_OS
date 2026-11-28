@@ -18,6 +18,22 @@
 namespace Capture {
 
 // Résultat de KWin : { type: "raw", width, height, stride, format (QImage::Format), scale }.
+// Même disposition en mémoire, sans canal alpha.
+inline QImage::Format opaqueFormat(QImage::Format f)
+{
+    switch (f) {
+    case QImage::Format_ARGB32:
+    case QImage::Format_ARGB32_Premultiplied: return QImage::Format_RGB32;
+    case QImage::Format_RGBA8888:
+    case QImage::Format_RGBA8888_Premultiplied: return QImage::Format_RGBX8888;
+    case QImage::Format_A2BGR30_Premultiplied: return QImage::Format_BGR30;
+    case QImage::Format_A2RGB30_Premultiplied: return QImage::Format_RGB30;
+    case QImage::Format_RGBA64:
+    case QImage::Format_RGBA64_Premultiplied: return QImage::Format_RGBX64;
+    default: return f;
+    }
+}
+
 inline QImage imageFromRaw(const QByteArray &data, const QVariantMap &meta)
 {
     const int width = meta.value(QStringLiteral("width")).toInt();
@@ -28,7 +44,19 @@ inline QImage imageFromRaw(const QByteArray &data, const QVariantMap &meta)
         || format <= QImage::Format_Invalid || format >= QImage::NImageFormats)
         return {};
     // Copie : les octets appartiennent au tampon lu dans le tube.
-    QImage image = QImage(reinterpret_cast<const uchar *>(data.constData()), width, height, stride, format).copy();
+    // Un écran est opaque : on ignore le canal alpha. Sur certaines puces (Intel), KWin le laisse à 0,
+    // et l'image entière devenait transparente, donc noire (capture noire signalée sur le portable).
+    QImage image = QImage(reinterpret_cast<const uchar *>(data.constData()), width, height, stride, opaqueFormat(format)).copy();
+    // Formats 8 bits par canal : Qt exige un alpha à 255 dans les variantes « sans alpha » ; on l'écrit.
+    if (image.depth() == 32) {
+        const int alphaByte = (image.format() == QImage::Format_RGBX8888) ? 3 : (QSysInfo::ByteOrder == QSysInfo::LittleEndian ? 3 : 0);
+        if (image.format() == QImage::Format_RGBX8888 || image.format() == QImage::Format_RGB32)
+            for (int y = 0; y < image.height(); ++y) {
+                uchar *line = image.scanLine(y);
+                for (int x = 0; x < image.width(); ++x)
+                    line[x * 4 + alphaByte] = 0xff;
+            }
+    }
     const double scale = meta.value(QStringLiteral("scale"), 1.0).toDouble();
     if (scale > 0)
         image.setDevicePixelRatio(scale);

@@ -27,6 +27,23 @@ private Q_SLOTS:
         bad[QStringLiteral("format")] = 9999u;
         QVERIFY(Capture::imageFromRaw(data, bad).isNull());
     }
+    // Capture noire du portable (Intel) : KWin laisse l'alpha à 0 ; l'image doit rester visible.
+    void imageFromRawIgnoresAlpha()
+    {
+        for (const QImage::Format f : {QImage::Format_ARGB32_Premultiplied, QImage::Format_RGBA8888_Premultiplied}) {
+            QImage source(2, 2, f == QImage::Format_ARGB32_Premultiplied ? QImage::Format_RGB32 : QImage::Format_RGBX8888);
+            source.fill(QColor(16, 221, 140));
+            QByteArray data(reinterpret_cast<const char *>(source.constBits()), source.sizeInBytes());
+            // Octet alpha mis à 0 (position selon le format).
+            for (int i = 0; i < data.size(); i += 4)
+                data[f == QImage::Format_ARGB32_Premultiplied ? i + 3 : i + 3] = 0;
+            const QVariantMap meta{{QStringLiteral("width"), 2u}, {QStringLiteral("height"), 2u},
+                                   {QStringLiteral("stride"), uint(source.bytesPerLine())}, {QStringLiteral("format"), uint(f)}};
+            const QImage image = Capture::imageFromRaw(data, meta);
+            QCOMPARE(image.pixelColor(1, 1), QColor(16, 221, 140));
+            QVERIFY(!image.hasAlphaChannel());
+        }
+    }
 
     void fileName()
     {

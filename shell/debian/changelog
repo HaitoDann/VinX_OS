@@ -1,3 +1,12 @@
+vinx-shell (0.34.6) trixie; urgency=medium
+
+  * Capture d'écran noire : l'image de KWin est traitée comme opaque (sur certaines
+    puces Intel, son canal alpha vaut 0 : l'image entière était transparente, donc noire).
+  * Dock : les applications sont lancées par VinX, comme depuis la recherche
+    (libtaskmanager passait par KIO : « Dossier inconnu de l'application » pour Firefox).
+
+ -- VinX OS <vinx@localhost>  Sat, 28 Nov 2026 10:00:00 +0000
+
 vinx-shell (0.34.5) trixie; urgency=medium
 
   * Session sans Plasma : variables de session de Plasma transmises (XDG_MENU_PREFIX…) ;

@@ -98,13 +98,15 @@ Item {
     // affiche la liste. (Activer un groupe n'a aucun effet dans libtaskmanager.)
     function activate(i) {
         const w = windows(i)
-        if (w.length === 0) { tasks.requestActivate(_index(i)); return }
+        // Lancement par VinX, comme la recherche : celui de libtaskmanager passe par KIO, qui
+        // renvoyait « Dossier inconnu de l'application » pour Firefox.
+        if (w.length === 0) { if (!Applications.launch(_appId(i))) tasks.requestActivate(_index(i)); return }
         if (w.length > 1) return
         const idx = _windowIndex(i, 0)
         if (w[0].active && !w[0].minimized) tasks.requestToggleMinimized(idx)
         else tasks.requestActivate(idx)
     }
-    function newInstance(i) { tasks.requestNewInstance(_index(i)) }
+    function newInstance(i) { if (!Applications.launch(_appId(i))) tasks.requestNewInstance(_index(i)) }
     function close(i) { tasks.requestClose(_index(i)) }
     function togglePin(i) {
         const id = _appId(i)
